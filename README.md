@@ -32,7 +32,7 @@ Cette commande nettoie, construit et exécute l'application.
    ```bash
    ./build.sh -run
 **Notes**
-- Assurez-vous que le script (`script.sh) a les permissions d'exécution :
+- Assurez-vous que le script (`build.sh`) a les permissions d'exécution :
    ```bash
    chmod +x build.sh
 - Si vous ne spécifiez aucune option lors de l'exécution du script, il affichera un message d'erreur vous indiquant d'utiliser --help pour afficher l'aide :
