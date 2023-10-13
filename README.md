@@ -14,7 +14,6 @@ Assurez-vous d'avoir les éléments suivants installés sur votre système :
    ```bash
    git clone https://codefirst.iut.uca.fr/git/yannis.doumir_fernandes/SAE_101.git
    cd SAE_101
-
 2. **Exécuter le script de lancement :**
    ```bash
    ./script.sh -rbuild
