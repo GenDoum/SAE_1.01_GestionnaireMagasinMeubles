@@ -17,5 +17,4 @@ Assurez-vous d'avoir les éléments suivants installés sur votre système :
 2. **Exécuter le script de lancement :**
    ```bash
    ./script.sh -rbuild
-
 Cette commande nettoie, construit et exécute l'application.
