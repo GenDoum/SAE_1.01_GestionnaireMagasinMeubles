@@ -6,7 +6,7 @@
 Assurez-vous d'avoir les éléments suivants installés sur votre système :
 - [Git](https://git-scm.com/)
 - [Make](https://www.gnu.org/software/make/)
-- [GCC](https://gcc.gnu.org/) (GNU Compiler Collection)
+- [GCC](https://gcc.gnu.org/) 
 
 ## Étapes
 
