@@ -34,7 +34,6 @@ all: build
 build: $(BUILD_DIR)/$(EXECUTABLE)
 
 $(BUILD_DIR)/$(EXECUTABLE): $(OBJECTS)
-	@echo "Début de la compilation"
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(LDFLAGS) -o $@ $^
 
@@ -43,11 +42,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $(CFLAGS_RELEASE) -o $@ $<
 
 debug:
-	@echo "Configuration de la compilation en mode debug..."
 	$(MAKE) CFLAGS_RELEASE="$(CFLAGS_DEBUG)" build
 
 clean:
-	@echo "Nettoyage en cours..."
 	rm -rf $(OBJ_DIR) $(BUILD_DIR)
 
 run: build
