@@ -33,5 +33,5 @@ Cette commande nettoie, construit et exécute l'application.
    ./script.sh -run
 **Notes**
 Assurez-vous que le script (`script.sh) a les permissions d'exécution :
-``bash
-chmod +x script.sh
+   ``bash
+   chmod +x script.sh
