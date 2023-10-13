@@ -1,114 +1,117 @@
 #!/bin/bash
 
+SCRIPT_NAME=$(basename "$0")
 BUILD_DIR="build"
 OBJ_DIR="obj"
 SRC_DIR="src"
 APP_NAME="APP"
 GCC_OPTIONS="-c -O3"
 
-# Fonctions d'affichage
-function afficher_succes {
+# Display functions
+function show_success {
     tput setaf 2
     echo "✔ $1"
     tput sgr0
 }
 
-function afficher_erreur {
+function show_error {
     tput setaf 1
-    echo "✖ Erreur: $1"
+    echo "✖ Error: $1"
     tput sgr0
 }
 
-function afficher_commande {
+function show_command {
     tput setaf 3
     echo -e "\t$1"
     tput sgr0
 }
 
-# Fonction pour afficher les points avec un effet de saut
-function afficher_points_saut {
-    for _ in {1..1}; do
-        echo -ne "\n\t⬇  ⬇  ⬇ \n\n"
-        sleep 0.5
+# Function to display arrows with a jumping effect
+function show_arrows_jump {
+    for _ in {1}; do
+        echo -e "\n\t⬇  ⬇  ⬇ \n"
+        sleep 0.3
     done
 }
 
-# Vérification et création des répertoires
+# Check and create directories
 if [ ! -d "$BUILD_DIR" ] && [ "$#" -gt 0 ] && [ "$1" != "--help" ]; then
-    mkdir "$BUILD_DIR" || afficher_erreur "Impossible de créer le répertoire $BUILD_DIR."
+    mkdir "$BUILD_DIR" || show_error "Unable to create directory $BUILD_DIR."
 fi
 
-# Nettoyer les fichiers générés
-function nettoyer {
-    local commande="rm -rf $OBJ_DIR $BUILD_DIR"
-    echo -e "➔ Nettoyage en cours..."
-    afficher_commande "$commande"
-    make clean > /dev/null || afficher_erreur "Erreur lors du nettoyage."
-    afficher_succes "Nettoyage terminé."
+# Clean generated files
+function clean {
+    local command="rm -rf $OBJ_DIR $BUILD_DIR"
+    echo -e "➔ Cleaning..."
+    show_command "$command"
+    make clean > /dev/null || show_error "Error during cleaning."
+    show_success "Cleaning completed."
 }
 
-# Compilation
-function construire {
-    local commande="gcc $GCC_OPTIONS -o $OBJ_DIR/main.o $SRC_DIR/main.c"
-    echo -e "➔ Compilation en cours..."
-    afficher_commande "$commande"
-    make > /dev/null|| afficher_erreur "Erreur lors de la compilation."
-    afficher_succes "Compilation terminée."
+# Build
+function build {
+    local command="gcc $GCC_OPTIONS -o $OBJ_DIR/main.o $SRC_DIR/main.c"
+    echo -e "➔ Building..."
+    show_command "$command"
+    make > /dev/null || show_error "Error during compilation."
+    show_success "Compilation completed."
 }
 
-# Exécuter l'exécutable
-function executer {
+# Execute the executable
+function execute {
     local executable="$BUILD_DIR/$APP_NAME"
-    local commande="./$executable"
-    echo -e "➔ Exécution de l'exécutable..."
-    afficher_commande "$commande"
+    local command="./$executable"
+    echo -e "➔ Executing the executable..."
+    show_command "$command"
     if [ -x "$executable" ]; then
-        afficher_points_saut
-        "$commande" || afficher_erreur "Erreur lors de l'exécution."
+        show_arrows_jump
+        "$command" || show_error "Error during execution."
     else
-        afficher_erreur "Erreur lors de l'exécution. Le fichier $executable n'est pas exécutable."
+        show_error "Error during execution. The file $executable is not executable."
     fi
 }
 
-# Afficher l'aide
-function afficher_aide {
-    echo "Utilisation : $0 [options]"
-    echo "Options :"
-    echo -e "\t-rbuild, -rb  : \t➔ Nettoyer avant de reconstruire et exécuter"
-    echo -e "\t-debug        : \t➔ Configurer la compilation en mode debug"
-    echo -e "\t-run          : \t➔ Exécuter l'exécutable généré"
-    echo -e "\t-clean        : \t➔ Nettoyer les fichiers générés"
-    echo -e "\t--help        : \t➔ Afficher l'aide"
+# Display help
+function show_help {
+    echo "Usage: $SCRIPT_NAME [options]"
+    echo "Options:"
+    echo -e "\t-rbuild, -rb  : \t➔ Clean before rebuilding and execute (alternative)"
+    echo -e "\t-debug, -d    : \t➔ Configure compilation in debug mode"
+    echo -e "\t-run, -r      : \t➔ Execute the generated executable"
+    echo -e "\t-clean, -c    : \t➔ Clean before rebuilding and execute"
+    echo -e "\t--help, -h    : \t➔ Display help"
 }
 
-# Boucle d'options
+# Options loop
 while [ "$#" -gt 0 ]; do
     case "$1" in
+        -clean | -c)
+            clean
+            build
+            execute
+            ;;
+        -debug | -d)
+            echo -e "➔ Configuring compilation in debug mode..."
+            show_command "make debug"
+            make debug || show_error "Error configuring in debug mode."
+            build
+            execute
+            ;;
+        -run | -r)
+            build
+            execute
+            ;;
         -rbuild | -rb)
-            nettoyer
-            construire
-            executer
+            clean
+            build
+            execute
             ;;
-        -debug)
-            echo -e "➔ Configuration de la compilation en mode debug..."
-            afficher_commande "make debug"
-            make debug || afficher_erreur "Erreur lors de la configuration en mode debug."
-            construire
-            executer
-            ;;
-        -run)
-            construire
-            executer
-            ;;
-        -clean)
-            nettoyer
-            ;;
-        --help)
-            afficher_aide
+        --help | -h)
+            show_help
             exit 0
             ;;
         *)
-            afficher_erreur "Option non reconnue : $1. Utilisez --help pour afficher l'aide."
+            show_error "Unrecognized option: $1. Use --help to display help."
             ;;
     esac
     shift
