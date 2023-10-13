@@ -87,8 +87,7 @@ while [ "$#" -gt 0 ]; do
     case "$1" in
         -clean | -c)
             clean
-            build
-            execute
+            shift
             ;;
         -debug | -d)
             echo -e "➔ Configuring compilation in debug mode..."
@@ -96,15 +95,18 @@ while [ "$#" -gt 0 ]; do
             make debug || show_error "Error configuring in debug mode."
             build
             execute
+            shift
             ;;
         -run | -r)
             build
             execute
+            shift
             ;;
         -rbuild | -rb)
             clean
             build
             execute
+            shift
             ;;
         --help | -h)
             show_help
@@ -112,6 +114,7 @@ while [ "$#" -gt 0 ]; do
             ;;
         *)
             show_error "Unrecognized option: $1. Use --help to display help."
+            shift
             ;;
     esac
     shift
