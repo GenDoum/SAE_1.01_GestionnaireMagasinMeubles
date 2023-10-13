@@ -4,15 +4,15 @@ BUILD_DIR="build"
 OBJ_DIR="obj"
 SRC_DIR="src"
 APP_NAME="APP"
+GCC_OPTIONS="-c -O3"
 
-# success 
+# Fonctions d'affichage
 function afficher_succes {
     tput setaf 2
     echo "✔ $1"
     tput sgr0
 }
 
-# error
 function afficher_erreur {
     tput setaf 1
     echo "✖ Erreur: $1"
@@ -25,7 +25,52 @@ function afficher_commande {
     tput sgr0
 }
 
-# --help
+# Fonction pour afficher les points avec un effet de saut
+function afficher_points_saut {
+    for _ in {1..1}; do
+        echo -ne "\n\t⬇  ⬇  ⬇ \n\n"
+        sleep 0.5
+    done
+}
+
+# Vérification et création des répertoires
+if [ ! -d "$BUILD_DIR" ] && [ "$#" -gt 0 ] && [ "$1" != "--help" ]; then
+    mkdir "$BUILD_DIR" || afficher_erreur "Impossible de créer le répertoire $BUILD_DIR."
+fi
+
+# Nettoyer les fichiers générés
+function nettoyer {
+    local commande="rm -rf $OBJ_DIR $BUILD_DIR"
+    echo -e "➔ Nettoyage en cours..."
+    afficher_commande "$commande"
+    make clean > /dev/null || afficher_erreur "Erreur lors du nettoyage."
+    afficher_succes "Nettoyage terminé."
+}
+
+# Compilation
+function construire {
+    local commande="gcc $GCC_OPTIONS -o $OBJ_DIR/main.o $SRC_DIR/main.c"
+    echo -e "➔ Compilation en cours..."
+    afficher_commande "$commande"
+    make > /dev/null|| afficher_erreur "Erreur lors de la compilation."
+    afficher_succes "Compilation terminée."
+}
+
+# Exécuter l'exécutable
+function executer {
+    local executable="$BUILD_DIR/$APP_NAME"
+    local commande="./$executable"
+    echo -e "➔ Exécution de l'exécutable..."
+    afficher_commande "$commande"
+    if [ -x "$executable" ]; then
+        afficher_points_saut
+        "$commande" || afficher_erreur "Erreur lors de l'exécution."
+    else
+        afficher_erreur "Erreur lors de l'exécution. Le fichier $executable n'est pas exécutable."
+    fi
+}
+
+# Afficher l'aide
 function afficher_aide {
     echo "Utilisation : $0 [options]"
     echo "Options :"
@@ -36,58 +81,7 @@ function afficher_aide {
     echo -e "\t--help        : \t➔ Afficher l'aide"
 }
 
-# errors
-function gerer_erreur {
-    local message=$1
-    local code=${2:-1}  # Code de sortie par défaut : 1
-    afficher_erreur "$message"
-    exit "$code"
-}
-
-# build exist ?
-if [ ! -d "$BUILD_DIR" ] && [ "$#" -gt 0 ] && [ "$1" != "--help" ]; then
-    mkdir "$BUILD_DIR" || gerer_erreur "Impossible de créer le répertoire $BUILD_DIR."
-fi
-
-
-BUILD_DIR="build"
-
-# Clean
-function nettoyer {
-    local commande="rm -rf $OBJ_DIR $BUILD_DIR"
-    echo -e "➔ Nettoyage en cours..."
-    afficher_commande "$commande"
-    make clean > /dev/null|| gerer_erreur "Erreur lors du nettoyage."
-    afficher_succes "Nettoyage terminé."
-}
-
-# build
-function construire {
-    local commande="gcc -c -O3 -o $OBJ_DIR/main.o $SRC_DIR/main.c"
-    echo -e "➔ Compilation en cours..."
-    afficher_commande "$commande"
-    make > /dev/null|| gerer_erreur "Erreur lors de la compilation."
-    afficher_succes "Compilation terminée."
-}
-
-# Execute
-function executer {
-    local commande="./$BUILD_DIR/$APP_NAME"
-    echo -e "➔ Exécution de l'exécutable..."
-    afficher_commande "$commande"
-    if [ -x "$commande" ]; then
-        "$commande" || gerer_erreur "Erreur lors de l'exécution."
-    else
-        gerer_erreur "Erreur lors de l'exécution. Le fichier $BUILD_DIR/$APP_NAME n'est pas exécutable."
-    fi
-}
-
-if [ "$#" -eq 0 ] || [ "$1" == "--help" ]; then
-    afficher_aide
-    exit 1
-fi
-
-# arguments
+# Boucle d'options
 while [ "$#" -gt 0 ]; do
     case "$1" in
         -rbuild | -rb)
@@ -98,7 +92,7 @@ while [ "$#" -gt 0 ]; do
         -debug)
             echo -e "➔ Configuration de la compilation en mode debug..."
             afficher_commande "make debug"
-            make debug || gerer_erreur "Erreur lors de la configuration en mode debug."
+            make debug || afficher_erreur "Erreur lors de la configuration en mode debug."
             construire
             executer
             ;;
@@ -114,7 +108,7 @@ while [ "$#" -gt 0 ]; do
             exit 0
             ;;
         *)
-            gerer_erreur "Option non reconnue : $1. Utilisez --help pour afficher l'aide."
+            afficher_erreur "Option non reconnue : $1. Utilisez --help pour afficher l'aide."
             ;;
     esac
     shift
