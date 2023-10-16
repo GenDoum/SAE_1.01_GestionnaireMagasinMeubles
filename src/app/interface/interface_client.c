@@ -1,7 +1,6 @@
-#include<stdio.h>
+#include "interface_client.h"
 
-void affiche_client()
-{
+void affiche_client(){
     printf("\n");
     printf("--------------- \n");
     printf("|| Bonjour ! ||\n") ;
@@ -9,6 +8,6 @@ void affiche_client()
     printf("\n");
     printf("-------------------------------------------------------------------\n");
     printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n") ;
-    printf("||\t1 : Afficher le récapitulatif de votre panier. \t \t \t \t || \n") ;
+    printf("||\t1 : Afficher le récapitulatif du panier. \t \t || \n") ;
     printf("-------------------------------------------------------------------\n");
 }

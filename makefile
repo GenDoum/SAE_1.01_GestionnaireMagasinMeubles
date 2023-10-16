@@ -1,43 +1,21 @@
-CC = gcc
-SRC_DIR = src
-OBJ_DIR = obj
-SOURCES = $(wildcard $(SRC_DIR)/*.c)
-OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
-EXECUTABLE = APP
+GCCFLAGS = -Wall -Wextra -I src -Wno-unused-parameter -Wno-unused-but-set-variable
 BUILD_DIR = build
-LDFLAGS =
-CFLAGS_RELEASE = -O3
-CFLAGS_DEBUG = -g -O0
+SOURCES = $(shell find src -name '*.c')
+TARGETS = $(patsubst %.c, %.o, $(SOURCES))
+TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
+APP_NAME = app
 
-# Generate dependency files
-DEPS = $(OBJECTS:.o=.d)
--include $(DEPS)
+all: $(APP_NAME)
 
-# Commands
-all: build
+$(APP_NAME): $(TARGETS)
+	@gcc $(GCCFLAGS) -o $(APP_NAME) $(TARGETS)
+	@echo -e $(GREEN)build done.$(RESET)
 
-build: $(BUILD_DIR)/$(EXECUTABLE)
+$(TARGETS): $(SOURCES)
+	@mkdir -p $(@D)
+	@gcc $(GCCFLAGS) -c $(patsubst %.o, %.c, $(@:$(BUILD_DIR)/%=%)) -o $@
 
-$(BUILD_DIR)/$(EXECUTABLE): $(OBJECTS)
-	@mkdir -p $(BUILD_DIR)
-	$(CC) $(LDFLAGS) -o $@ $^
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) -c $(CFLAGS_RELEASE) -MMD -MP -o $@ $<
-
-debug:
-	$(MAKE) CFLAGS_RELEASE="$(CFLAGS_DEBUG)" build
 
 clean:
-	rm -rf $(OBJ_DIR) $(BUILD_DIR)
-
-run: build
-	$<
-
-doc_doxygen:
-	@echo "Doxygen build started"
-	@$(MAKE) -C docs
-
-.PHONY: all build debug clean run doc_doxygen
-
+	@rm -r $(BUILD_DIR) $(APP_NAME)
+	@echo -e $(GREEN)clean done.$(RESET)
