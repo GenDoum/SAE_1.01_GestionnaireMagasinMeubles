@@ -5,7 +5,6 @@
 #include "client.h"
 
 void afficherDonneesClient() {
-    // Ouverture du fichier en mode lecture
     FILE *fichier = fopen("donnee/client.txt", "r");
     int numeroClient;
     float cagnotte;
@@ -21,6 +20,5 @@ void afficherDonneesClient() {
                numeroClient, cagnotte, (suspendu == 0) ? "Non" : "Oui");
     }
 
-    // Fermeture du fichier
     fclose(fichier);
 }
