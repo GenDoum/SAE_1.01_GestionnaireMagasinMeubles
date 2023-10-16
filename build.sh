@@ -2,10 +2,11 @@
 
 SCRIPT_NAME=$(basename "$0")
 BUILD_DIR="build"
-OBJ_DIR="obj"
 SRC_DIR="src"
-APP_NAME="APP"
-GCC_OPTIONS="-c -O3"
+APP_NAME="app"
+GCC_OPTIONS="-Wall -Wextra -I $SRC_DIR -Wno-unused-parameter -Wno-unused-but-set-variable"
+GREEN='\033[0;32m'
+RESET='\033[0m'
 
 # Display functions
 function show_success {
@@ -41,7 +42,7 @@ fi
 
 # Clean generated files
 function clean {
-    local command="rm -rf $OBJ_DIR $BUILD_DIR"
+    local command="rm -r $BUILD_DIR $APP_NAME"
     echo -e "➔ Cleaning..."
     show_command "$command"
     make clean > /dev/null || show_error "Error during cleaning."
@@ -50,7 +51,7 @@ function clean {
 
 # Build
 function build {
-    local command="gcc $GCC_OPTIONS -o $OBJ_DIR/main.o $SRC_DIR/main.c"
+    local command="make"
     echo -e "➔ Building..."
     show_command "$command"
     make > /dev/null || show_error "Error during compilation."
@@ -59,7 +60,7 @@ function build {
 
 # Execute the executable
 function execute {
-    local executable="$BUILD_DIR/$APP_NAME"
+    local executable="$APP_NAME"
     local command="./$executable"
     echo -e "➔ Executing the executable..."
     show_command "$command"
