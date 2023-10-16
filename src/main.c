@@ -5,7 +5,8 @@
 #include "app/core_logic/client.h"
 
 int main(){
+    int choix;
 
-    affiche_client();
+    menu(&choix);
     afficherDonneesClient();
 }
