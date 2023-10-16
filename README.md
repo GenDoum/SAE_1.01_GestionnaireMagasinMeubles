@@ -38,3 +38,4 @@ Cette commande nettoie, construit et exécute l'application.
 - Si vous ne spécifiez aucune option lors de l'exécution du script, il affichera un message d'erreur vous indiquant d'utiliser --help pour afficher l'aide :
    ```bash
    ./build.sh --help
+
