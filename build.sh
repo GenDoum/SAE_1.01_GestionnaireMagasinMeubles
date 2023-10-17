@@ -40,7 +40,7 @@ if [ ! -d "$BUILD_DIR" ] && [ "$#" -gt 0 ] && [ "$1" != "--help" ]; then
     mkdir "$BUILD_DIR" || show_error "Unable to create directory $BUILD_DIR."
 fi
 
-# Clean generated files
+# Clean
 function clean {
     local command="rm -r $BUILD_DIR $APP_NAME"
     echo -e "➔ Cleaning..."
