@@ -1,4 +1,5 @@
 #include "interface_client.h"
+#include "app/core_logic/client.h"
 
 void affiche_client(){
     printf("\n");
@@ -6,10 +7,10 @@ void affiche_client(){
     printf("|| Bonjour ! ||\n") ;
     printf("--------------- \n");
     printf("\n");
-    printf("-------------------------------------------------------------------\n");
+    printf("+-----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n") ;
     printf("||\t1 : Afficher le récapitulatif du panier. \t \t || \n") ;
-    printf("-------------------------------------------------------------------\n");
+    printf("+-----------------------------------------------------------------+\n");
 }
 
 /*
@@ -22,8 +23,8 @@ void menu(int *choix) {
 
     while (*choix == 1)
     {
-        affiche_client();
-        printf("Vous choisissez: ");
+        afficherDonneesClient();
+        printf("Vous choisissez: %d ", *choix);
         printf("Veuillez entrer un choix valide ! \n");
         scanf("%d", choix);
     }
