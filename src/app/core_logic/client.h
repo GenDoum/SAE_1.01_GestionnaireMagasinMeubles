@@ -8,6 +8,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void afficherDonneesClient();
+void chargerClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique);
 
 #endif //SAE_101_CLIENT_H

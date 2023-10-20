@@ -26,5 +26,7 @@ int main(){
         //case 1: global_resp();
         case 2: global_client();
     }
+
+    chargerClient();
     return 0;
 }
