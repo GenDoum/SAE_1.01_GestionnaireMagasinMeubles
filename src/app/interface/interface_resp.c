@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "interface_resp.h"
 
-void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], int tPhysique)
+void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique)
 {
     int i;
     printf("______________________________________\n");
     printf("\t Liste des articles \n\n");
-    for ( i = 0; i < tPhysique; ++i)
+    for ( i = 0; i < tLogique; ++i)
     {
         printf("\t %d  %.2f  %.2f  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
     }      
