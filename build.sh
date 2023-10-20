@@ -27,7 +27,7 @@ function show_command {
     tput sgr0
 }
 
-# Function to display arrows with a jumping effect
+# Display arrows
 function show_arrows_jump {
     for _ in {1}; do
         echo -e "\n\t⬇  ⬇  ⬇ \n"
@@ -40,7 +40,7 @@ if [ ! -d "$BUILD_DIR" ] && [ "$#" -gt 0 ] && [ "$1" != "--help" ]; then
     mkdir "$BUILD_DIR" || show_error "Unable to create directory $BUILD_DIR."
 fi
 
-# Clean generated files
+# Clean
 function clean {
     local command="rm -r $BUILD_DIR $APP_NAME"
     echo -e "➔ Cleaning..."
@@ -58,7 +58,7 @@ function build {
     show_success "Compilation completed."
 }
 
-# Execute the executable
+# Execute 
 function execute {
     local executable="$APP_NAME"
     local command="./$executable"
@@ -72,7 +72,7 @@ function execute {
     fi
 }
 
-# Display help
+# --help
 function show_help {
     echo "Usage: $SCRIPT_NAME [options]"
     echo "Options:"
