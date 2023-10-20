@@ -23,7 +23,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
             return;
         }
     }
-    fprintf(stderr"Article introuvable");
+    fprintf(stderr, "Article introuvable");
     printf("Article introuvable");
     return;    
 }
@@ -38,7 +38,7 @@ void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogiqu
             printf("\t %d %.2f %d\n\n", tNumClient[i], tCagnotte[i], tSus[i]);
         }
     }
-    fprintf(stderr"Client introuvable");
+    fprintf(stderr, "Client introuvable");
     printf("Client introuvable");
 }
 
@@ -49,6 +49,6 @@ void affichUnClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogiq
     {
         printf("\t %d %.2f %d\n\n", tNumClient[i], tCagnotte[i], tSus[i]);
     }
-    fprintf(stderr"Client introuvable");
+    fprintf(stderr, "Client introuvable");
     printf("Client introuvable");
 }
