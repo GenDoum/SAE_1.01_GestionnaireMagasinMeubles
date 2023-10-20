@@ -8,6 +8,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void ajouter_article(int reference, float poids, float volume, int prixUnitaire);
+void chargerClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique);
 
 #endif //SAE_101_CLIENT_H
