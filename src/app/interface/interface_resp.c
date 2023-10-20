@@ -25,7 +25,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
     }
     fprintf(stderr, "Article introuvable");
     printf("Article introuvable");
-    return;    
+    return;
 }
 
 void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val)
