@@ -123,7 +123,7 @@ void menu_resp(int *choix, int jour) {
 }
 
 void global_resp(){
-    int choix, a, tRef[100], tLogique = 0;
+    int choix, a = 0, tRef[100], tLogique = 0;
     float tPoids[100], tVol[100], tPrix[100];
     menu_resp(&choix, a);
     switch (choix) {
