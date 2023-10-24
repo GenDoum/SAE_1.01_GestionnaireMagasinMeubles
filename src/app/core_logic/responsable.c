@@ -45,3 +45,21 @@ void sauvegadArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], f
 
     fclose(fe);
 }
+
+int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int *tLogique, int tPhysique, int ref, float poids, float volume, float prix)
+{
+    int i = *tLogique;
+    affichAjoutArticle(&ref, &poids, &volume, &prix);
+    if ( *tLogique == tPhysique)
+    {
+        fprintf(stderr,"Tableau plein !");
+        return -2;
+    }
+    
+    // SI on trie pas par ref c'est ca
+    tRef[i] = ref;
+    tPoids[i] = poids;
+    tVol[i] = volume;
+    tPrix[i] = prix;
+    
+}
