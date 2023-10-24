@@ -10,6 +10,7 @@ int chargementArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
     if ( fe == NULL)
     {
         perror("fopen");
+        return -1;
     }
     while ( fscanf(fe,"%d %f %f %f", &ref, &poids, &volume, &prix) == 4)
     {
