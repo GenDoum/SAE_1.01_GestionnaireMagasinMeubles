@@ -31,7 +31,7 @@ void menu(int *choix, int jour) {
     }
 }
 
-void ajouter_article(int reference, float poids, float volume, int prixUnitaire){
+void demander_article(int reference, float poids, float volume, int prixUnitaire){
 
     printf("Vous avez choisi d'ajouter un article au panier.\n");
     printf("Veuillez entrer la référence de l'article que vous souhaitez ajouter au panier : ");
@@ -59,7 +59,7 @@ void global_client(){
             affiche_client(jour);
             break;
         case 2:
-            ajouter_article(reference, poids, volume, prixUnitaire);
+            demander_article(reference, poids, volume, prixUnitaire);
             break;
         default:
             printf("Veuillez entrer un choix valide ! \n");

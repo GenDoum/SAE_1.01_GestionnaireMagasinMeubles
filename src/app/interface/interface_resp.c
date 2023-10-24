@@ -9,7 +9,7 @@ void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], in
     for ( i = 0; i < tLogique; ++i)
     {
         printf("\t %d  %.2f  %.2f  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
-    }      
+    }
 }
 
 void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique, int val)
@@ -42,11 +42,9 @@ void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogiqu
     printf("Client introuvable");
 }
 
-void affichUnClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val)
-{
+void affichUnClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val) {
     int i;
-    for ( i = 0; i < tLogique; ++i)
-    {
+    for (i = 0; i < tLogique; ++i) {
         printf("\t %d %.2f %d\n\n", tNumClient[i], tCagnotte[i], tSus[i]);
     }
     fprintf(stderr, "Client introuvable");
