@@ -3,6 +3,7 @@
 #include "app/interface/interface_client.h"
 #include "app/interface/interface_resp.h"
 #include "app/core_logic/client.h"
+#include "app/core_logic/responsable.h"
 
 int choixInterface(void) {
     int choix;
@@ -27,6 +28,5 @@ int main(){
         case 2: global_client();
     }
 
-    chargerClient();
     return 0;
 }
