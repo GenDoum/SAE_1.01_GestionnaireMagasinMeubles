@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "responsable.h"
 
-int chargementArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], float tPhysique)
+int chargementArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int tPhysique)
 {
     int i=0, ref;
     float volume, poids, prix;
