@@ -55,10 +55,42 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
 {
     printf("Entrez la ref du nouveaux produit");
     scanf("%d", ref);
+    if ( ref < 0 )
+    {
+        while ( ref < 0 )
+        {
+            printf("Entrez un nombre correct !");
+            scanf("%d", ref);
+        }
+    }
     printf("Entrez le poids du nouveaux produit");
     scanf("%f", poids);
+        if ( poids < 0 )
+    {
+        while ( poids < 0 )
+        {
+            printf("Entrez un nombre correct !");
+            scanf("%d", poids);
+        }
+    }
     printf("Entrez le volume du nouveaux produit");
-    scanf("%f", volume);
+    scanf("%f", poids);
+        if ( poids < 0 )
+    {
+        while ( poids < 0 )
+        {
+            printf("Entrez un nombre correct !");
+            scanf("%d", poids);
+        }
+    }
     printf("Entrez le prix du nouveaux produit");
     scanf("%f", prix);
+        if ( prix < 0 )
+    {
+        while ( prix < 0 )
+        {
+            printf("Entrez un nombre correct !");
+            scanf("%d", prix);
+        }
+    }
 }
