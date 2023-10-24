@@ -3,3 +3,5 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val);
 void affichUnClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val);
 void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix);
+void menu_resp(int *choix, int jour);
+void global_resp();

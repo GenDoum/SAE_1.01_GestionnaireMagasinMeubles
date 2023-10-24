@@ -20,30 +20,25 @@ void affiche_client(int a){
 /*
 * Sert à lancer le menu et faire choisir l'utilisateur
 */
-void menu(int *choix, int jour) {
+void menu_client(int *choix, int jour) {
     affiche_client(jour);
     printf("Vous choisissez: ");
-    scanf("%d", choix);
-
-    while (*choix < 0)
-    {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
+        while (getchar() != '\n');  // Nettoie le tampon d'entrée en cas de saisie invalide
         affiche_client(jour);
-        printf("Vous choisissez: ");
-        printf("Veuillez entrer un choix valide ! \n");
-        scanf("%d", choix);
+        printf("Veuillez entrer un choix valide : ");
     }
 }
 
-void global_client(){
+void global_client() {
     int choix, jour;
-    menu(&choix, jour);
+    menu_client(&choix, jour);
     switch (choix) {
         case 1:
             afficherDonneesClient();
             break;
         default:
-            printf("Veuillez entrer un choix valide ! \n");
+            printf("Veuillez entrer un choix valide !\n");
             break;
     }
 }
-

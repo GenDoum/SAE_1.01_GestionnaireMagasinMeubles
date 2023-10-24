@@ -15,7 +15,7 @@ int choixInterface(void) {
         fprintf(stderr,"Veuillez entrer un choix valide ! \n");
     }
     switch (choix) {
-        case 1: printf("Vous avez choisit l'interface responsable.\n"); break;
+        case 1: printf("Vous avez choisit l'interface responsable.\n");
         case 2: printf("Vous avez choisit l'interface client.\n");
     }
     return choix;
@@ -23,7 +23,7 @@ int choixInterface(void) {
 
 int main(){
     switch (choixInterface()) {
-        //case 1: global_resp();
+        case 1: global_resp();
         case 2: global_client();
     }
     return 0;
