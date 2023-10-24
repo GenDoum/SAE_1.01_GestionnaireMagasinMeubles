@@ -17,17 +17,17 @@ void affiche_client(int a){
     printf("+-----------------------------------------------------------------+\n");
 }
 
-void menu(int *choix, int jour) {
+/*
+* Sert à lancer le menu et faire choisir l'utilisateur
+*/
+void menu_client(int *choix, int jour) {
+>>>>>>> 91542d8 (fixed some bugs on resp. Added global_resp and added error handling for char)
     affiche_client(jour);
     printf("Vous choisissez: ");
-    scanf("%d", choix);
-
-    while (*choix < 0)
-    {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
+        while (getchar() != '\n');  // Nettoie le tampon d'entrée en cas de saisie invalide
         affiche_client(jour);
-        printf("Vous choisissez: ");
-        printf("Veuillez entrer un choix valide ! \n");
-        scanf("%d", choix);
+        printf("Veuillez entrer un choix valide : ");
     }
 }
 
@@ -53,7 +53,7 @@ void demander_article(int reference, float poids, float volume, int prixUnitaire
 void global_client(){
     int choix, jour = 0, reference = 0;
     float poids = 0.0, volume = 0.0, prixUnitaire = 0.0;
-    menu(&choix, jour);
+    menu_client(&choix, jour);
     switch (choix) {
         case 1:
             affiche_client(jour);
@@ -62,8 +62,7 @@ void global_client(){
             demander_article(reference, poids, volume, prixUnitaire);
             break;
         default:
-            printf("Veuillez entrer un choix valide ! \n");
+            printf("Veuillez entrer un choix valide !\n");
             break;
     }
 }
-

@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include "interface_resp.h"
 
+void affiche_resp(int a){
+    printf("\n");
+    printf("+-------------+ \n");
+    printf("|| Bonjour ! ||\n") ;
+    printf("+-------------+ \n");
+    printf("\n");
+    printf("+-----------------------------------------------------------------+\n");
+    printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n");
+    printf("||\t1 : Afficher les articles \t \t \t \t || \n");
+    printf("||\t2 : Afficher un article \t \t \t \t || \n");
+    printf("||\t3 : Afficher un client \t \t \t \t \t || \n");
+    printf("||\t4 : Afficher les clients \t \t \t \t || \n");
+    printf("||\t5 : Réinitialiser le panier. \t \t \t \t || \n");
+    printf("+-----------------------------------------------------------------+\n");
+}
+
 void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique)
 {
     int i;
@@ -70,7 +86,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
         while ( poids < 0 )
         {
             printf("Entrez un nombre correct !");
-            scanf("%d", poids);
+            scanf("%f", poids);
         }
     }
     printf("Entrez le volume du nouveaux produit");
@@ -80,7 +96,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
         while ( poids < 0 )
         {
             printf("Entrez un nombre correct !");
-            scanf("%d", poids);
+            scanf("%f", poids);
         }
     }
     printf("Entrez le prix du nouveaux produit");
@@ -90,7 +106,33 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
         while ( prix < 0 )
         {
             printf("Entrez un nombre correct !");
-            scanf("%d", prix);
+            scanf("%f", prix);
         }
     }
 }
+
+
+void menu_resp(int *choix, int jour) {
+    affiche_resp(jour);
+    printf("Vous choisissez: ");
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
+        while (getchar() != '\n');  // Nettoie le tampon d'entrée en cas de saisie invalide
+        affiche_resp(jour);
+        printf("Veuillez entrer un choix valide : ");
+    }
+}
+
+void global_resp(){
+    int choix, a, tRef[100], tLogique = 0;
+    float tPoids[100], tVol[100], tPrix[100];
+    menu_resp(&choix, a);
+    switch (choix) {
+        case 1:
+            affichArticles(tRef, tPoids, tVol, tPrix, tLogique);
+            break;
+        default:
+            printf("Veuillez entrer un choix valide ! \n");
+            break;
+    }
+}
+

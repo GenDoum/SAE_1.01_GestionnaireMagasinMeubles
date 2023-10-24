@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "responsable.h"
+#include "../interface/interface_resp.h"
 
 int chargementArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int tPhysique)
 {
@@ -27,22 +29,19 @@ int chargementArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
     return i;
 }
 
-void sauvegadArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], float tLogique)
-{
+void sauvegardArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique){
     int i;
     FILE * fe;
-    fe = fopen("articles.txt","w");
-    if ( fe == NULL )
+    fe = fopen("donnee/articles.txt", "w");
+    if ( fe == NULL)
     {
         perror("fopen");
-        return -1;
+        return;
     }
-    
-    for ( i = 0; i < tLogique; ++i)
+    for ( i = 0; i < tLogique; i++)
     {
-        fwritef(fe,"%d\t %.2f\t %.2f\t %.2f\n", );
+        fprintf(fe,"%d %f %f %f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
     }
-
     fclose(fe);
 }
 
