@@ -47,14 +47,3 @@ void global_client(){
     }
 }
 
-void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
-{
-    printf("Entrez la ref du nouveaux produit");
-    scanf("%d", ref);
-    printf("Entrez le poids du nouveaux produit");
-    scanf("%f", poids);
-    printf("Entrez le volume du nouveaux produit");
-    scanf("%f", volume);
-    printf("Entrez le prix du nouveaux produit");
-    scanf("%f", prix);
-}
