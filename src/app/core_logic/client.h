@@ -8,6 +8,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void ajouter_article(int reference, float poids, float volume, int prixUnitaire);
+int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhysique);
+void ajouter_article_au_panier(int numeroClient, int references[], float poids[], float volume[], float prixUnitaire[],
+                               int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
+                               float volumeCoffre, float chargeMaximale);
+void supprimer_article_du_panier(int panier[], int *taillePanier);
 
 #endif //SAE_101_CLIENT_H

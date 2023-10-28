@@ -1,10 +1,14 @@
 #include "interface_client.h"
 #include "app/core_logic/client.h"
+#include "app/core_logic/responsable.h"
 
-void affiche_client(int a){
+#define MAX_ARTICLES 100
+#define MAX_CLIENTS 100
+
+void affiche_client(int a) {
     printf("\n");
     printf("+-------------+ \n");
-    printf("|| Bonjour ! ||\n") ;
+    printf("|| Bonjour ! ||\n");
     printf("+-------------+ \n");
     printf("\n");
     printf("+-----------------------------------------------------------------+\n");
@@ -21,7 +25,6 @@ void affiche_client(int a){
 * Sert à lancer le menu et faire choisir l'utilisateur
 */
 void menu_client(int *choix, int jour) {
->>>>>>> 91542d8 (fixed some bugs on resp. Added global_resp and added error handling for char)
     affiche_client(jour);
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
@@ -31,35 +34,35 @@ void menu_client(int *choix, int jour) {
     }
 }
 
-void demander_article(int reference, float poids, float volume, int prixUnitaire){
+void global_client() {
+    int choix, jour = 0;
+    int references[MAX_ARTICLES];
+    float poids[MAX_ARTICLES];
+    float volume[MAX_ARTICLES];
+    float prixUnitaire[MAX_ARTICLES];
+    int numeros[MAX_CLIENTS];
+    float cagnottes[MAX_CLIENTS];
+    int suspendus[MAX_CLIENTS];  // Ajout du tableau des clients suspendus
+    int nombreArticles, nombreClients;
+    float volumeCoffre, chargeMaximale;
+    int numeroClient;
 
-    printf("Vous avez choisi d'ajouter un article au panier.\n");
-    printf("Veuillez entrer la référence de l'article que vous souhaitez ajouter au panier : ");
-    scanf("%d", &reference);
-    printf("Veuillez entrer le poids de l'article que vous souhaitez ajouter au panier : ");
-    scanf("%f", &poids);
-    printf("Veuillez entrer le volume de l'article que vous souhaitez ajouter au panier : ");
-    scanf("%f", &volume);
-    printf("Veuillez entrer le prix unitaire de l'article que vous souhaitez ajouter au panier : ");
-    scanf("%d", &prixUnitaire);
-    printf("L'article a bien été ajouté au panier.\n");
-    printf("Voici le récapitulatif du panier : \n");
-    printf("Référence : %d \n", reference);
-    printf("Poids : %f \n", poids);
-    printf("Volume : %f \n", volume);
-    printf("Prix unitaire : %d \n", prixUnitaire);
-}
+    nombreArticles = chargementArticles(references, poids, volume, prixUnitaire, MAX_ARTICLES);
+    nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
 
-void global_client(){
-    int choix, jour = 0, reference = 0;
-    float poids = 0.0, volume = 0.0, prixUnitaire = 0.0;
     menu_client(&choix, jour);
     switch (choix) {
         case 1:
             affiche_client(jour);
             break;
         case 2:
-            demander_article(reference, poids, volume, prixUnitaire);
+            // Ajouter la logique d'interface pour ajouter un article au panier ici
+            ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
+                                      suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale);
+            break;
+        case 3:
+            // Ajouter la logique d'interface pour supprimer un article du panier ici
+            //supprimer_article_du_panier(panier, &taillePanier);
             break;
         default:
             printf("Veuillez entrer un choix valide !\n");
