@@ -141,7 +141,7 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     for (int i = 0; i < taillePanier; i++) {
         int reference = panier[i];
         int articleIndex = -1;
-        for (int j = 0; j < taillePanier; j++) {
+        for (int j = 0; j < MAX_ARTICLES; j++) {
             if (references[j] == reference) {
                 articleIndex = j;
                 break;
@@ -158,14 +158,13 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
         float prixArticle = prixUnitaire[articleIndex];
         int quantite = quantites[i];
 
-
         printf("%d\t %d\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
                reference, quantite, poidsArticle, volumeArticle,
-               prixArticle, poidsArticle, volumeArticle, prixArticle);
+               prixArticle, poidsArticle * quantite, volumeArticle * quantite, prixArticle * quantite);
 
-        poidsTotal += poidsArticle;
-        volumeTotal += volumeArticle;
-        montantTotal += prixArticle;
+        poidsTotal += poidsArticle * quantite;
+        volumeTotal += volumeArticle * quantite;
+        montantTotal += prixArticle * quantite;
     }
 
     printf("Prix total à payer: %.2f euros\n", montantTotal);

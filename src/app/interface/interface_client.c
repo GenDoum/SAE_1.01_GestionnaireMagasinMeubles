@@ -76,7 +76,7 @@ void global_client() {
         return;
     }
 
-    if (suspendus[indexClient] == 0) {
+    if (suspendus[indexClient] == 1) {
         printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
         return;
     }
