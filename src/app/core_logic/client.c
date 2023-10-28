@@ -32,7 +32,7 @@ int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhy
 
 void ajouter_article_au_panier(int numeroClient, int references[], float poids[], float volume[], float prixUnitaire[],
                                int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
-                               float volumeCoffre, float chargeMaximale) {
+                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier) {
     int reference, quantite;
     printf("Entrez la référence de l'article : ");
     scanf("%d", &reference);
@@ -50,6 +50,13 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
     if (articleIndex == -1) {
         printf("Article non trouvé. Veuillez entrer une référence valide.\n");
         return;
+    }
+
+    for (int i = 0; i < *taillePanier; i++) {
+        if (panier[i] == reference) {
+            printf("Cet article est déjà dans le panier.\n");
+            return;
+        }
     }
 
     float poidsTotal = poids[articleIndex] * quantite;
@@ -74,6 +81,16 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
             cagnottes[clientIndex] += 0.1 * montantTotal;
         }
 
+        panier[*taillePanier] = reference;
+        quantites[*taillePanier] = quantite;
+        (*taillePanier)++;
+
+        printf("Contenu du panier : ");
+        for (int i = 0; i < *taillePanier; i++) {
+            printf("%d ", panier[i]);
+        }
+        printf("\n");
+
         printf("Référence : %d\nQuantité : %d\n", reference, quantite);
         printf("Récap :\n");
         printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte\n");
@@ -92,7 +109,7 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
 
 void supprimer_article_du_panier(int panier[], int *taillePanier) {
     int reference;
-    printf("Interface utilisateur : Entrez la référence de l'article à supprimer : ");
+    printf("Entrez la référence de l'article à supprimer : ");
     scanf("%d", &reference);
 
     int articleIndex = -1;
@@ -104,7 +121,7 @@ void supprimer_article_du_panier(int panier[], int *taillePanier) {
     }
 
     if (articleIndex == -1) {
-        printf("Interface utilisateur : Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
         return;
     }
 
@@ -116,3 +133,43 @@ void supprimer_article_du_panier(int panier[], int *taillePanier) {
 
     printf("Article supprimé du panier avec succès.\n");
 }
+
+void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
+                          float prixUnitaire[], int quantites[]) {
+    printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot\n");
+    float poidsTotal = 0, volumeTotal = 0, montantTotal = 0;
+    for (int i = 0; i < taillePanier; i++) {
+        int reference = panier[i];
+        int articleIndex = -1;
+        for (int j = 0; j < taillePanier; j++) {
+            if (references[j] == reference) {
+                articleIndex = j;
+                break;
+            }
+        }
+
+        if (articleIndex == -1) {
+            printf("Article non trouvé. Veuillez entrer une référence valide.\n");
+            return;
+        }
+
+        float poidsArticle = poids[articleIndex];
+        float volumeArticle = volume[articleIndex];
+        float prixArticle = prixUnitaire[articleIndex];
+        int quantite = quantites[i];
+
+
+        printf("%d\t %d\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
+               reference, quantite, poidsArticle, volumeArticle,
+               prixArticle, poidsArticle, volumeArticle, prixArticle);
+
+        poidsTotal += poidsArticle;
+        volumeTotal += volumeArticle;
+        montantTotal += prixArticle;
+    }
+
+    printf("Prix total à payer: %.2f euros\n", montantTotal);
+    printf("Volume utilise : %.2f litres\n", volumeTotal);
+    printf("Charge Actuelle: %.2f kg\n", poidsTotal);
+}
+

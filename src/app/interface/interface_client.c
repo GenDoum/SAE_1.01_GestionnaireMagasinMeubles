@@ -18,6 +18,7 @@ void affiche_client(int a) {
     printf("||\t3 : Supprimer un article du panier. \t \t \t || \n");
     printf("||\t4 : Modifier la quantité d'un article du panier. \t || \n");
     printf("||\t5 : Réinitialiser le panier. \t \t \t \t || \n");
+    printf("||\t9 : Quitter. \t \t \t \t \t \t || \n");
     printf("+-----------------------------------------------------------------+\n");
 }
 
@@ -27,8 +28,8 @@ void affiche_client(int a) {
 void menu_client(int *choix, int jour) {
     affiche_client(jour);
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
-        while (getchar() != '\n');  // Nettoie le tampon d'entrée en cas de saisie invalide
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
+        while (getchar() != '\n');
         affiche_client(jour);
         printf("Veuillez entrer un choix valide : ");
     }
@@ -42,10 +43,13 @@ void global_client() {
     float prixUnitaire[MAX_ARTICLES];
     int numeros[MAX_CLIENTS];
     float cagnottes[MAX_CLIENTS];
-    int suspendus[MAX_CLIENTS];  // Ajout du tableau des clients suspendus
+    int suspendus[MAX_CLIENTS];
     int nombreArticles, nombreClients;
     float volumeCoffre, chargeMaximale;
     int numeroClient;
+    int quantites[MAX_ARTICLES];
+    int panier[MAX_ARTICLES];
+    int taillePanier = 0;
 
     nombreArticles = chargementArticles(references, poids, volume, prixUnitaire, MAX_ARTICLES);
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
@@ -77,21 +81,26 @@ void global_client() {
         return;
     }
 
-    menu_client(&choix, jour);
+    do{
+        menu_client(&choix, jour);
 
-    switch (choix) {
-        case 1:
-            affiche_client(jour);
-            break;
-        case 2:
-            ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
-                                      suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale);
-            break;
-        case 3:
-            //supprimer_article_du_panier(panier, &taillePanier);
-            break;
-        default:
-            printf("Veuillez entrer un choix valide !\n");
-            break;
-    }
+        switch (choix) {
+            case 1:
+                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites);
+                break;
+            case 2:
+                ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
+                                          suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier);
+                break;
+            case 3:
+                supprimer_article_du_panier(panier, &taillePanier);
+                break;
+            case 9:
+                printf("Au revoir !\n");
+                return;
+            default:
+                printf("Veuillez entrer un choix valide !\n");
+                break;
+        }
+    }while(choix != 9);
 }
