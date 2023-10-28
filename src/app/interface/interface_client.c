@@ -50,18 +50,44 @@ void global_client() {
     nombreArticles = chargementArticles(references, poids, volume, prixUnitaire, MAX_ARTICLES);
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
 
+    printf("Veuillez saisir la taille disponible du véhicule (en litres) : ");
+    scanf("%f", &volumeCoffre);
+
+    printf("Veuillez saisir la charge maximale autorisée (en kg) : ");
+    scanf("%f", &chargeMaximale);
+
+    printf("Veuillez saisir votre numéro de client : ");
+    scanf("%d", &numeroClient);
+
+    int indexClient = -1;
+    for (int i = 0; i < nombreClients; i++) {
+        if (numeros[i] == numeroClient) {
+            indexClient = i;
+            break;
+        }
+    }
+
+    if (indexClient == -1) {
+        printf("Client non trouvé. Impossible d'utiliser l'application.\n");
+        return;
+    }
+
+    if (suspendus[indexClient] == 0) {
+        printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
+        return;
+    }
+
     menu_client(&choix, jour);
+
     switch (choix) {
         case 1:
             affiche_client(jour);
             break;
         case 2:
-            // Ajouter la logique d'interface pour ajouter un article au panier ici
             ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
                                       suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale);
             break;
         case 3:
-            // Ajouter la logique d'interface pour supprimer un article du panier ici
             //supprimer_article_du_panier(panier, &taillePanier);
             break;
         default:
