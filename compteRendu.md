@@ -29,8 +29,18 @@ Dans ce projet, nous avons réparti les tâches de la manière suivante :
 - **Mathéo** s'occupe principalement de la partie client
 - **Yannis** est en charge principalement de la partie responsable.
 
-Cependant il est important de noter que nous avons collaboré sur les deux parties du projet. Chacun de nous a contribué aux deux parties. Vous pouvez identifier l'auteur des fonctions en fonction de leur style de codage : généralement, **Mathéo** place les accolades ouvrantes sur la même ligne que le prototype de la fonction etc. En revanche, **Yannis** a tendance à sauter une ligne après les prototypes et les structures de contrôle.
+Cependant, il va sans dire que même avec une telle organisation nous avons tout de même collaboré sur les deux parties du projet. Chacun de nous a contribué aux deux parties. Vous pouvez identifier l'auteur des fonctions en fonction de leur style de codage : généralement, **Mathéo** place les accolades ouvrantes sur la même ligne que le prototype de la fonction etc. En revanche, **Yannis** a tendance à sauter une ligne après les prototypes et les structures de contrôle.
 
 ## Comment démarrer l'application ?
 
 Pour démarrer l'application, nous vous recommandons d'utiliser le script `build.sh`. Ce script vous permet de compiler et de lancer l'application en utilisant l'option `-rb`. Vous n'avez pas besoin de compiler l'application manuellement ni d'exécuter l'exécutable vous-même. Exécutez simplement la commande `./build.sh -rb` pour que l'ensemble du processus soit automatisé.
+
+## Conception
+
+### Architecture :
+
+L'architecture du projet a été pensée de sorte a séparer l'interface de l'application de la logique.
+
+## Pourquoi avons-nous fait ceci ?
+
+L'adoption d'une telle architecture permet, comme précédemment expliqué, de démarquer l'interface du reste du programme. Cette approche facilite considérablement la création d'autres types d'interfaces en se concentrant exclusivement sur leur aspect visuel, tandis que la logique est encapsulée dans la couche "logique". Par exemple, nous pourrions concevoir une interface graphique ou une interface orientée vers les adhérents, où ces derniers ont accès à des opérations spécifiques offertes par l'interface par défaut, mais limitées à leurs besoins.
