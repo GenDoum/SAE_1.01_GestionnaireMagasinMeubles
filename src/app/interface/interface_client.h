@@ -1,5 +1,5 @@
 #include<stdio.h>
 
-void affiche_client(int a);
-void menu_client(int *choix, int a);
+void affiche_client();
+void menu_client(int *choix);
 void global_client();

@@ -195,7 +195,7 @@ void modifier_quantite_article_panier(int panier[], int quantites[], int *taille
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
     }
-    while (getchar() != '\n'); // Nettoyer le tampon d'entrée
+    while (getchar() != '\n');
 
     int articleIndex = -1;
     for (int i = 0; i < *taillePanier; i++) {

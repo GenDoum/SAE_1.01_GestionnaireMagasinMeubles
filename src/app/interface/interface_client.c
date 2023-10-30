@@ -5,7 +5,7 @@
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
-void affiche_client(int a) {
+void affiche_client() {
     printf("\n");
     printf("+-------------+ \n");
     printf("|| Bonjour ! ||\n");
@@ -25,8 +25,8 @@ void affiche_client(int a) {
 /*
 * Sert à lancer le menu et faire choisir l'utilisateur
 */
-void menu_client(int *choix, int jour) {
-    affiche_client(jour);
+void menu_client(int *choix) {
+    affiche_client();
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
         while (getchar() != '\n');
@@ -90,7 +90,7 @@ void global_client() {
     }
 
     do{
-        menu_client(&choix, jour);
+        menu_client(&choix);
 
         switch (choix) {
             case 1:
