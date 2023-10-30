@@ -1,4 +1,4 @@
-# # Compte rendu de la SAE1.01 - Implémentation des besoins du client
+# Compte rendu de la SAE1.01 - Implémentation des besoins du client
 
 ## Informations sur les clients :
 
@@ -41,6 +41,6 @@ Pour démarrer l'application, nous vous recommandons d'utiliser le script `build
 
 L'architecture du projet a été pensée de sorte a séparer l'interface de l'application de la logique.
 
-## Pourquoi avons-nous fait ceci ?
+### Pourquoi avons-nous fait ceci ?
 
 L'adoption d'une telle architecture permet, comme précédemment expliqué, de démarquer l'interface du reste du programme. Cette approche facilite considérablement la création d'autres types d'interfaces en se concentrant exclusivement sur leur aspect visuel, tandis que la logique est encapsulée dans la couche "logique". Par exemple, nous pourrions concevoir une interface graphique ou une interface orientée vers les adhérents, où ces derniers ont accès à des opérations spécifiques offertes par l'interface par défaut, mais limitées à leurs besoins.
