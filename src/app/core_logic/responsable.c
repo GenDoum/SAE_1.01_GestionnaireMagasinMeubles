@@ -57,14 +57,14 @@ int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int
         fprintf(stderr,"Tableau plein !");
         return -2;
     }
-    
+
     // SI on trie pas par ref c'est ca
     tRef[i] = ref;
     tPoids[i] = poids;
     tVol[i] = volume;
     tPrix[i] = prix;
     return 0;
-    
+
 }
 
 void rechercheRefArticle(int tRef[], int ref, int *index, int tLogique)
@@ -88,15 +88,15 @@ void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], i
     int ref, index;
     affichSupprimerArticle(&ref);
     rechercheRefArticle(tRef, ref, &index, *tLogique);
-    
-        for( int i = index; i< *tLogique-1; ++i)
-        {
-            tRef[i] = tRef[i+1];
-            tPoids[i] = tPoids[i+1];
-            tVol[i] = tVol[i+1];
-            tPrix[i] = tPrix[i+1];
-        }
-        *tLogique -= 1;
+
+    for( int i = index; i< *tLogique-1; ++i)
+    {
+        tRef[i] = tRef[i+1];
+        tPoids[i] = tPoids[i+1];
+        tVol[i] = tVol[i+1];
+        tPrix[i] = tPrix[i+1];
+    }
+    *tLogique -= 1;
 }
 
 void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique)

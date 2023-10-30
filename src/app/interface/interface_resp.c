@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface_resp.h"
@@ -50,7 +49,7 @@ void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], in
     for ( int i = 0; i < tLogique; ++i)
     {
         printf("\t %d  %.2f  %.2f  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
-    }      
+    }
 }
 
 void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique)
@@ -117,7 +116,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
     }
     printf("Entrez le poids du nouveaux produit\n");
     scanf("%f", poids);
-        if ( *poids < 0 )
+    if ( *poids < 0 )
     {
         while ( *poids < 0 )
         {
@@ -127,7 +126,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
     }
     printf("Entrez le volume du nouveaux produit\n");
     scanf("%f", volume);
-        if ( *volume < 0 )
+    if ( *volume < 0 )
     {
         while ( *volume < 0 )
         {
@@ -137,7 +136,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
     }
     printf("Entrez le prix du nouveaux produit\n");
     scanf("%f", prix);
-        if ( *prix < 0 )
+    if ( *prix < 0 )
     {
         while ( *prix < 0 )
         {
@@ -169,7 +168,7 @@ void affichModifierArticle(int *ref, float *poids, float *volume, float *prix)
         printf("\tVeuillez entrer une référence correcte !\n");
         while (getchar() != '\n');
     }
-    
+
     printf("\t Quel est le nouveau poids à entrer ?\n");
     while(scanf("%f", poids) != 1 || *poids <= 0)
     {
@@ -198,7 +197,7 @@ void menu_resp(int *choix, int jour) {
     //affiche_resp(jour);
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
-        while (getchar() != '\n'); 
+        while (getchar() != '\n');
         affiche_resp(jour);
         printf("Veuillez entrer un choix valide : ");
     }
@@ -210,14 +209,14 @@ void menu_resp(int *choix) {
     //affiche_resp(jour);
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
-        while (getchar() != '\n'); 
+        while (getchar() != '\n');
         affiche_resp();
         printf("Veuillez entrer un choix valide : ");
     }
 }
 
 void global_resp(){
-    int choix, a; 
+    int choix, a;
     int tRef[MAX_ARTICLES];
     float tPoids[MAX_ARTICLES];
     float tVol[MAX_ARTICLES];
