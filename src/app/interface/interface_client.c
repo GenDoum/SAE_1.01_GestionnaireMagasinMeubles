@@ -14,7 +14,7 @@ void affiche_client(int a) {
     printf("+-----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n");
     printf("||\t1 : Afficher le récapitulatif du panier. \t \t || \n");
-    printf("||\t2 : Ajouter un article du panier. \t \t \t || \n");
+    printf("||\t2 : Ajouter un article au panier. \t \t \t || \n");
     printf("||\t3 : Supprimer un article du panier. \t \t \t || \n");
     printf("||\t4 : Modifier la quantité d'un article du panier. \t || \n");
     printf("||\t5 : Réinitialiser le panier. \t \t \t \t || \n");
@@ -94,6 +94,12 @@ void global_client() {
                 break;
             case 3:
                 supprimer_article_du_panier(panier, quantites, &taillePanier);
+                break;
+            case 4:
+                modifier_quantite_article_panier(panier, quantites, &taillePanier);
+                break;
+            case 5:
+                reinitialiser_panier(panier, quantites, &taillePanier);
                 break;
             case 9:
                 printf("Au revoir !\n");

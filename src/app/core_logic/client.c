@@ -173,3 +173,33 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
 }
 
+void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier) {
+    int reference, quantite;
+    printf("Entrez la référence de l'article à modifier : ");
+    scanf("%d", &reference);
+
+    int articleIndex = -1;
+    for (int i = 0; i < *taillePanier; i++) {
+        if (panier[i] == reference) {
+            articleIndex = i;
+            break;
+        }
+    }
+
+    if (articleIndex == -1) {
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
+        return;
+    }
+
+    printf("Entrez la nouvelle quantité : ");
+    scanf("%d", &quantite);
+
+    quantites[articleIndex] = quantite;
+
+    printf("Quantité modifiée avec succès.\n");
+}
+
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier) {
+    *taillePanier = 0;
+    printf("Panier réinitialisé avec succès.\n");
+}

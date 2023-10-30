@@ -15,4 +15,6 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
 void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanier);
 void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
                           float prixUnitaire[], int quantites[]);
+void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier);
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier);
 #endif //SAE_101_CLIENT_H
