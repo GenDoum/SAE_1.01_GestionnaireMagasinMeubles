@@ -23,6 +23,7 @@ void affiche_resp(void){
     printf("||\t5 : Ajouter un article \t \t \t \t \t || \n");
     printf("||\t6 : Supprimer un article \t \t \t \t || \n");
     printf("||\t7 : Modifier un article \t \t \t \t || \n");
+    printf("||\t8 : Ajouter un client\t \t \t \t \t || \n");
     printf("||\t9 : Quittez. \t \t \t \t \t \t || \n");
     printf("+-----------------------------------------------------------------+\n");
 }
@@ -183,6 +184,24 @@ void affichModifierArticle(int *ref, float *poids, float *volume, float *prix)
     }
 }
 
+void affichAjoutClient(int tNumClient[], int tLogique, int *numC)
+{
+    printf("\t Veuillez entrer le numéro du nouveau client\n");
+    while(scanf("%d", numC) != 1 || *numC <= 0)
+    {
+        printf("Entrez un numéro valide !\n");
+        while(getchar() != '\n');
+    }
+    for ( int i = 0 ; i < tLogique; ++i)
+    {
+        if ( *numC == tNumClient[i] )
+        {
+            fprintf(stderr,"\t Client déjà existant.\n");
+            return;
+        }
+    }
+}
+
 /*
 void menu_resp(int *choix, int jour) {
     affiche_resp();
@@ -248,7 +267,7 @@ void global_resp(){
                 modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
                 break;
             case 8:
-                printf("Ouai tkt ^^'\n");
+                ajouterClient(tNumClient, tCagnotte, tSus, &tLogClient, MAX_CLIENTS);
                 break;
             case 9:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);

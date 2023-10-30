@@ -6,6 +6,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix);
 void affichSupprimerArticle(int *ref);
 void affichModifierArticle(int *ref, float *poids, float *volume, float *prix);
 void problemRechercheArticle();
+void affichAjoutClient(int tNumClient[], int tLogique, int *numC);
 void menu_resp(int *choix);
 void global_resp();
 void affiche_resp(void);

@@ -42,7 +42,7 @@ void sauvegardArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
     
     for ( i = 0; i < tLogique; i++)
     {
-        fprintf(fe,"\t %d\t  %f\t %f\t %f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
+        fprintf(fe,"\t %d\t  %.2f\t %.2f\t %.2f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
     }
     fclose(fe);
 }
@@ -56,13 +56,11 @@ int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int
         fprintf(stderr,"Tableau plein !");
         return -2;
     }
-    printf("%d\n", *tLogique);
     tRef[i] = ref;
     tPoids[i] = poids;
     tVol[i] = volume;
     tPrix[i] = prix;
     (*tLogique)++;
-    printf("%d\n", *tLogique);
     return 0;
 }
 
@@ -107,5 +105,18 @@ void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
     tPoids[index] = poids;
     tVol[index] = volume;
     tPrix[index] = prix;
+
+}
+
+void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique, int tPhysique)
+{
+    int numC = 0;
+    affichAjoutClient(tNumClient, *tLogique, &numC);
+
+    tNumClient[*tLogique] = numC;
+    tCagnotte[*tLogique] = 0;
+    tSus[*tLogique] = 0;
+    (*tLogique)++;
+    return;
 
 }
