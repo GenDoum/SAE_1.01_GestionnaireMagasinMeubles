@@ -271,6 +271,8 @@ void global_resp(){
                 break;
             case 9:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
+                printf("Sauvegarde des articles effectuée.\n");
+                printf("Au revoir !\n");
                 return;
             default:
                 printf("Veuillez entrer un choix valide ! \n");
