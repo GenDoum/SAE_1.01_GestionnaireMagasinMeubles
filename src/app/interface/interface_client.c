@@ -30,8 +30,7 @@ void menu_client(int *choix, int jour) {
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
         while (getchar() != '\n');
-        affiche_client(jour);
-        printf("Veuillez entrer un choix valide : ");
+        printf("ERREUR : Veuillez entrer un choix valide : ");
     }
 }
 
@@ -55,13 +54,22 @@ void global_client() {
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
 
     printf("Veuillez saisir la taille disponible du véhicule (en litres) : ");
-    scanf("%f", &volumeCoffre);
+    while (scanf("%f", &volumeCoffre) != 1 || volumeCoffre <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une taille de coffre valide (en litres) : ");
+    }
 
     printf("Veuillez saisir la charge maximale autorisée (en kg) : ");
-    scanf("%f", &chargeMaximale);
+    while (scanf("%f", &chargeMaximale) != 1 || chargeMaximale <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une charge maximale valide (en kg) : ");
+    }
 
     printf("Veuillez saisir votre numéro de client : ");
-    scanf("%d", &numeroClient);
+    while (scanf("%d", &numeroClient) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+    }
 
     int indexClient = -1;
     for (int i = 0; i < nombreClients; i++) {
