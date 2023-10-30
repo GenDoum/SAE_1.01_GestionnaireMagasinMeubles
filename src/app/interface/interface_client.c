@@ -35,7 +35,7 @@ void menu_client(int *choix) {
 }
 
 void global_client() {
-    int choix, jour = 0;
+    int choix;
     int references[MAX_ARTICLES];
     float poids[MAX_ARTICLES];
     float volume[MAX_ARTICLES];
