@@ -5,7 +5,7 @@
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
-void affiche_client(int a) {
+void affiche_client() {
     printf("\n");
     printf("+-------------+ \n");
     printf("|| Bonjour ! ||\n");
@@ -14,7 +14,7 @@ void affiche_client(int a) {
     printf("+-----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n");
     printf("||\t1 : Afficher le récapitulatif du panier. \t \t || \n");
-    printf("||\t2 : Ajouter un article du panier. \t \t \t || \n");
+    printf("||\t2 : Ajouter un article au panier. \t \t \t || \n");
     printf("||\t3 : Supprimer un article du panier. \t \t \t || \n");
     printf("||\t4 : Modifier la quantité d'un article du panier. \t || \n");
     printf("||\t5 : Réinitialiser le panier. \t \t \t \t || \n");
@@ -25,13 +25,12 @@ void affiche_client(int a) {
 /*
 * Sert à lancer le menu et faire choisir l'utilisateur
 */
-void menu_client(int *choix, int jour) {
-    affiche_client(jour);
+void menu_client(int *choix) {
+    affiche_client();
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
         while (getchar() != '\n');
-        affiche_client(jour);
-        printf("Veuillez entrer un choix valide : ");
+        printf("ERREUR : Veuillez entrer un choix valide : ");
     }
 }
 
@@ -55,13 +54,22 @@ void global_client() {
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
 
     printf("Veuillez saisir la taille disponible du véhicule (en litres) : ");
-    scanf("%f", &volumeCoffre);
+    while (scanf("%f", &volumeCoffre) != 1 || volumeCoffre <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une taille de coffre valide (en litres) : ");
+    }
 
     printf("Veuillez saisir la charge maximale autorisée (en kg) : ");
-    scanf("%f", &chargeMaximale);
+    while (scanf("%f", &chargeMaximale) != 1 || chargeMaximale <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une charge maximale valide (en kg) : ");
+    }
 
     printf("Veuillez saisir votre numéro de client : ");
-    scanf("%d", &numeroClient);
+    while (scanf("%d", &numeroClient) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+    }
 
     int indexClient = -1;
     for (int i = 0; i < nombreClients; i++) {
@@ -82,7 +90,7 @@ void global_client() {
     }
 
     do{
-        menu_client(&choix, jour);
+        menu_client(&choix);
 
         switch (choix) {
             case 1:
@@ -93,9 +101,28 @@ void global_client() {
                                           suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier);
                 break;
             case 3:
-                supprimer_article_du_panier(panier, &taillePanier);
+                supprimer_article_du_panier(panier, quantites, &taillePanier);
+                break;
+            case 4:
+                modifier_quantite_article_panier(panier, quantites, &taillePanier);
+                break;
+            case 5:
+                reinitialiser_panier(panier, quantites, &taillePanier);
                 break;
             case 9:
+                printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
+                int choixCagnotte;
+                scanf("%d", &choixCagnotte);
+                if (choixCagnotte == 1) {
+                    float montant;
+                    printf("Entrez le montant à déduire de votre cagnotte : ");
+                    scanf("%f", &montant);
+
+                    deduire_cagnotte(numeroClient, montant, numeros, cagnottes, nombreClients, suspendus);
+
+                    printf("Le montant a été déduit de votre cagnotte.\n");
+                }
+
                 printf("Au revoir !\n");
                 return;
             default:
@@ -104,3 +131,4 @@ void global_client() {
         }
     }while(choix != 9);
 }
+

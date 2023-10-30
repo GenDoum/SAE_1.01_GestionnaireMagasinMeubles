@@ -34,10 +34,20 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
                                int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
                                float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier) {
     int reference, quantite;
+
     printf("Entrez la référence de l'article : ");
-    scanf("%d", &reference);
+    while (scanf("%d", &reference) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
     printf("Entrez la quantité : ");
-    scanf("%d", &quantite);
+    while (scanf("%d", &quantite) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veurillez entrer une quantité valide (nombre) : ");
+    }
+    while (getchar() != '\n');
 
     int articleIndex = -1;
     for (int i = 0; i < nombreArticles; i++) {
@@ -107,10 +117,14 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
     }
 }
 
-void supprimer_article_du_panier(int panier[], int *taillePanier) {
+void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanier) {
     int reference;
     printf("Entrez la référence de l'article à supprimer : ");
-    scanf("%d", &reference);
+    while (scanf("%d", &reference) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+    }
+    while (getchar() != '\n');
 
     int articleIndex = -1;
     for (int i = 0; i < *taillePanier; i++) {
@@ -127,6 +141,7 @@ void supprimer_article_du_panier(int panier[], int *taillePanier) {
 
     for (int i = articleIndex; i < (*taillePanier - 1); i++) {
         panier[i] = panier[i + 1];
+        quantites[i] = quantites[i + 1];
     }
 
     (*taillePanier)--;
@@ -170,4 +185,77 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     printf("Volume utilise : %.2f litres\n", volumeTotal);
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
+}
+
+void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier) {
+    int reference, quantite;
+
+    printf("Entrez la référence de l'article : ");
+    while (scanf("%d", &reference) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
+    int articleIndex = -1;
+    for (int i = 0; i < *taillePanier; i++) {
+        if (panier[i] == reference) {
+            articleIndex = i;
+            break;
+        }
+    }
+
+    if (articleIndex == -1) {
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
+        return;
+    }
+
+    printf("Entrez la quantité : ");
+    while (scanf("%d", &quantite) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une quantité valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
+    quantites[articleIndex] = quantite;
+
+    printf("Quantité modifiée avec succès.\n");
+}
+
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier) {
+    *taillePanier = 0;
+    printf("Panier réinitialisé avec succès.\n");
+}
+
+void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]) {
+    int clientIndex = -1;
+    for (int i = 0; i < nombreClients; i++) {
+        if (numeros[i] == numeroClient) {
+            clientIndex = i;
+            break;
+        }
+    }
+
+    if (clientIndex == -1) {
+        printf("Client non trouvé. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    if (cagnottes[clientIndex] < montant) {
+        printf("Cagnotte insuffisante. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    cagnottes[clientIndex] -= montant;
+
+    FILE *fe;
+    fe = fopen("donnee/client.txt", "w");
+    if (fe == NULL) {
+        perror("fopen");
+        return;
+    }
+    for (int i = 0; i < nombreClients; i++) {
+        fprintf(fe, "%d %.2f %d\n", numeros[i], cagnottes[i], suspendus[i]);
+    }
+    fclose(fe);
 }
