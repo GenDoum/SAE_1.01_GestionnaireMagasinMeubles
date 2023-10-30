@@ -44,3 +44,4 @@ L'architecture du projet a été pensée de sorte a séparer l'interface de l'ap
 ### Pourquoi avons-nous fait ceci ?
 
 L'adoption d'une telle architecture permet, comme précédemment expliqué, de démarquer l'interface du reste du programme. Cette approche facilite considérablement la création d'autres types d'interfaces en se concentrant exclusivement sur leur aspect visuel, tandis que la logique est encapsulée dans la couche "logique". Par exemple, nous avons ici conçus une interface orientée vers les adhérents, où ces derniers ont accès à des opérations spécifiques offertes par l'interface par défaut, mais limitées à leurs besoins.
+Mais nous avons, grâce a cette architecture aucun problème pour créer d'autre interface comme l'interface des responsable.
