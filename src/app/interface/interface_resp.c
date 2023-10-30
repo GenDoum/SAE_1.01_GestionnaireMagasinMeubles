@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "interface_resp.h"
 #include "app/core_logic/responsable.h"
+#include "app/core_logic/client.h"
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100
@@ -56,7 +57,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 {
     int ref;
     printf("\tQuelle est la référence de l'article à rechercher ?\n");
-    while(scanf("%d", &ref != 1 || ref <= 0))
+    while(scanf("%d", &ref != 1 || &ref <= 0))
     {
         printf("\tEntrez une référence valide\n");
         while(getchar() != '\n');
@@ -153,7 +154,7 @@ void affichSupprimerArticle(int *ref)
     printf("\t Quel est la référence de l'article voulez-vous supprimez\n");
     while(scanf("%d", ref == 1 || *ref <= 0))
     {
-        printf("\t Veuillez entrer une référence valide.")
+        printf("\t Veuillez entrer une référence valide.");
         while(getchar() != '\n');
     }
 }
@@ -226,33 +227,37 @@ void global_resp(){
     int tSus[MAX_CLIENTS];
 
     int tLogArticle = chargementArticles(tRef, tPoids, tVol, tPrix, MAX_ARTICLES);
-    //int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
+    int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
 
-    menu_resp(&choix);
-    switch (choix) {
-        case 1:
-            affichArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
-            break;
-        case 2:
-            affichUnArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
-            break;
-        case 3:
-            affichUnClient(tNumClient, tCagnotte, tSus, tLogClient);
-            break;
-        case 4:
-            affichClients(tNumClient, tCagnotte, tSus, tLogClient);
-            break;
-        case 5:
-            modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
-            break;
-        case 6:
-            supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
-            break;
-        case 7:
-            printf("Ouai tkt ^^'");
-            break;
-        default:
-            printf("Veuillez entrer un choix valide ! \n");
-            break;
-    }
+    do {
+
+
+        menu_resp(&choix);
+        switch (choix) {
+            case 1:
+                affichArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
+                break;
+            case 2:
+                affichUnArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
+                break;
+            case 3:
+                affichUnClient(tNumClient, tCagnotte, tSus, tLogClient);
+                break;
+            case 4:
+                affichClients(tNumClient, tCagnotte, tSus, tLogClient);
+                break;
+            case 5:
+                modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
+                break;
+            case 6:
+                supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
+                break;
+            case 7:
+                printf("Ouai tkt ^^'");
+                break;
+            default:
+                printf("Veuillez entrer un choix valide ! \n");
+                break;
+        }
+    } while (choix != 7);
 }

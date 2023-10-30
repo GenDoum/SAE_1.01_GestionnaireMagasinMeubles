@@ -171,4 +171,3 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     printf("Volume utilise : %.2f litres\n", volumeTotal);
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
 }
-
