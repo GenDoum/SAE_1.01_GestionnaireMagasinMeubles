@@ -36,17 +36,16 @@ void sauvegardArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
     fe = fopen("donnee/articles.txt", "w");
     if ( fe == NULL)
     {
-        perror("fopen");
+        fprintf(stderr, "\n Problème ouverture ficher\n");
         return;
     }
+    
     for ( i = 0; i < tLogique; i++)
     {
-        fprintf(fe,"%d %f %f %f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
+        fprintf(fe,"\t %d\t  %f\t %f\t %f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
     }
     fclose(fe);
 }
-
-
 
 int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int *tLogique, int tPhysique, int ref, float poids, float volume, float prix)
 {
@@ -57,14 +56,14 @@ int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int
         fprintf(stderr,"Tableau plein !");
         return -2;
     }
-
-    // SI on trie pas par ref c'est ca
+    printf("%d\n", *tLogique);
     tRef[i] = ref;
     tPoids[i] = poids;
     tVol[i] = volume;
     tPrix[i] = prix;
+    (*tLogique)++;
+    printf("%d\n", *tLogique);
     return 0;
-
 }
 
 void rechercheRefArticle(int tRef[], int ref, int *index, int tLogique)
@@ -77,11 +76,10 @@ void rechercheRefArticle(int tRef[], int ref, int *index, int tLogique)
             return;
         }
     }
+    fprintf(stderr, "\t Article non trouvé.\n");
     *index = -1;
     return;
 }
-
-
 
 void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int *tLogique)
 {
@@ -89,7 +87,7 @@ void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], i
     affichSupprimerArticle(&ref);
     rechercheRefArticle(tRef, ref, &index, *tLogique);
 
-    for( int i = index; i< *tLogique-1; ++i)
+    for( int i = index; i < *tLogique-1; ++i)
     {
         tRef[i] = tRef[i+1];
         tPoids[i] = tPoids[i+1];
