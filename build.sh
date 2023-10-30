@@ -80,7 +80,15 @@ function show_help {
     echo -e "\t-debug, -d    : \t➔ Configure compilation in debug mode"
     echo -e "\t-run, -r      : \t➔ Execute the generated executable"
     echo -e "\t-clean, -c    : \t➔ Clean before rebuilding and execute"
+    echo -e "\t-docs         : \t➔ Generate Doxygen documentation"
     echo -e "\t--help, -h    : \t➔ Display help"
+}
+
+function generate_docs {
+    echo -e "➔ Generating Doxygen documentation..."
+    show_command "make -B docs"
+    make -B docs
+    show_success "Documentation generated."
 }
 
 # Options loop
@@ -107,6 +115,10 @@ while [ "$#" -gt 0 ]; do
             clean
             build
             execute
+            shift
+            ;;
+        -docs)
+            generate_docs
             shift
             ;;
         --help | -h)

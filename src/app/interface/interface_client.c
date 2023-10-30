@@ -1,3 +1,8 @@
+/**
+ * @file interface_client.c
+ * @brief Implémentation des fonctions liées à l'interface client.
+ */
+
 #include "interface_client.h"
 #include "app/core_logic/client.h"
 #include "app/core_logic/responsable.h"
@@ -5,26 +10,31 @@
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
+/**
+ * @brief Affiche le menu principal de l'interface client.
+ */
 void affiche_client() {
     printf("\n");
-    printf("+-------------+ \n");
+    printf("+-------------+\n");
     printf("|| Bonjour ! ||\n");
-    printf("+-------------+ \n");
+    printf("+-------------+\n");
     printf("\n");
     printf("+-----------------------------------------------------------------+\n");
-    printf("|| Que voulez-vous faire ? \t \t \t \t \t || \n");
-    printf("||\t1 : Afficher le récapitulatif du panier. \t \t || \n");
-    printf("||\t2 : Ajouter un article au panier. \t \t \t || \n");
-    printf("||\t3 : Supprimer un article du panier. \t \t \t || \n");
-    printf("||\t4 : Modifier la quantité d'un article du panier. \t || \n");
-    printf("||\t5 : Réinitialiser le panier. \t \t \t \t || \n");
-    printf("||\t9 : Quitter. \t \t \t \t \t \t || \n");
+    printf("|| Que voulez-vous faire ?\t\t\t\t\t\t\t||\n");
+    printf("||\t1 : Afficher le récapitulatif du panier.\t\t\t||\n");
+    printf("||\t2 : Ajouter un article au panier.\t\t\t\t||\n");
+    printf("||\t3 : Supprimer un article du panier.\t\t\t\t||\n");
+    printf("||\t4 : Modifier la quantité d'un article du panier.\t||\n");
+    printf("||\t5 : Réinitialiser le panier.\t\t\t\t\t||\n");
+    printf("||\t9 : Quitter.\t\t\t\t\t\t\t\t\t||\n");
     printf("+-----------------------------------------------------------------+\n");
 }
 
-/*
-* Sert à lancer le menu et faire choisir l'utilisateur
-*/
+/**
+ * @brief Laisse l'utilisateur choisir une option du menu.
+ *
+ * @param[in, out] choix - L'option choisie par l'utilisateur.
+ */
 void menu_client(int *choix) {
     affiche_client();
     printf("Vous choisissez: ");
@@ -34,6 +44,13 @@ void menu_client(int *choix) {
     }
 }
 
+/**
+ * @brief Fonction principale de l'interface client.
+ *
+ * Cette fonction permet aux clients d'utiliser l'application pour gérer leur panier
+ * et effectuer des opérations telles que l'ajout, la suppression ou la modification
+ * d'articles dans le panier.
+ */
 void global_client() {
     int choix;
     int references[MAX_ARTICLES];
@@ -89,7 +106,7 @@ void global_client() {
         return;
     }
 
-    do{
+    do {
         menu_client(&choix);
 
         switch (choix) {
@@ -129,6 +146,5 @@ void global_client() {
                 printf("Veuillez entrer un choix valide !\n");
                 break;
         }
-    }while(choix != 9);
+    } while (choix != 9);
 }
-

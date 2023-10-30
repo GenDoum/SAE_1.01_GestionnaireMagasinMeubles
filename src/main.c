@@ -1,14 +1,27 @@
-#include<stdio.h>
-#include<stdlib.h>
+/**
+ * @file main.c
+ * @brief Programme principal pour choisir une interface et lancer l'application.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "app/interface/interface_client.h"
 #include "app/interface/interface_resp.h"
 #include "app/core_logic/client.h"
 #include "app/core_logic/responsable.h"
 
+/**
+ * @brief Fonction permettant à l'utilisateur de choisir une interface.
+ *
+ * L'utilisateur peut choisir entre l'interface "responsable" ou "client" en saisissant 1 ou 2.
+ * Cette fonction vérifie que l'entrée de l'utilisateur est valide.
+ *
+ * @return Le choix de l'interface (1 pour responsable, 2 pour client).
+ */
 int choixInterface(void) {
     int choix;
     printf("Choix de l'interface: \n");
-    printf("1. Interface 'responsable': Pour les responsables \n");
+    printf("1. Interface 'responsable': Pour les responsables\n");
     printf("2. Interface 'Client'     : Pour les clients\n");
 
     while (1) {
@@ -29,7 +42,15 @@ int choixInterface(void) {
     return choix;
 }
 
-int main(){
+/**
+ * @brief Fonction principale du programme.
+ *
+ * Cette fonction permet à l'utilisateur de choisir une interface à lancer (responsable ou client)
+ * en utilisant la fonction choixInterface(), puis elle lance l'interface correspondante.
+ *
+ * @return 0 si le programme s'est exécuté avec succès.
+ */
+int main() {
     switch (choixInterface()) {
         case 1:
             global_resp();

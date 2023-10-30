@@ -4,6 +4,7 @@ SOURCES = $(shell find src -name '*.c')
 TARGETS = $(patsubst %.c, %.o, $(SOURCES))
 TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
 APP_NAME = app
+DOXYGEN_CONFIG = docs/Doxyfile.in
 
 all: $(APP_NAME)
 
@@ -19,3 +20,8 @@ $(TARGETS): $(SOURCES)
 clean:
 	@rm -r $(BUILD_DIR) $(APP_NAME)
 	@echo -e $(GREEN)clean done.$(RESET)
+
+
+docs:
+	@doxygen $(DOXYGEN_CONFIG)
+	@echo -e $(GREEN)docs done.$(RESET)

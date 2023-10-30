@@ -1,0 +1,258 @@
+\doxysection{src/app/interface/interface\+\_\+resp.c File Reference}
+\hypertarget{interface__resp_8c}{}\label{interface__resp_8c}\index{src/app/interface/interface\_resp.c@{src/app/interface/interface\_resp.c}}
+
+
+Implémentation des fonctions liées à l\textquotesingle{}interface du responsable.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}interface\+\_\+resp.\+h"{}}\newline
+{\ttfamily \#include "{}app/core\+\_\+logic/responsable.\+h"{}}\newline
+{\ttfamily \#include "{}app/core\+\_\+logic/client.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{interface__resp_8c_a0a8f91f93d75a07f0ae45077db45b3eb}\label{interface__resp_8c_a0a8f91f93d75a07f0ae45077db45b3eb} 
+\#define {\bfseries MAX\+\_\+\+CLIENTS}~100
+\item 
+\Hypertarget{interface__resp_8c_ad6a5b5050a3ed6cffbb52fe15c39e587}\label{interface__resp_8c_ad6a5b5050a3ed6cffbb52fe15c39e587} 
+\#define {\bfseries MAX\+\_\+\+ARTICLES}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{interface__resp_8c_abb1a25ae1531e0857856843b41805528}\label{interface__resp_8c_abb1a25ae1531e0857856843b41805528} 
+void {\bfseries affiche\+\_\+resp} (void)
+\begin{DoxyCompactList}\small\item\em Affiche le menu principal de l\textquotesingle{}interface du responsable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_af518981f5e0d4575a6b7bae3f22e9985}{affich\+Articles}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Affiche la liste des articles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a5e9ce25cbd73f9d4732b84eb5ab59d13}{affich\+Un\+Article}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Affiche un article spécifique. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_aa29059c1470e490b32fdf483b5570c88}{affich\+Un\+Client}} (int t\+Num\+Client\mbox{[}$\,$\mbox{]}, float t\+Cagnotte\mbox{[}$\,$\mbox{]}, int t\+Sus\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Affiche un client spécifique. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a7c0531c63ea490d0b674960483e9ba27}{affich\+Clients}} (int t\+Num\+Client\mbox{[}$\,$\mbox{]}, float t\+Cagnotte\mbox{[}$\,$\mbox{]}, int t\+Sus\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Affiche la liste des clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a9e01225a96daa69eb466e03fd1108c0a}{affich\+Ajout\+Article}} (int \texorpdfstring{$\ast$}{*}ref, float \texorpdfstring{$\ast$}{*}poids, float \texorpdfstring{$\ast$}{*}volume, float \texorpdfstring{$\ast$}{*}prix)
+\begin{DoxyCompactList}\small\item\em Affiche les informations pour ajouter un nouvel article. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a47ca5882a75fd3b919ba02b028582473}{affich\+Supprimer\+Article}} (int \texorpdfstring{$\ast$}{*}ref)
+\begin{DoxyCompactList}\small\item\em Affiche les informations pour supprimer un article. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_af075e50ffce501b901ff31b1fb73262f}{affich\+Modifier\+Article}} (int \texorpdfstring{$\ast$}{*}ref, float \texorpdfstring{$\ast$}{*}poids, float \texorpdfstring{$\ast$}{*}volume, float \texorpdfstring{$\ast$}{*}prix)
+\begin{DoxyCompactList}\small\item\em Affiche les informations pour modifier un article. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a964d2d2bc5b9aa544e6187ed6cbc961c}{affich\+Ajout\+Client}} (int t\+Num\+Client\mbox{[}$\,$\mbox{]}, int t\+Logique, int \texorpdfstring{$\ast$}{*}numC)
+\begin{DoxyCompactList}\small\item\em Affiche les informations pour ajouter un nouveau client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a1f14dc8f23be75e1a5c0e7ce0c77f597}{menu\+\_\+resp}} (int \texorpdfstring{$\ast$}{*}choix)
+\begin{DoxyCompactList}\small\item\em Fonction de menu pour le responsable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__resp_8c_a421ebe0511c91fb6431aed873aa01e35}{global\+\_\+resp}} ()
+\begin{DoxyCompactList}\small\item\em Fonction principale de l\textquotesingle{}interface du responsable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implémentation des fonctions liées à l\textquotesingle{}interface du responsable. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{interface__resp_8c_a9e01225a96daa69eb466e03fd1108c0a}\label{interface__resp_8c_a9e01225a96daa69eb466e03fd1108c0a} 
+\index{interface\_resp.c@{interface\_resp.c}!affichAjoutArticle@{affichAjoutArticle}}
+\index{affichAjoutArticle@{affichAjoutArticle}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichAjoutArticle()}{affichAjoutArticle()}}
+{\footnotesize\ttfamily void affich\+Ajout\+Article (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{ref,  }\item[{float \texorpdfstring{$\ast$}{*}}]{poids,  }\item[{float \texorpdfstring{$\ast$}{*}}]{volume,  }\item[{float \texorpdfstring{$\ast$}{*}}]{prix }\end{DoxyParamCaption})}
+
+
+
+Affiche les informations pour ajouter un nouvel article. 
+
+Affiche les informations nécessaires pour ajouter un nouvel article.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em ref} & -\/ Référence du nouvel article. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em poids} & -\/ Poids du nouvel article. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em volume} & -\/ Volume du nouvel article. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em prix} & -\/ Prix du nouvel article. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_a964d2d2bc5b9aa544e6187ed6cbc961c}\label{interface__resp_8c_a964d2d2bc5b9aa544e6187ed6cbc961c} 
+\index{interface\_resp.c@{interface\_resp.c}!affichAjoutClient@{affichAjoutClient}}
+\index{affichAjoutClient@{affichAjoutClient}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichAjoutClient()}{affichAjoutClient()}}
+{\footnotesize\ttfamily void affich\+Ajout\+Client (\begin{DoxyParamCaption}\item[{int}]{t\+Num\+Client\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique,  }\item[{int \texorpdfstring{$\ast$}{*}}]{numC }\end{DoxyParamCaption})}
+
+
+
+Affiche les informations pour ajouter un nouveau client. 
+
+Affiche les informations nécessaires pour ajouter un nouveau client.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em t\+Num\+Client} & -\/ Tableau des numéros de client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em t\+Logique} & -\/ Taille logique des tableaux. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em numC} & -\/ Numéro du nouveau client. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_af518981f5e0d4575a6b7bae3f22e9985}\label{interface__resp_8c_af518981f5e0d4575a6b7bae3f22e9985} 
+\index{interface\_resp.c@{interface\_resp.c}!affichArticles@{affichArticles}}
+\index{affichArticles@{affichArticles}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichArticles()}{affichArticles()}}
+{\footnotesize\ttfamily void affich\+Articles (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Affiche la liste des articles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & -\/ Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & -\/ Tableau des poids d\textquotesingle{}articles. \\
+\hline
+{\em t\+Vol} & -\/ Tableau des volumes d\textquotesingle{}articles. \\
+\hline
+{\em t\+Prix} & -\/ Tableau des prix d\textquotesingle{}articles. \\
+\hline
+{\em t\+Logique} & -\/ Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_a7c0531c63ea490d0b674960483e9ba27}\label{interface__resp_8c_a7c0531c63ea490d0b674960483e9ba27} 
+\index{interface\_resp.c@{interface\_resp.c}!affichClients@{affichClients}}
+\index{affichClients@{affichClients}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichClients()}{affichClients()}}
+{\footnotesize\ttfamily void affich\+Clients (\begin{DoxyParamCaption}\item[{int}]{t\+Num\+Client\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Cagnotte\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Sus\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Affiche la liste des clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Num\+Client} & -\/ Tableau des numéros de client. \\
+\hline
+{\em t\+Cagnotte} & -\/ Tableau des cagnottes des clients. \\
+\hline
+{\em t\+Sus} & -\/ Tableau d\textquotesingle{}états des clients. \\
+\hline
+{\em t\+Logique} & -\/ Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_af075e50ffce501b901ff31b1fb73262f}\label{interface__resp_8c_af075e50ffce501b901ff31b1fb73262f} 
+\index{interface\_resp.c@{interface\_resp.c}!affichModifierArticle@{affichModifierArticle}}
+\index{affichModifierArticle@{affichModifierArticle}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichModifierArticle()}{affichModifierArticle()}}
+{\footnotesize\ttfamily void affich\+Modifier\+Article (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{ref,  }\item[{float \texorpdfstring{$\ast$}{*}}]{poids,  }\item[{float \texorpdfstring{$\ast$}{*}}]{volume,  }\item[{float \texorpdfstring{$\ast$}{*}}]{prix }\end{DoxyParamCaption})}
+
+
+
+Affiche les informations pour modifier un article. 
+
+Affiche les informations nécessaires pour modifier un article.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em ref} & -\/ Référence de l\textquotesingle{}article à modifier. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em poids} & -\/ Nouveau poids de l\textquotesingle{}article. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em volume} & -\/ Nouveau volume de l\textquotesingle{}article. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em prix} & -\/ Nouveau prix de l\textquotesingle{}article. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_a47ca5882a75fd3b919ba02b028582473}\label{interface__resp_8c_a47ca5882a75fd3b919ba02b028582473} 
+\index{interface\_resp.c@{interface\_resp.c}!affichSupprimerArticle@{affichSupprimerArticle}}
+\index{affichSupprimerArticle@{affichSupprimerArticle}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichSupprimerArticle()}{affichSupprimerArticle()}}
+{\footnotesize\ttfamily void affich\+Supprimer\+Article (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{ref }\end{DoxyParamCaption})}
+
+
+
+Affiche les informations pour supprimer un article. 
+
+Affiche les informations nécessaires pour supprimer un article.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em ref} & -\/ Référence de l\textquotesingle{}article à supprimer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_a5e9ce25cbd73f9d4732b84eb5ab59d13}\label{interface__resp_8c_a5e9ce25cbd73f9d4732b84eb5ab59d13} 
+\index{interface\_resp.c@{interface\_resp.c}!affichUnArticle@{affichUnArticle}}
+\index{affichUnArticle@{affichUnArticle}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichUnArticle()}{affichUnArticle()}}
+{\footnotesize\ttfamily void affich\+Un\+Article (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Affiche un article spécifique. 
+
+Affiche les informations d\textquotesingle{}un article spécifique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & -\/ Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & -\/ Tableau des poids d\textquotesingle{}articles. \\
+\hline
+{\em t\+Vol} & -\/ Tableau des volumes d\textquotesingle{}articles. \\
+\hline
+{\em t\+Prix} & -\/ Tableau des prix d\textquotesingle{}articles. \\
+\hline
+{\em t\+Logique} & -\/ Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_aa29059c1470e490b32fdf483b5570c88}\label{interface__resp_8c_aa29059c1470e490b32fdf483b5570c88} 
+\index{interface\_resp.c@{interface\_resp.c}!affichUnClient@{affichUnClient}}
+\index{affichUnClient@{affichUnClient}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{affichUnClient()}{affichUnClient()}}
+{\footnotesize\ttfamily void affich\+Un\+Client (\begin{DoxyParamCaption}\item[{int}]{t\+Num\+Client\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Cagnotte\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Sus\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Affiche un client spécifique. 
+
+Affiche les informations d\textquotesingle{}un client spécifique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Num\+Client} & -\/ Tableau des numéros de client. \\
+\hline
+{\em t\+Cagnotte} & -\/ Tableau des cagnottes des clients. \\
+\hline
+{\em t\+Sus} & -\/ Tableau d\textquotesingle{}états des clients. \\
+\hline
+{\em t\+Logique} & -\/ Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{interface__resp_8c_a421ebe0511c91fb6431aed873aa01e35}\label{interface__resp_8c_a421ebe0511c91fb6431aed873aa01e35} 
+\index{interface\_resp.c@{interface\_resp.c}!global\_resp@{global\_resp}}
+\index{global\_resp@{global\_resp}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{global\_resp()}{global\_resp()}}
+{\footnotesize\ttfamily void global\+\_\+resp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction principale de l\textquotesingle{}interface du responsable. 
+
+Cette fonction permet au responsable d\textquotesingle{}effectuer diverses actions telles que la gestion des articles et des clients. \Hypertarget{interface__resp_8c_a1f14dc8f23be75e1a5c0e7ce0c77f597}\label{interface__resp_8c_a1f14dc8f23be75e1a5c0e7ce0c77f597} 
+\index{interface\_resp.c@{interface\_resp.c}!menu\_resp@{menu\_resp}}
+\index{menu\_resp@{menu\_resp}!interface\_resp.c@{interface\_resp.c}}
+\doxysubsubsection{\texorpdfstring{menu\_resp()}{menu\_resp()}}
+{\footnotesize\ttfamily void menu\+\_\+resp (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{choix }\end{DoxyParamCaption})}
+
+
+
+Fonction de menu pour le responsable. 
+
+Laisse le responsable choisir une option du menu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em choix} & -\/ L\textquotesingle{}option choisie par le responsable. \\
+\hline
+\end{DoxyParams}
