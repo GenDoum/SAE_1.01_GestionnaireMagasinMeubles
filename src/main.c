@@ -10,15 +10,22 @@ int choixInterface(void) {
     printf("Choix de l'interface: \n");
     printf("1. Interface 'responsable': Pour les responsables \n");
     printf("2. Interface 'Client'     : Pour les clients\n");
-    printf("Vous choisissez l'interface n°: ");
-    scanf("%d", &choix);
-    if (choix < 0 || choix > 1) {
-        fprintf(stderr,"Veuillez entrer un choix valide ! \n");
+
+    while (1) {
+        printf("Vous choisissez l'interface n°: ");
+        if (scanf("%d", &choix) != 1 || (choix < 1 || choix > 2)) {
+            printf("ERREUR : Veuillez entrer un choix valide (1 ou 2) : ");
+            while (getchar() != '\n');
+        } else {
+            break;
+        }
     }
+
     switch (choix) {
-        case 1: printf("Vous avez choisit l'interface responsable.\n");
-        case 2: printf("Vous avez choisit l'interface client.\n");
+        case 1: printf("Vous avez choisi l'interface responsable.\n"); break;
+        case 2: printf("Vous avez choisi l'interface client.\n"); break;
     }
+
     return choix;
 }
 
