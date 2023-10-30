@@ -114,15 +114,12 @@ void global_client() {
                 int choixCagnotte;
                 scanf("%d", &choixCagnotte);
                 if (choixCagnotte == 1) {
-                    // Demander le montant à déduire de la cagnotte
                     float montant;
                     printf("Entrez le montant à déduire de votre cagnotte : ");
                     scanf("%f", &montant);
 
-                    // Appeler la fonction pour déduire la cagnotte
                     deduire_cagnotte(numeroClient, montant, numeros, cagnottes, nombreClients, suspendus);
 
-                    // Informer le client que la cagnotte a été déduite
                     printf("Le montant a été déduit de votre cagnotte.\n");
                 }
 
