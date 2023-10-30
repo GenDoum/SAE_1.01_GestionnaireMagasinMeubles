@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "interface_resp.h"
 #include "app/core_logic/responsable.h"
+#include "app/core_logic/client.h"
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100
@@ -153,7 +154,7 @@ void affichSupprimerArticle(int *ref)
     printf("\t Quel est la référence de l'article voulez-vous supprimez\n");
     while(scanf("%d", ref == 1 || *ref <= 0))
     {
-        printf("\t Veuillez entrer une référence valide.")
+        printf("\t Veuillez entrer une référence valide.");
         while(getchar() != '\n');
     }
 }
@@ -226,7 +227,7 @@ void global_resp(){
     int tSus[MAX_CLIENTS];
 
     int tLogArticle = chargementArticles(tRef, tPoids, tVol, tPrix, MAX_ARTICLES);
-    //int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
+    int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
 
     menu_resp(&choix);
     switch (choix) {
