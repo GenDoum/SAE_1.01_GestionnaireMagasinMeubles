@@ -31,8 +31,12 @@ int choixInterface(void) {
 
 int main(){
     switch (choixInterface()) {
-        case 1: global_resp();
-        case 2: global_client();
+        case 1:
+            global_resp();
+            break;
+        case 2:
+            global_client();
+            break;
     }
 
     return 0;
