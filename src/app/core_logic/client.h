@@ -17,4 +17,6 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
                           float prixUnitaire[], int quantites[]);
 void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier);
 void reinitialiser_panier(int panier[], int quantites[], int *taillePanier);
+void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]);
+
 #endif //SAE_101_CLIENT_H

@@ -226,3 +226,36 @@ void reinitialiser_panier(int panier[], int quantites[], int *taillePanier) {
     *taillePanier = 0;
     printf("Panier réinitialisé avec succès.\n");
 }
+
+void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]) {
+    int clientIndex = -1;
+    for (int i = 0; i < nombreClients; i++) {
+        if (numeros[i] == numeroClient) {
+            clientIndex = i;
+            break;
+        }
+    }
+
+    if (clientIndex == -1) {
+        printf("Client non trouvé. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    if (cagnottes[clientIndex] < montant) {
+        printf("Cagnotte insuffisante. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    cagnottes[clientIndex] -= montant;
+
+    FILE *fe;
+    fe = fopen("donnee/client.txt", "w");
+    if (fe == NULL) {
+        perror("fopen");
+        return;
+    }
+    for (int i = 0; i < nombreClients; i++) {
+        fprintf(fe, "%d %.2f %d\n", numeros[i], cagnottes[i], suspendus[i]);
+    }
+    fclose(fe);
+}
