@@ -93,7 +93,7 @@ void global_client() {
                                           suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier);
                 break;
             case 3:
-                supprimer_article_du_panier(panier, &taillePanier);
+                supprimer_article_du_panier(panier, quantites, &taillePanier);
                 break;
             case 9:
                 printf("Au revoir !\n");
@@ -104,3 +104,4 @@ void global_client() {
         }
     }while(choix != 9);
 }
+

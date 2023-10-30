@@ -107,7 +107,7 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
     }
 }
 
-void supprimer_article_du_panier(int panier[], int *taillePanier) {
+void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanier) {
     int reference;
     printf("Entrez la référence de l'article à supprimer : ");
     scanf("%d", &reference);
@@ -127,6 +127,7 @@ void supprimer_article_du_panier(int panier[], int *taillePanier) {
 
     for (int i = articleIndex; i < (*taillePanier - 1); i++) {
         panier[i] = panier[i + 1];
+        quantites[i] = quantites[i + 1];
     }
 
     (*taillePanier)--;
