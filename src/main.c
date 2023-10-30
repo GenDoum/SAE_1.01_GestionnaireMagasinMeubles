@@ -12,20 +12,28 @@ int choixInterface(void) {
     printf("2. Interface 'Client'     : Pour les clients\n");
     printf("Vous choisissez l'interface n°: ");
     scanf("%d", &choix);
-    if (choix < 0 || choix > 1) {
+    if (choix < 0 || choix > 2) {
         fprintf(stderr,"Veuillez entrer un choix valide ! \n");
     }
     switch (choix) {
-        case 1: printf("Vous avez choisit l'interface responsable.\n");
-        case 2: printf("Vous avez choisit l'interface client.\n");
+        case 1: 
+            printf("Vous avez choisit l'interface responsable.\n");
+            break;
+        case 2: 
+            printf("Vous avez choisit l'interface client.\n");
+            break;
     }
     return choix;
 }
 
 int main(){
     switch (choixInterface()) {
-        case 1: global_resp();
-        case 2: global_client();
+        case 1: 
+            global_resp();
+            break;
+        case 2: 
+            global_client();
+            break;
     }
 
     return 0;

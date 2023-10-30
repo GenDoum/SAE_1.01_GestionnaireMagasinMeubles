@@ -57,7 +57,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 {
     int ref;
     printf("\tQuelle est la référence de l'article à rechercher ?\n");
-    while(scanf("%d", &ref != 1 || &ref <= 0))
+    while(scanf("%d", &ref) != 1 || ref <= 0)
     {
         printf("\tEntrez une référence valide\n");
         while(getchar() != '\n');
@@ -152,9 +152,9 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix)
 void affichSupprimerArticle(int *ref)
 {
     printf("\t Quel est la référence de l'article voulez-vous supprimez\n");
-    while(scanf("%d", ref == 1 || *ref <= 0))
+    while(scanf("%d", ref ) != 1 || *ref <= 0)
     {
-        printf("\t Veuillez entrer une référence valide.");
+        printf("\t Veuillez entrer une référence valide.\n");
         while(getchar() != '\n');
     }
 }
@@ -209,7 +209,7 @@ void menu_resp(int *choix) {
     affiche_resp();
     //affiche_resp(jour);
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 5) {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
         while (getchar() != '\n');
         affiche_resp();
         printf("Veuillez entrer un choix valide : ");
@@ -217,7 +217,7 @@ void menu_resp(int *choix) {
 }
 
 void global_resp(){
-    int choix, a;
+    int choix;
     int tRef[MAX_ARTICLES];
     float tPoids[MAX_ARTICLES];
     float tVol[MAX_ARTICLES];
@@ -247,17 +247,20 @@ void global_resp(){
                 affichClients(tNumClient, tCagnotte, tSus, tLogClient);
                 break;
             case 5:
-                modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
+                supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
                 break;
             case 6:
-                supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
+                modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
                 break;
             case 7:
                 printf("Ouai tkt ^^'");
                 break;
+            case 9:
+                return;
             default:
                 printf("Veuillez entrer un choix valide ! \n");
                 break;
         }
-    } while (choix != 7);
+    } while (choix != 9);
+    sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
 }
