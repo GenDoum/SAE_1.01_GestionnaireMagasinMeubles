@@ -1,7 +1,10 @@
 void affichArticles( int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique);
 void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique, int val);
-void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val);
-void affichUnClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique, int val);
+void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogique);
+void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique);
 void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix);
+void affichSupprimerArticle(int *ref);
+void affichModifierArticle(int *ref, float *poids, float *volume, float *prix);
 void menu_resp(int *choix, int jour);
 void global_resp();
+void affiche_resp(void);
