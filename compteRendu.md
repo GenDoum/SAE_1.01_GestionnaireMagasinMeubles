@@ -19,6 +19,8 @@
    - Référence, Poids, Volume, PrixUnitaire
 2. clients.txt :
    - Numéro de client, solde, suspension
+3. mdp.txt :
+   - Mot de passe du responsable encrypté par le code de César
 
 ## Répartition du travail :
 
