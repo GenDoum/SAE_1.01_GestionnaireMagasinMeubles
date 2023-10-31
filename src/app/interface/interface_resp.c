@@ -21,7 +21,7 @@ void affiche_resp(void) {
     printf("|| Bonjour ! ||\n");
     printf("+-------------+\n");
     printf("\n");
-    printf("+-----------------------------------------------------------------+\n");
+    printf("+----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
     printf("||\t1 : Afficher les articles\t\t\t\t||\n");
     printf("||\t2 : Afficher un article\t\t\t\t\t||\n");
@@ -33,7 +33,7 @@ void affiche_resp(void) {
     printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
     printf("||\t9 : Modifier le statu du client\t\t\t\t||\n");
     printf("||\t10 : Quittez.\t\t\t\t\t\t||\n");
-    printf("+-----------------------------------------------------------------+\n");
+    printf("+----------------------------------------------------------------+\n");
 }
 
 /**
@@ -236,9 +236,9 @@ int affichageConnexion(void)
     
     if ( verif == 0 )
     {
-        printf("+---------------------------------------------+\n");
-        printf("|| \tMot de passe correct, bienvenue patron ! ||\n");
-        printf("+---------------------------------------------+\n");
+        printf("+--------------------------------------------+\n");
+        printf("|| Mot de passe correct, bienvenue patron ! ||\n");
+        printf("+--------------------------------------------+\n");
         return 0;
     }
     else if ( verif == -1)

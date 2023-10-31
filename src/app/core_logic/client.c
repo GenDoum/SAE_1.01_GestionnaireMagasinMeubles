@@ -176,15 +176,15 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
     }
 
     if (depassementCharge || depassementVolume || depassementBudget) {
-        printf("Attention : ");
+        printf("Attention : \n");
         if (depassementCharge) {
-            printf("dépassement de la charge autorisée de %.2f kg \n", depassementCharge);
+            printf("\tDépassement de la charge autorisée de %.2f kg \n", depassementCharge);
         }
         if (depassementVolume) {
-            printf("dépassement du volume autorisé de %.2f litres \n", depassementVolume);
+            printf("\tDépassement du volume autorisé de %.2f litres \n", depassementVolume);
         }
         if (depassementBudget) {
-            printf("dépassement du budget autorisé de %.2f euros \n", depassementBudget);
+            printf("\tDépassement du budget autorisé de %.2f euros \n", depassementBudget);
         }
         printf("\n");
     } else {
