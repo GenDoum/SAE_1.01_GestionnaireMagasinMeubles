@@ -98,7 +98,47 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
  * @param chargeMaximale
  * @param numeroClient
  */
-void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient);
+void configurer_session_client(int numeros[], int suspendus[], int nombreClients, double *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient);
+
+
+/**
+ * @brief Modifie la quantité d'un article dans le panier du client.
+ *
+ * Cette fonction permet de modifier la quantité d'un article dans le panier du client tout en mettant à jour la cagnotte.
+ *
+ * @param panier - Tableau des références des articles dans le panier.
+ * @param quantites - Tableau des quantités de chaque article dans le panier.
+ * @param taillePanier - Taille du panier.
+ * @param cagnottes - Tableau des cagnottes des clients.
+ * @param numeroClient - Numéro du client.
+ * @param prixUnitaire - Tableau des prix unitaires des articles.
+ * @param references - Tableau des références des articles.
+ * @param nombreClients - Nombre de clients.
+ * @param numeros - Tableau des numéros de clients.
+ */
+void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, float prixUnitaire[], int references[], int nombreClients, int numeros[]);
+
+/**
+ * @brief Réinitialise le panier du client.
+ *
+ * @param panier - Tableau des références des articles dans le panier.
+ * @param quantites - Tableau des quantités de chaque article dans le panier.
+ * @param taillePanier - Taille du panier.
+ */
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]);
+
+/**
+ * @brief Déduit un montant de la cagnotte du client.
+ *
+ * @param numeroClient - Numéro du client.
+ * @param montant - Montant à déduire de la cagnotte.
+ * @param numeros - Tableau des numéros de clients.
+ * @param cagnottes - Tableau des cagnottes des clients.
+ * @param nombreClients - Nombre de clients.
+ * @param suspendus - Tableau des états de suspension des clients.
+ */
+void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]);
+
 
 /**
  * @brief Fonction principale de l'interface client.

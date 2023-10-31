@@ -122,8 +122,8 @@ int trouver_index_client(int numeroClient, int numeros[], int nombreClients) {
  * @param cagnottes
  */
 void supprimer_article(int panier[], int quantites[], int *taillePanier, int reference, int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[], float cagnottes[]) {
-    int articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
-    int quantite = 0;
+    int articleIndex, clientIndex, quantite = 0;
+    articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
     for (int i = 0; i < *taillePanier; i++) {
         if (panier[i] == reference) {
             quantite = quantites[i];
@@ -137,99 +137,11 @@ void supprimer_article(int panier[], int quantites[], int *taillePanier, int ref
 
     (*taillePanier)--;
 
-    int clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+
     if (clientIndex != -1) {
         float montantTotal = prixUnitaire[articleIndex] * quantite;
         cagnottes[clientIndex] -= 0.1 * montantTotal;
     }
 
-}
-
-
-/**
- * @brief Modifie la quantité d'un article dans le panier du client.
- *
- * Cette fonction permet de modifier la quantité d'un article dans le panier du client.
- *
- * @param panier - Tableau des références des articles dans le panier.
- * @param quantites - Tableau des quantités de chaque article dans le panier.
- * @param taillePanier - Taille du panier.
- */
-void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier) {
-    int reference, quantite, articleIndex;
-
-    printf("Entrez la référence de l'article : ");
-    while (scanf("%d", &reference) != 1) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
-    }
-    while (getchar() != '\n');
-
-    articleIndex = trouver_index_article(reference, panier, *taillePanier);
-
-    if (articleIndex == -1) {
-        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
-        return;
-    }
-
-    printf("Entrez la quantité : ");
-    while (scanf("%d", &quantite) != 1) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer une quantité valide (nombre) : ");
-    }
-    while (getchar() != '\n');
-
-    quantites[articleIndex] = quantite;
-
-    printf("Quantité modifiée avec succès.\n");
-}
-
-/**
- * @brief Réinitialise le panier du client.
- *
- * Cette fonction permet de réinitialiser le panier du client.
- *
- * @param panier - Tableau des références des articles dans le panier.
- * @param quantites - Tableau des quantités de chaque article dans le panier.
- * @param taillePanier - Taille du panier.
- */
-void reinitialiser_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]) {
-    for (int i = 0; i < *taillePanier; i++) {
-        supprimer_article(panier, quantites, taillePanier, panier[i], numeroClient, numeros, nombreClients, references, prixUnitaire, cagnottes);
-    }
-    *taillePanier = 0;
-}
-
-/**
- * @brief Déduit un montant de la cagnotte du client.
- *
- * Cette fonction permet de déduire un montant de la cagnotte du client.
- *
- * @param numeroClient - Numéro du client.
- * @param montant - Montant à déduire de la cagnotte.
- * @param numeros - Tableau des numéros de clients.
- * @param cagnottes - Tableau des cagnottes des clients.
- * @param nombreClients - Nombre de clients.
- * @param suspendus - Tableau des états de suspension des clients.
- */
-void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]) {
-    int clientIndex = -1;
-    for (int i = 0; i < nombreClients; i++) {
-        if (numeros[i] == numeroClient) {
-            clientIndex = i;
-            break;
-        }
-    }
-
-    if (clientIndex == -1) {
-        printf("Client non trouvé. Impossible de déduire la cagnotte.\n");
-        return;
-    }
-
-    if (cagnottes[clientIndex] < montant) {
-        printf("Cagnotte insuffisante. Impossible de déduire la cagnotte.\n");
-        return;
-    }
-
-    cagnottes[clientIndex] -= montant;
 }

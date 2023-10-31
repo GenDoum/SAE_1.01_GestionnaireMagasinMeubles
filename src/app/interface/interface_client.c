@@ -54,24 +54,26 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
                                int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
                                float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier, float budget) {
 
-    int reference, quantite, articleIndex;
+    int reference, quantite, articleIndex, clientIndex;
     float poidsTotal, montantTotal, volumeTotal, depassementCharge = 0, depassementVolume, depassementBudget = 0;
 
-    while (1) {
-        printf("Entrez la référence de l'article : ");
-        while (scanf("%d", &reference) != 1) {
+
+    printf("Entrez la référence de l'article : ");
+    while (scanf("%d", &reference) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
+    articleIndex = trouver_index_article(reference, references, nombreArticles);
+
+    while (articleIndex == -1) {
+        printf("ERREUR : Article non trouvé. Veuillez entrer une référence valide : ");
+        while(scanf("%d", &reference) != 1) {
             while (getchar() != '\n');
             printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
         }
-        while (getchar() != '\n');
-
         articleIndex = trouver_index_article(reference, references, nombreArticles);
-
-        if (articleIndex == -1) {
-            printf("ERREUR : Article non trouvé. Veuillez entrer une référence valide.\n");
-        } else {
-            break;
-        }
     }
 
     printf("Entrez la quantité : ");
@@ -110,9 +112,9 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
         }
         printf("\n");
     } else {
-        float montantTotal = prixUnitaire[articleIndex] * quantite;
+        montantTotal = prixUnitaire[articleIndex] * quantite;
 
-        int clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+        clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
 
         if (clientIndex != -1) {
             cagnottes[clientIndex] += 0.1 * montantTotal;
@@ -155,7 +157,7 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
  * @param taillePanier - Taille du panier.
  */
 void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]) {
-    int reference;
+    int reference, articleIndex;
     printf("Entrez la référence de l'article à supprimer : ");
     while (scanf("%d", &reference) != 1) {
         while (getchar() != '\n');
@@ -163,11 +165,15 @@ void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanie
     }
     while (getchar() != '\n');
 
-    int articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
+    articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
 
-    if (articleIndex == -1) {
-        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");
-        return;
+    while (articleIndex == -1) {
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide : ");
+        while(scanf("%d", &reference) != 1) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+        }
+        articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
     }
 
     supprimer_article(panier, quantites, taillePanier, reference, numeroClient, numeros, nombreClients, references, prixUnitaire, cagnottes);
@@ -200,6 +206,9 @@ void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanie
 void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
                           float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
                           int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale) {
+
+    int reference, articleIndex, quantite, clientIndex;
+    float poidsTotal = 0, volumeTotal = 0, montantTotal = 0, prixArticle = 0, poidsArticle = 0, volumeArticle = 0;
     printf("Contenu du panier : ");
     for (int i = 0; i < taillePanier; i++) {
         printf("%d ", panier[i]);
@@ -209,16 +218,14 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     printf("Récap :\n");
     printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot\n");
 
-    float poidsTotal = 0, volumeTotal = 0, montantTotal = 0;
-
     for (int i = 0; i < taillePanier; i++) {
-        int reference = panier[i];
-        int articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
+        reference = panier[i];
+        articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
 
-        float poidsArticle = poids[articleIndex];
-        float volumeArticle = volume[articleIndex];
-        float prixArticle = prixUnitaire[articleIndex];
-        int quantite = quantites[i];
+        poidsArticle = poids[articleIndex];
+        volumeArticle = volume[articleIndex];
+        prixArticle = prixUnitaire[articleIndex];
+        quantite = quantites[i];
 
         printf("%d\t %d\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
                reference, quantite, poidsArticle, volumeArticle,
@@ -229,7 +236,7 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
         montantTotal += prixArticle * quantite;
     }
 
-    int clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
 
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     printf("Cagnotte totale : %.2f euros\n", cagnottes[clientIndex]);
@@ -252,8 +259,8 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
  * @param chargeMaximale
  * @param numeroClient
  */
-void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient) {
-    int indexClient;
+void configurer_session_client(int numeros[], int suspendus[], int nombreClients, double *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient) {
+    int indexClient, choixBudget = 0;
 
     printf("Veuillez saisir votre numéro de client : ");
     while (scanf("%d", numeroClient) != 1) {
@@ -277,8 +284,6 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
         exit(1);  // Quitter l'application si le client est suspendu.
     }
 
-    int choixBudget = 0;
-
     printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
     while (scanf("%d", &choixBudget) != 1 || (choixBudget != 0 && choixBudget != 1)) {
         while (getchar() != '\n');
@@ -287,7 +292,7 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
 
     if (choixBudget == 1) {
         printf("Entrez le budget à ne pas dépasser : ");
-        while (scanf("%f", budget) != 1 || *budget <= 0) {
+        while (scanf("%lf", budget) != 1 || *budget <= 0) {
             while (getchar() != '\n');
             printf("ERREUR : Veuillez entrer un budget valide (nombre positif) : ");
         }
@@ -304,6 +309,119 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer une charge maximale valide (en kg) : ");
     }
+}
+
+/**
+ * @brief Modifie la quantité d'un article dans le panier du client.
+ *
+ * Cette fonction permet de modifier la quantité d'un article dans le panier du client tout en mettant à jour la cagnotte.
+ *
+ * @param panier
+ * @param quantites
+ * @param taillePanier
+ * @param cagnottes
+ * @param numeroClient
+ * @param prixUnitaire
+ * @param references
+ * @param nombreClients
+ * @param numeros
+ */
+void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, float prixUnitaire[], int references[], int nombreClients, int numeros[]) {
+
+    int reference, quantite, articleIndex, clientIndex;
+    float prixArticle = 0, ancienneQuantite = 0;
+
+    printf("Entrez la référence de l'article : ");
+    while (scanf("%d", &reference) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
+    articleIndex = trouver_index_article(reference, panier, *taillePanier);
+
+    while (articleIndex == -1) {
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.");
+        while (scanf("%d", &reference) != 1) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+        }
+
+        articleIndex = trouver_index_article(reference, panier, *taillePanier);
+    }
+
+    printf("Entrez la quantité : ");
+    while (scanf("%d", &quantite) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une quantité valide (nombre) : ");
+    }
+    while (getchar() != '\n');
+
+    // Mettre à jour la cagnotte en fonction du changement de quantité
+    prixArticle = prixUnitaire[trouver_index_article(reference, references, MAX_ARTICLES)];
+    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+    ancienneQuantite = quantites[articleIndex];
+    cagnottes[clientIndex] -= (ancienneQuantite - quantite) * prixArticle * 0.1;
+
+    quantites[articleIndex] = quantite;
+
+    printf("Quantité modifiée avec succès.\n");
+}
+
+/**
+ * @brief Réinitialise le panier du client.
+ *
+ * Cette fonction permet de réinitialiser le panier du client.
+ *
+ * @param panier
+ * @param quantites
+ * @param taillePanier
+ * @param cagnottes
+ * @param numeroClient
+ * @param numeros
+ * @param nombreClients
+ * @param references
+ * @param prixUnitaire
+ */
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]) {
+    for (int i = 0; i < *taillePanier; i++) {
+        supprimer_article(panier, quantites, taillePanier, panier[i], numeroClient, numeros, nombreClients, references, prixUnitaire, cagnottes);
+    }
+    *taillePanier = 0;
+}
+
+/**
+ * @brief Déduit un montant de la cagnotte du client.
+ *
+ * Cette fonction permet de déduire un montant de la cagnotte du client.
+ *
+ * @param numeroClient - Numéro du client.
+ * @param montant - Montant à déduire de la cagnotte.
+ * @param numeros - Tableau des numéros de clients.
+ * @param cagnottes - Tableau des cagnottes des clients.
+ * @param nombreClients - Nombre de clients.
+ * @param suspendus - Tableau des états de suspension des clients.
+ */
+void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]) {
+    int clientIndex = -1;
+    for (int i = 0; i < nombreClients; i++) {
+        if (numeros[i] == numeroClient) {
+            clientIndex = i;
+            break;
+        }
+    }
+
+    if (clientIndex == -1) {
+        printf("Client non trouvé. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    if (cagnottes[clientIndex] < montant) {
+        printf("Cagnotte insuffisante. Impossible de déduire la cagnotte.\n");
+        return;
+    }
+
+    cagnottes[clientIndex] -= montant;
 }
 
 
@@ -329,21 +447,13 @@ void menu_client(int *choix) {
  * d'articles dans le panier.
  */
 void global_client() {
-    int choix;
-    int references[MAX_ARTICLES];
-    float poids[MAX_ARTICLES];
-    float volume[MAX_ARTICLES];
-    float prixUnitaire[MAX_ARTICLES];
-    int numeros[MAX_CLIENTS];
-    float cagnottes[MAX_CLIENTS];
-    int suspendus[MAX_CLIENTS];
-    int nombreArticles, nombreClients;
-    float volumeCoffre, chargeMaximale;
-    int numeroClient;
-    int quantites[MAX_ARTICLES];
-    int panier[MAX_ARTICLES];
-    int taillePanier = 0;
-    float budget = -1.0;
+    int choix, references[MAX_ARTICLES], numeros[MAX_CLIENTS], suspendus[MAX_CLIENTS], nombreArticles,
+        nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0, choixCagnotte;
+
+    float poids[MAX_ARTICLES], volume[MAX_ARTICLES], prixUnitaire[MAX_ARTICLES], cagnottes[MAX_CLIENTS],
+          volumeCoffre, chargeMaximale, montant;
+
+    double budget = -1.0;
 
     nombreArticles = chargementArticles(references, poids, volume, prixUnitaire, MAX_ARTICLES);
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
@@ -365,7 +475,7 @@ void global_client() {
                 supprimer_article_du_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
                 break;
             case 4:
-                modifier_quantite_article_panier(panier, quantites, &taillePanier);
+                modifier_quantite_article_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, prixUnitaire, references, nombreClients, numeros);
                 break;
             case 5:
                 reinitialiser_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
@@ -373,10 +483,8 @@ void global_client() {
                 break;
             case 9:
                 printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
-                int choixCagnotte;
                 scanf("%d", &choixCagnotte);
                 if (choixCagnotte == 1) {
-                    float montant;
                     printf("Entrez le montant à déduire de votre cagnotte : ");
                     scanf("%f", &montant);
 
