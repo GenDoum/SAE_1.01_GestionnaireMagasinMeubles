@@ -105,69 +105,46 @@ int trouver_index_client(int numeroClient, int numeros[], int nombreClients) {
     return -1;  // Retourne -1 si le client n'est pas trouvé
 }
 
-
-
 /**
- * @brief Affiche un récapitulatif du contenu du panier.
+ * @brief Supprime un article du panier du client.
  *
- * Cette fonction permet d'afficher un récapitulatif détaillé du contenu du panier du client, y compris les références des articles,
- * les quantités, les poids, les volumes, les prix unitaires, les totaux de poids, de volume, de prix, et la cagnotte du client.
+ * Cette fonction permet de supprimer un article du panier du client tout en metant a jour la cagnotte.
  *
- * @param panier - Tableau des références des articles dans le panier.
- * @param taillePanier - Taille du panier.
- * @param references - Tableau des références des articles.
- * @param poids - Tableau des poids des articles.
- * @param volume - Tableau des volumes des articles.
- * @param prixUnitaire - Tableau des prix unitaires des articles.
- * @param quantites - Tableau des quantités de chaque article dans le panier.
- * @param cagnottes - Tableau des cagnottes des clients.
- * @param numeroClient - Numéro du client.
- * @param numeros - Tableau des numéros de clients.
- * @param nombreClients - Nombre de clients.
- * @param volumeCoffre - Volume total du coffre.
- * @param chargeMaximale - Charge maximale du coffre.
+ * @param panier
+ * @param quantites
+ * @param taillePanier
+ * @param reference
+ * @param numeroClient
+ * @param numeros
+ * @param nombreClients
+ * @param references
+ * @param prixUnitaire
+ * @param cagnottes
  */
-void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
-                          float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
-                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale) {
-    printf("Contenu du panier : ");
-    for (int i = 0; i < taillePanier; i++) {
-        printf("%d ", panier[i]);
+void supprimer_article(int panier[], int quantites[], int *taillePanier, int reference, int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[], float cagnottes[]) {
+    int articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
+    int quantite = 0;
+    for (int i = 0; i < *taillePanier; i++) {
+        if (panier[i] == reference) {
+            quantite = quantites[i];
+            for (int j = i; j < *taillePanier - 1; j++) {
+                panier[j] = panier[j + 1];
+                quantites[j] = quantites[j + 1];
+            }
+            break;
+        }
     }
-    printf("\n");
 
-    printf("Récap :\n");
-    printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot\n");
-
-    float poidsTotal = 0, volumeTotal = 0, montantTotal = 0;
-
-    for (int i = 0; i < taillePanier; i++) {
-        int reference = panier[i];
-        int articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
-
-        float poidsArticle = poids[articleIndex];
-        float volumeArticle = volume[articleIndex];
-        float prixArticle = prixUnitaire[articleIndex];
-        int quantite = quantites[i];
-
-        printf("%d\t %d\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
-               reference, quantite, poidsArticle, volumeArticle,
-               prixArticle, poidsArticle * quantite, volumeArticle * quantite, prixArticle * quantite);
-
-        poidsTotal += poidsArticle * quantite;
-        volumeTotal += volumeArticle * quantite;
-        montantTotal += prixArticle * quantite;
-    }
+    (*taillePanier)--;
 
     int clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+    if (clientIndex != -1) {
+        float montantTotal = prixUnitaire[articleIndex] * quantite;
+        cagnottes[clientIndex] -= 0.1 * montantTotal;
+    }
 
-    printf("Prix total à payer: %.2f euros\n", montantTotal);
-    printf("Cagnotte totale : %.2f euros\n", cagnottes[clientIndex]);
-    printf("Volume utilise : %.2f litres\n", volumeTotal);
-    printf("Volume restant : %.2f litres\n", volumeCoffre - volumeTotal);
-    printf("Charge Actuelle: %.2f kg\n", poidsTotal);
-    printf("Charge restante: %.2f kg\n", chargeMaximale - poidsTotal);
 }
+
 
 /**
  * @brief Modifie la quantité d'un article dans le panier du client.
