@@ -156,7 +156,7 @@ void supprimer_article(int panier[], int quantites[], int *taillePanier, int ref
  * @param taillePanier - Taille du panier.
  */
 void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier) {
-    int reference, quantite;
+    int reference, quantite, articleIndex;
 
     printf("Entrez la référence de l'article : ");
     while (scanf("%d", &reference) != 1) {
@@ -165,13 +165,7 @@ void modifier_quantite_article_panier(int panier[], int quantites[], int *taille
     }
     while (getchar() != '\n');
 
-    int articleIndex = -1;
-    for (int i = 0; i < *taillePanier; i++) {
-        if (panier[i] == reference) {
-            articleIndex = i;
-            break;
-        }
-    }
+    articleIndex = trouver_index_article(reference, panier, *taillePanier);
 
     if (articleIndex == -1) {
         printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.\n");

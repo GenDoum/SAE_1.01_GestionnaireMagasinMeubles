@@ -27,19 +27,6 @@ void affiche_client() {
     printf("+----------------------------------------------------------------+\n");
 }
 
-/**
- * @brief Laisse l'utilisateur choisir une option du menu.
- *
- * @param[in, out] choix - L'option choisie par l'utilisateur.
- */
-void menu_client(int *choix) {
-    affiche_client();
-    printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer un choix valide : ");
-    }
-}
 
 /**
  * @brief Ajoute un article au panier du client.
@@ -266,27 +253,37 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
  * @param numeroClient
  */
 void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient) {
+    int indexClient;
+
     printf("Veuillez saisir votre numéro de client : ");
     while (scanf("%d", numeroClient) != 1) {
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer un numéro de client valide : ");
     }
 
-    int indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
+    indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
 
-    if (indexClient == -1) {
-        printf("Client non trouvé. Impossible d'utiliser l'application.\n");
-        return;
+    while (indexClient == -1) {
+        printf("Client non trouvé. Veuillez entrer un numéro de client valide : ");
+        while (scanf("%d", numeroClient) != 1) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+        }
+        indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
     }
 
     if (suspendus[indexClient] == 1) {
         printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
-        return;
+        exit(1);  // Quitter l'application si le client est suspendu.
     }
 
+    int choixBudget = 0;
+
     printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
-    int choixBudget;
-    scanf("%d", &choixBudget);
+    while (scanf("%d", &choixBudget) != 1 || (choixBudget != 0 && choixBudget != 1)) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+    }
 
     if (choixBudget == 1) {
         printf("Entrez le budget à ne pas dépasser : ");
@@ -309,6 +306,20 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
     }
 }
 
+
+/**
+ * @brief Laisse l'utilisateur choisir une option du menu.
+ *
+ * @param[in, out] choix - L'option choisie par l'utilisateur.
+ */
+void menu_client(int *choix) {
+    affiche_client();
+    printf("Vous choisissez: ");
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer un choix valide : ");
+    }
+}
 
 /**
  * @brief Fonction principale de l'interface client.
