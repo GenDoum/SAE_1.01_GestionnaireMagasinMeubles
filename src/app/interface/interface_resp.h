@@ -101,6 +101,9 @@ void menu_resp(int *choix);
 */
 int affichageConnexion(void);
 
+/**
+ * @brief Affiche le menu qui permet de modifier l'état de la cagnotte d'un client.
+*/
 void affichModifClient(int tNumClient[], int tSus[], int tLogique);
 
 /**

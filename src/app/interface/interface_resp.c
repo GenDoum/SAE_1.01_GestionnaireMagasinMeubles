@@ -226,7 +226,11 @@ void affichAjoutClient(int tNumClient[], int tLogique, int *numC) {
 }
 
 
-
+/**
+ * @brief Affiche les informations nécessaires pour entrer le mod de passe responsable.
+ *
+ * Cette fonction permet au responsable de confirmer son identité
+*/
 int affichageConnexion(void)
 {
     char mdpEnter[20];
