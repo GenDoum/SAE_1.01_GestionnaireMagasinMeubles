@@ -31,8 +31,9 @@ void affiche_resp(void) {
     printf("||\t6 : Supprimer un article\t\t\t\t||\n");
     printf("||\t7 : Modifier un article\t\t\t\t\t||\n");
     printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
-    printf("||\t9 : Modifier le statu du client\t\t\t\t||\n");
-    printf("||\t10 : Quittez.\t\t\t\t\t\t||\n");
+    printf("||\t9 : Modifier le statut du client\t\t\t\t||\n");
+    printf("||\t10 : Supprimer un client\t\t\t\t||\n");
+    printf("||\t11 : Quittez.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
 
@@ -412,6 +413,7 @@ void global_resp() {
                 break;
             case 11:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
+                sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
                 printf("Sauvegarde des articles effectuée.\n");
                 printf("Au revoir !\n");
                 return;
