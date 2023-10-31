@@ -101,6 +101,8 @@ void menu_resp(int *choix);
 */
 int affichageConnexion(void);
 
+void affichModifClient(int tNumClient[], int tSus[], int tLogique);
+
 /**
  * @brief Fonction principale de l'interface du responsable.
  *

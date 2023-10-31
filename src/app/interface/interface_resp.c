@@ -31,7 +31,8 @@ void affiche_resp(void) {
     printf("||\t6 : Supprimer un article\t\t\t\t||\n");
     printf("||\t7 : Modifier un article\t\t\t\t\t||\n");
     printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
-    printf("||\t9 : Quittez.\t\t\t\t\t\t||\n");
+    printf("||\t9 : Modifier le statu du client\t\t\t\t||\n");
+    printf("||\t10 : Quittez.\t\t\t\t\t\t||\n");
     printf("+-----------------------------------------------------------------+\n");
 }
 
@@ -251,6 +252,99 @@ int affichageConnexion(void)
     return -2;
 }
 
+void affichModifClient(int tNumClient[], int tSus[], int tLogique)
+{
+    int choix, numC;
+    printf("\tEntrez le numéro du client : ");
+    scanf("%d", &numC);
+    
+    for ( int i = 0; i <  tLogique; ++i)
+    {
+        if ( numC == tNumClient[i] )
+        {
+            if ( tSus[i] == 0 )
+            {
+                printf("\t La cagnotte du client n'est pas suspendu, voulez-vous le suspendre ?\n ( Oui = 0 / Non = 1 )\n ");
+                while(scanf("%d", &choix) != 1 || choix < 0 || choix > 1)
+                {
+                    printf("\t Veuillez entrer un choix valide ! \n");
+                }
+                if ( choix == 0 )
+                {
+                    tSus[i] = 1;
+                    printf("\t La cagnotte est maintenant suspendu\n");
+                    return;
+                }
+                else
+                {
+                    printf("\t La cagnotte n'a pas été changé. Au revoir ! \n");
+                    return;
+                }
+            }
+            else
+            {
+                printf("\t La cagnotte du client %d est suspendue, voulez-vous l'activer à nouveau ?\n ( Oui = 0 / Non = 1 )\n", tNumClient[i]);
+                while(scanf("%d", &choix) != 1 || choix < 0 || choix > 1)
+                {
+                    printf("\t Veuillez entrer un choix valide ! \n");
+                }
+                if ( choix == 0 )
+                {
+                    tSus[i] = 0;
+                    printf("\t La cagnotte n'est plus suspendu\n");
+                    return;
+                }
+                else
+                {
+                    printf("\t La cagnotte n'a pas été changé. Au revoir ! \n");
+                    return;
+                }
+            }
+        }
+        printf("\t Le client %d n'a pas été trouvé. \n", numC);
+        return;
+    }
+}
+
+
+void suppressionClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique)
+{
+    int choix, numC;
+    printf("\tEntrez le numéro du client : ");
+    scanf("%d", &numC);
+    
+    for ( int i = 0; i <  *tLogique; ++i)
+    {
+        if ( numC == tNumClient[i] )
+        {
+            printf("\tÊtes-vous sur de vouloir supprimer ce client ? ( Oui = 0 / Non = 1 )\n");
+            while(scanf("%d", &choix) != 1 || choix < 0 || choix > 1)
+            {
+                printf("\t Veuillez entrer un choix valide ! \n");
+            }
+            if ( choix == 0 )
+            {
+                for ( int j = i; j < *tLogique-1; j++)
+                {
+                    tNumClient[j] = tNumClient[j+1];
+                    tCagnotte[j] = tCagnotte[j+1];
+                    tSus[j] = tSus[j+1];
+                }
+                printf("Le client %d a été supprimé.\n", tNumClient[i]);
+                (*tLogique)--;
+                return;
+            }
+            else
+            {
+                printf("\t Le client %d n'a pas été supprimé.\n", tNumClient[i]);
+                return;
+            }
+        }
+    }
+    printf("\t Le client %d n'a pas été trouvé. \n", numC);
+    return;
+}
+
 /**
  * @brief Fonction de menu pour le responsable.
  *
@@ -259,7 +353,7 @@ int affichageConnexion(void)
 void menu_resp(int *choix) {
     affiche_resp();
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 11) {
         while (getchar() != '\n');
         affiche_resp();
         printf("Veuillez entrer un choix valide : ");
@@ -311,6 +405,12 @@ void global_resp() {
                 ajouterClient(tNumClient, tCagnotte, tSus, &tLogClient, MAX_CLIENTS);
                 break;
             case 9:
+                affichModifClient(tNumClient, tSus, tLogClient);
+                break;
+            case 10:
+                suppressionClient(tNumClient, tCagnotte ,tSus , &tLogClient);
+                break;
+            case 11:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
                 printf("Sauvegarde des articles effectuée.\n");
                 printf("Au revoir !\n");
@@ -319,6 +419,6 @@ void global_resp() {
                 printf("Veuillez entrer un choix valide ! \n");
                 break;
         }
-    } while (choix != 9);
+    } while (choix != 11);
     
 }

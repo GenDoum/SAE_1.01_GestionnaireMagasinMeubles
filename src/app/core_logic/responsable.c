@@ -169,7 +169,7 @@ void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], i
         tVol[i] = tVol[i+1];
         tPrix[i] = tPrix[i+1];
     }
-    *tLogique -= 1;
+    (*tLogique)--;
 }
 
 /**
@@ -245,7 +245,6 @@ int decodageMDP(char *mdpEnter)
     }
 
     fscanf(fe, "%s %d", mdpRead, &decalage);
-    printf("%s", mdpRead);
     fclose(fe);
 
     dechiffrerCesar(mdpEnter, decalage);
