@@ -351,7 +351,6 @@ void global_client() {
                                           suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier, budget);
                 break;
             case 3:
-                //supprimer_article_du_panier(panier, quantites, &taillePanier, prixUnitaire, numeroClient, cagnottes);
                 supprimer_article_du_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
                 break;
             case 4:
@@ -359,7 +358,7 @@ void global_client() {
                 break;
             case 5:
                 reinitialiser_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
-                printf("Le panier a été réinitialisé.\n")
+                printf("Le panier a été réinitialisé.\n");
                 break;
             case 9:
                 printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
