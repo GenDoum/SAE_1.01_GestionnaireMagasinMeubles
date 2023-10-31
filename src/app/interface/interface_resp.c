@@ -11,6 +11,7 @@
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100
+#define MENU_QUIT 11
 
 /**
  * @brief Affiche le menu principal de l'interface du responsable.
@@ -31,8 +32,9 @@ void affiche_resp(void) {
     printf("||\t6 : Supprimer un article\t\t\t\t||\n");
     printf("||\t7 : Modifier un article\t\t\t\t\t||\n");
     printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
-    printf("||\t9 : Modifier le statu du client\t\t\t\t||\n");
-    printf("||\t10 : Quittez.\t\t\t\t\t\t||\n");
+    printf("||\t9 : Modifier le statut du client\t\t\t||\n");
+    printf("||\t10 : Supprimer un client\t\t\t\t||\n");
+    printf("||\t11 : Quittez.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
 
@@ -225,7 +227,11 @@ void affichAjoutClient(int tNumClient[], int tLogique, int *numC) {
 }
 
 
-
+/**
+ * @brief Affiche les informations nécessaires pour entrer le mod de passe responsable.
+ *
+ * Cette fonction permet au responsable de confirmer son identité
+*/
 int affichageConnexion(void)
 {
     char mdpEnter[20];
@@ -353,7 +359,7 @@ void suppressionClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLo
 void menu_resp(int *choix) {
     affiche_resp();
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 11) {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > MENU_QUIT) {
         while (getchar() != '\n');
         affiche_resp();
         printf("Veuillez entrer un choix valide : ");
@@ -412,13 +418,15 @@ void global_resp() {
                 break;
             case 11:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
+                sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
                 printf("Sauvegarde des articles effectuée.\n");
+                printf("Sauvegarde des clients effectuée.\n");
                 printf("Au revoir !\n");
                 return;
             default:
                 printf("Veuillez entrer un choix valide ! \n");
                 break;
         }
-    } while (choix != 11);
+    } while (choix != MENU_QUIT);
     
 }
