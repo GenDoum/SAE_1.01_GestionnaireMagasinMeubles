@@ -4,9 +4,6 @@
  */
 
 #include "interface_client.h"
-#include "app/core_logic/client.h"
-#include "app/core_logic/responsable.h"
-
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
@@ -19,15 +16,15 @@ void affiche_client() {
     printf("|| Bonjour ! ||\n");
     printf("+-------------+\n");
     printf("\n");
-    printf("+-----------------------------------------------------------------+\n");
-    printf("|| Que voulez-vous faire ?\t\t\t\t\t\t\t||\n");
-    printf("||\t1 : Afficher le récapitulatif du panier.\t\t\t||\n");
-    printf("||\t2 : Ajouter un article au panier.\t\t\t\t||\n");
-    printf("||\t3 : Supprimer un article du panier.\t\t\t\t||\n");
-    printf("||\t4 : Modifier la quantité d'un article du panier.\t||\n");
-    printf("||\t5 : Réinitialiser le panier.\t\t\t\t\t||\n");
-    printf("||\t9 : Quitter.\t\t\t\t\t\t\t\t\t||\n");
-    printf("+-----------------------------------------------------------------+\n");
+    printf("+----------------------------------------------------------------+\n");
+    printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
+    printf("||\t1 : Afficher le récapitulatif du panier.\t \t||\n");
+    printf("||\t2 : Ajouter un article au panier.   \t\t\t||\n");
+    printf("||\t3 : Supprimer un article du panier. \t\t\t||\n");
+    printf("||\t4 : Modifier la quantité d'un article du panier. \t||\n");
+    printf("||\t5 : Réinitialiser le panier.\t\t\t\t||\n");
+    printf("||\t9 : Quitter.\t\t\t\t\t\t||\n");
+    printf("+----------------------------------------------------------------+\n");
 }
 
 /**
@@ -111,7 +108,8 @@ void global_client() {
 
         switch (choix) {
             case 1:
-                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites);
+                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites, cagnottes,
+                                     numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale);
                 break;
             case 2:
                 ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
@@ -140,6 +138,7 @@ void global_client() {
                     printf("Le montant a été déduit de votre cagnotte.\n");
                 }
 
+                sauvegarde_clients(numeros, cagnottes, suspendus, nombreClients);
                 printf("Au revoir !\n");
                 return;
             default:

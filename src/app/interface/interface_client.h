@@ -4,6 +4,8 @@
  */
 
 #include <stdio.h>
+#include "../core_logic/client.h"
+#include "../core_logic/responsable.h"
 
 /**
  * @brief Affiche le menu principal de l'interface client.
