@@ -126,39 +126,67 @@ int trouver_index_client(int numeroClient, int numeros[], int nombreClients) {
  * @param panier - Tableau des références des articles dans le panier.
  * @param quantites - Tableau des quantités de chaque article dans le panier.
  * @param taillePanier - Taille du panier.
+ * @param budget - Budget du client.
  */
 void ajouter_article_au_panier(int numeroClient, int references[], float poids[], float volume[], float prixUnitaire[],
                                int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
-                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier) {
-    int reference, quantite;
+                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier, float budget) {
 
-    printf("Entrez la référence de l'article : ");
-    while (scanf("%d", &reference) != 1) {
+    int reference, quantite, articleIndex;
+    float poidsTotal, montantTotal, volumeTotal, depassementCharge = 0, depassementVolume, depassementBudget = 0;
+
+    while (1) {
+        printf("Entrez la référence de l'article : ");
+        while (scanf("%d", &reference) != 1) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+        }
         while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
+
+        articleIndex = trouver_index_article(reference, references, nombreArticles);
+
+        if (articleIndex == -1) {
+            printf("ERREUR : Article non trouvé. Veuillez entrer une référence valide.\n");
+        } else {
+            break;
+        }
     }
-    while (getchar() != '\n');
 
     printf("Entrez la quantité : ");
     while (scanf("%d", &quantite) != 1) {
         while (getchar() != '\n');
-        printf("ERREUR : Veurillez entrer une quantité valide (nombre) : ");
+        printf("ERREUR : Veuillez entrer une quantité valide (nombre) : ");
     }
     while (getchar() != '\n');
 
-    int articleIndex = trouver_index_article(reference, references, nombreArticles);
-
-    if (articleIndex == -1) {
-        printf("Article non trouvé. Veuillez entrer une référence valide.\n");
-    }
-
-    float poidsTotal = poids[articleIndex] * quantite;
-    float volumeTotal = volume[articleIndex] * quantite;
+    poidsTotal = poids[articleIndex] * quantite;
+    volumeTotal = volume[articleIndex] * quantite;
+    montantTotal = prixUnitaire[articleIndex] * quantite;
 
     if (poidsTotal > chargeMaximale) {
-        printf("Désolé, dépassement de la charge autorisée.\n");
-    } else if (volumeTotal > volumeCoffre) {
-        printf("Désolé, dépassement du volume autorisé.\n");
+        depassementCharge = poidsTotal - chargeMaximale;
+    }
+
+    if (volumeTotal > volumeCoffre) {
+        depassementVolume = volumeTotal - volumeCoffre;
+    }
+
+    if (budget > 0 && montantTotal > budget) {
+        depassementBudget = montantTotal - budget;
+    }
+
+    if (depassementCharge || depassementVolume || depassementBudget) {
+        printf("Attention : ");
+        if (depassementCharge) {
+            printf("dépassement de la charge autorisée de %.2f kg \n", depassementCharge);
+        }
+        if (depassementVolume) {
+            printf("dépassement du volume autorisé de %.2f litres \n", depassementVolume);
+        }
+        if (depassementBudget) {
+            printf("dépassement du budget autorisé de %.2f euros \n", depassementBudget);
+        }
+        printf("\n");
     } else {
         float montantTotal = prixUnitaire[articleIndex] * quantite;
 

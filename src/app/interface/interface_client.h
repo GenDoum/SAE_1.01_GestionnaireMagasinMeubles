@@ -27,3 +27,5 @@ void menu_client(int *choix);
  * d'articles dans le panier.
  */
 void global_client();
+
+void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient);

@@ -52,10 +52,11 @@ void sauvegarde_clients(int numeros[], float cagnottes[], int suspendus[], int n
  * @param panier - Tableau des références des articles dans le panier.
  * @param quantites - Tableau des quantités de chaque article dans le panier.
  * @param taillePanier - Taille du panier.
+ * @param budget - Budget du client.
  */
 void ajouter_article_au_panier(int numeroClient, int references[], float poids[], float volume[], float prixUnitaire[],
                                int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
-                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier);
+                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier, float budget);
 
 /**
  * @brief Supprime un article du panier du client.
