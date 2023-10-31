@@ -4,6 +4,8 @@
  */
 
 #include <stdio.h>
+#include "../core_logic/client.h"
+#include "../core_logic/responsable.h"
 
 /**
  * @brief Affiche le menu principal de l'interface client.
@@ -17,6 +19,22 @@ void affiche_client();
  */
 void menu_client(int *choix);
 
+
+/**
+ * @brief Affiche le récapitulatif du panier.
+ *
+ * Cette fonction affiche le récapitulatif du panier, y compris les références, les poids, les volumes, les prix unitaires, elle permet d'initialiser la session du client.
+ *
+ * @param numeros
+ * @param suspendus
+ * @param nombreClients
+ * @param budget
+ * @param volumeCoffre
+ * @param chargeMaximale
+ * @param numeroClient
+ */
+void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient);
+
 /**
  * @brief Fonction principale de l'interface client.
  *
@@ -25,3 +43,4 @@ void menu_client(int *choix);
  * d'articles dans le panier.
  */
 void global_client();
+

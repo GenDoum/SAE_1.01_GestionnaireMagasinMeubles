@@ -4,9 +4,6 @@
  */
 
 #include "interface_client.h"
-#include "app/core_logic/client.h"
-#include "app/core_logic/responsable.h"
-
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
@@ -19,15 +16,15 @@ void affiche_client() {
     printf("|| Bonjour ! ||\n");
     printf("+-------------+\n");
     printf("\n");
-    printf("+-----------------------------------------------------------------+\n");
-    printf("|| Que voulez-vous faire ?\t\t\t\t\t\t\t||\n");
-    printf("||\t1 : Afficher le récapitulatif du panier.\t\t\t||\n");
-    printf("||\t2 : Ajouter un article au panier.\t\t\t\t||\n");
-    printf("||\t3 : Supprimer un article du panier.\t\t\t\t||\n");
-    printf("||\t4 : Modifier la quantité d'un article du panier.\t||\n");
-    printf("||\t5 : Réinitialiser le panier.\t\t\t\t\t||\n");
-    printf("||\t9 : Quitter.\t\t\t\t\t\t\t\t\t||\n");
-    printf("+-----------------------------------------------------------------+\n");
+    printf("+----------------------------------------------------------------+\n");
+    printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
+    printf("||\t1 : Afficher le récapitulatif du panier.\t \t||\n");
+    printf("||\t2 : Ajouter un article au panier.   \t\t\t||\n");
+    printf("||\t3 : Supprimer un article du panier. \t\t\t||\n");
+    printf("||\t4 : Modifier la quantité d'un article du panier. \t||\n");
+    printf("||\t5 : Réinitialiser le panier.\t\t\t\t||\n");
+    printf("||\t9 : Quitter.\t\t\t\t\t\t||\n");
+    printf("+----------------------------------------------------------------+\n");
 }
 
 /**
@@ -43,6 +40,65 @@ void menu_client(int *choix) {
         printf("ERREUR : Veuillez entrer un choix valide : ");
     }
 }
+
+
+/**
+ * @brief Affiche le récapitulatif du panier.
+ *
+ * Cette fonction affiche le récapitulatif du panier, y compris les références, les poids, les volumes, les prix unitaires, elle permet d'initialiser la session du client.
+ *
+ * @param numeros
+ * @param suspendus
+ * @param nombreClients
+ * @param budget
+ * @param volumeCoffre
+ * @param chargeMaximale
+ * @param numeroClient
+ */
+void configurer_session_client(int numeros[], int suspendus[], int nombreClients, float *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient) {
+    printf("Veuillez saisir votre numéro de client : ");
+    while (scanf("%d", numeroClient) != 1) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+    }
+
+    int indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
+
+    if (indexClient == -1) {
+        printf("Client non trouvé. Impossible d'utiliser l'application.\n");
+        return;
+    }
+
+    if (suspendus[indexClient] == 1) {
+        printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
+        return;
+    }
+
+    printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
+    int choixBudget;
+    scanf("%d", &choixBudget);
+
+    if (choixBudget == 1) {
+        printf("Entrez le budget à ne pas dépasser : ");
+        while (scanf("%f", budget) != 1 || *budget <= 0) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer un budget valide (nombre positif) : ");
+        }
+    }
+
+    printf("Veuillez saisir la taille disponible du véhicule (en litres) : ");
+    while (scanf("%f", volumeCoffre) != 1 || *volumeCoffre <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une taille de coffre valide (en litres) : ");
+    }
+
+    printf("Veuillez saisir la charge maximale autorisée (en kg) : ");
+    while (scanf("%f", chargeMaximale) != 1 || *chargeMaximale <= 0) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer une charge maximale valide (en kg) : ");
+    }
+}
+
 
 /**
  * @brief Fonction principale de l'interface client.
@@ -66,56 +122,23 @@ void global_client() {
     int quantites[MAX_ARTICLES];
     int panier[MAX_ARTICLES];
     int taillePanier = 0;
+    float budget = -1.0;
 
     nombreArticles = chargementArticles(references, poids, volume, prixUnitaire, MAX_ARTICLES);
     nombreClients = charger_clients(numeros, cagnottes, suspendus, MAX_CLIENTS);
-
-    printf("Veuillez saisir la taille disponible du véhicule (en litres) : ");
-    while (scanf("%f", &volumeCoffre) != 1 || volumeCoffre <= 0) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer une taille de coffre valide (en litres) : ");
-    }
-
-    printf("Veuillez saisir la charge maximale autorisée (en kg) : ");
-    while (scanf("%f", &chargeMaximale) != 1 || chargeMaximale <= 0) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer une charge maximale valide (en kg) : ");
-    }
-
-    printf("Veuillez saisir votre numéro de client : ");
-    while (scanf("%d", &numeroClient) != 1) {
-        while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
-    }
-
-    int indexClient = -1;
-    for (int i = 0; i < nombreClients; i++) {
-        if (numeros[i] == numeroClient) {
-            indexClient = i;
-            break;
-        }
-    }
-
-    if (indexClient == -1) {
-        printf("Client non trouvé. Impossible d'utiliser l'application.\n");
-        return;
-    }
-
-    if (suspendus[indexClient] == 1) {
-        printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
-        return;
-    }
+    configurer_session_client(numeros, suspendus, nombreClients, &budget, &volumeCoffre, &chargeMaximale, &numeroClient);
 
     do {
         menu_client(&choix);
 
         switch (choix) {
             case 1:
-                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites);
+                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites, cagnottes,
+                                     numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale);
                 break;
             case 2:
                 ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
-                                          suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier);
+                                          suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier, budget);
                 break;
             case 3:
                 supprimer_article_du_panier(panier, quantites, &taillePanier);
@@ -140,6 +163,7 @@ void global_client() {
                     printf("Le montant a été déduit de votre cagnotte.\n");
                 }
 
+                sauvegarde_clients(numeros, cagnottes, suspendus, nombreClients);
                 printf("Au revoir !\n");
                 return;
             default:
