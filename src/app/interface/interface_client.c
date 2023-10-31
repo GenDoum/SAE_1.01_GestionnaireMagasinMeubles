@@ -315,7 +315,7 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
 void menu_client(int *choix) {
     affiche_client();
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9) {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9 || (*choix > 5 && *choix < 9)) {
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer un choix valide : ");
     }
@@ -388,9 +388,6 @@ void global_client() {
                 sauvegarde_clients(numeros, cagnottes, suspendus, nombreClients);
                 printf("Au revoir !\n");
                 return;
-            default:
-                printf("Veuillez entrer un choix valide !\n");
-                break;
         }
     } while (choix != 9);
 }
