@@ -20,7 +20,7 @@
 2. clients.txt :
    - Numéro de client, solde, suspension
 3. mdp.txt :
-   - Mot de passe du responsable encrypté par le code de César
+   - Mot de passe du responsable chiffré par le code de César
 
 ## Répartition du travail :
 
@@ -50,3 +50,7 @@ L'adoption d'une telle architecture permet, comme précédemment expliqué, de d
 Mais nous avons, grâce a cette architecture aucun problème pour créer d'autre interface comme l'interface des responsable.
 
 Un autre bénéfice majeur réside dans la facilité de maintenance. En segmentant le programme en couches et en composants distincts, nous avons la possibilité d'apporter des modifications à chacun d'eux sans altérer le code source des autres parties qui ne dépendent pas de ces modifications, préservant ainsi leur fonctionnement initial.
+
+### Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?
+
+Le code de César est un chiffrement que nous avons vu en cours de **bases mathématiques 1**. Il s'agit d'un chiffrement simple qui fonctionne grâce à un numéro qui correspond au décalage des lettres de l'alphabet. Pour obtenir le mot de passe, si nous n'avions pas mis en place ce chiffrement, il aurait simplement fallu ouvrir le fichier `mdp.txt`. Alors nous avons pensé qu'un minimum de sécurité était nécessaire.
