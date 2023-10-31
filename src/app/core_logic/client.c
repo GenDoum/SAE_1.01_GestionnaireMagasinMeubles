@@ -199,9 +199,11 @@ void modifier_quantite_article_panier(int panier[], int quantites[], int *taille
  * @param quantites - Tableau des quantités de chaque article dans le panier.
  * @param taillePanier - Taille du panier.
  */
-void reinitialiser_panier(int panier[], int quantites[], int *taillePanier) {
+void reinitialiser_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]) {
+    for (int i = 0; i < *taillePanier; i++) {
+        supprimer_article(panier, quantites, taillePanier, panier[i], numeroClient, numeros, nombreClients, references, prixUnitaire, cagnottes);
+    }
     *taillePanier = 0;
-    printf("Panier réinitialisé avec succès.\n");
 }
 
 /**

@@ -358,7 +358,8 @@ void global_client() {
                 modifier_quantite_article_panier(panier, quantites, &taillePanier);
                 break;
             case 5:
-                reinitialiser_panier(panier, quantites, &taillePanier);
+                reinitialiser_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
+                printf("Le panier a été réinitialisé.\n")
                 break;
             case 9:
                 printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
