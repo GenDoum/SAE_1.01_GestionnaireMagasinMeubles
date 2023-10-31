@@ -93,6 +93,14 @@ void affichAjoutClient(int tNumClient[], int tLogique, int *numC);
  */
 void menu_resp(int *choix);
 
+
+/**
+ * @brief Affiche les informations nécessaires pour entrer le mod de passe responsable.
+ *
+ * Cette fonction permet au responsable de confirmer son identité
+*/
+int affichageConnexion(void);
+
 /**
  * @brief Fonction principale de l'interface du responsable.
  *

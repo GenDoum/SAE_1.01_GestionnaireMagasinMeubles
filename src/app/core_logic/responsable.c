@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "responsable.h"
 #include "../interface/interface_resp.h"
 
@@ -102,6 +103,14 @@ int ajouterArticle( int tRef[], float tPoids[], float tVol[], float tPrix[], int
     {
         fprintf(stderr,"Tableau plein !");
         return -2;
+    }
+    for ( int j = 0; j < *tLogique; ++j )
+    {
+        if ( ref == tRef[j] )
+        {
+            fprintf(stderr, "\t /!/ Article déjà existant. /!/ \n");
+            return -1;
+        }
     }
     tRef[i] = ref;
     tPoids[i] = poids;
@@ -209,4 +218,44 @@ void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogiqu
     (*tLogique)++;
     return;
 
+}
+
+void dechiffrerCesar(char *texte, int decalage) {
+    int i;
+    int longueur = strlen(texte);
+    for (i = 0; i < longueur; ++i) {
+        if (texte[i] >= 'a' && texte[i] <= 'z') {
+            texte[i] = 'a' + (texte[i] - 'a' + decalage) % 26;
+        } else if (texte[i] >= 'A' && texte[i] <= 'Z') {
+            texte[i] = 'A' + (texte[i] - 'A' + decalage) % 26;
+        }
+    }
+}
+
+
+int decodageMDP(char *mdpEnter)
+{
+    int decalage;
+    char mdpRead[20];
+    FILE *fe;
+    fe = fopen("donnee/mdp.txt","r");
+    if ( fe == NULL )
+    {
+        return -1;
+    }
+
+    fscanf(fe, "%s %d", mdpRead, &decalage);
+    printf("%s", mdpRead);
+    fclose(fe);
+
+    dechiffrerCesar(mdpEnter, decalage);
+
+    if ( strcmp(mdpRead, mdpEnter) == 0 )
+    {
+        return 0;
+    }
+    else
+    {
+        return -2;
+    }
 }

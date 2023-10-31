@@ -51,9 +51,15 @@ int choixInterface(void) {
  * @return 0 si le programme s'est exécuté avec succès.
  */
 int main() {
+    
     switch (choixInterface()) {
         case 1:
-            global_resp();
+            int verif = affichageConnexion();        
+            if ( verif == 0)
+            {
+                global_resp();
+                break;
+            }
             break;
         case 2:
             global_client();

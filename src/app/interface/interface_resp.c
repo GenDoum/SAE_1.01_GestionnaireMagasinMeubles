@@ -22,16 +22,16 @@ void affiche_resp(void) {
     printf("+-------------+\n");
     printf("\n");
     printf("+-----------------------------------------------------------------+\n");
-    printf("|| Que voulez-vous faire ?\t\t\t\t\t\t\t||\n");
-    printf("||\t1 : Afficher les articles\t\t\t\t\t\t||\n");
-    printf("||\t2 : Afficher un article\t\t\t\t\t\t\t||\n");
-    printf("||\t3 : Afficher un client\t\t\t\t\t\t\t||\n");
-    printf("||\t4 : Afficher les clients\t\t\t\t\t\t||\n");
-    printf("||\t5 : Ajouter un article\t\t\t\t\t\t\t||\n");
-    printf("||\t6 : Supprimer un article\t\t\t\t\t\t||\n");
-    printf("||\t7 : Modifier un article\t\t\t\t\t\t\t||\n");
-    printf("||\t8 : Ajouter un client\t\t\t\t\t\t\t||\n");
-    printf("||\t9 : Quittez.\t\t\t\t\t\t\t\t\t||\n");
+    printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
+    printf("||\t1 : Afficher les articles\t\t\t\t||\n");
+    printf("||\t2 : Afficher un article\t\t\t\t\t||\n");
+    printf("||\t3 : Afficher un client\t\t\t\t\t||\n");
+    printf("||\t4 : Afficher les clients\t\t\t\t||\n");
+    printf("||\t5 : Ajouter un article\t\t\t\t\t||\n");
+    printf("||\t6 : Supprimer un article\t\t\t\t||\n");
+    printf("||\t7 : Modifier un article\t\t\t\t\t||\n");
+    printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
+    printf("||\t9 : Quittez.\t\t\t\t\t\t||\n");
     printf("+-----------------------------------------------------------------+\n");
 }
 
@@ -131,6 +131,7 @@ void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique
 void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix) {
     printf("\t Entrez la ref du nouveau produit\n");
     while (scanf("%d", ref) != 1 || *ref <= 0) {
+        
         printf("\t Veuillez entrer une référence valide.\n");
         while (getchar() != '\n');
     }
@@ -216,10 +217,38 @@ void affichAjoutClient(int tNumClient[], int tLogique, int *numC) {
     }
     for (int i = 0; i < tLogique; ++i) {
         if (*numC == tNumClient[i]) {
-            fprintf(stderr, "\t Client déjà existant.\n");
+            fprintf(stderr, "\t /!/ Client déjà existant. /!/\n");
             return;
         }
     }
+}
+
+
+
+int affichageConnexion(void)
+{
+    char mdpEnter[20];
+    printf("Entrer le mot de passe responsable : ");
+    scanf("%s", mdpEnter);
+
+    int verif = decodageMDP(mdpEnter);
+    
+    if ( verif == 0 )
+    {
+        printf("+---------------------------------------------+\n");
+        printf("|| \tMot de passe correct, bienvenue patron ! ||\n");
+        printf("+---------------------------------------------+\n");
+        return 0;
+    }
+    else if ( verif == -1)
+    {
+        printf("\t Problème ouverture fichier !\n");
+        return -1;
+    }
+    printf("+--------------------------------------------------+\n");
+    printf("|| \tMot de passe incorrect, Au revoir ! \t||\n");
+    printf("+--------------------------------------------------+\n");
+    return -2;
 }
 
 /**
