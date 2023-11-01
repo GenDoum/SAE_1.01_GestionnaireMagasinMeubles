@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "../core_logic/client.h"
 #include "../core_logic/responsable.h"
 
@@ -79,11 +80,12 @@ void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanie
  * @param nombreClients - Nombre de clients.
  * @param volumeCoffre - Volume total du coffre.
  * @param chargeMaximale - Charge maximale du coffre.
+ * @param budget - Budget du client.
  */
 
 void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
                           float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
-                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale);
+                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale, float budget);
 
 /**
  * @brief Affiche le récapitulatif du panier.
@@ -149,3 +151,5 @@ void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagn
  */
 void global_client();
 
+void quitterApplication(int *choixCagnotte, float *montant, double *budget, float *cagnottes, int numeroClient,
+                        int *numeros, int nombreClients, int *suspendus);

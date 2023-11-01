@@ -143,5 +143,5 @@ void supprimer_article(int panier[], int quantites[], int *taillePanier, int ref
         float montantTotal = prixUnitaire[articleIndex] * quantite;
         cagnottes[clientIndex] -= 0.1 * montantTotal;
     }
-
 }
+

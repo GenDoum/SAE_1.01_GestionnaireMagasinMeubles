@@ -111,39 +111,40 @@ void ajouter_article_au_panier(int numeroClient, int references[], float poids[]
             printf("\tDépassement du budget autorisé de %.2f euros \n", depassementBudget);
         }
         printf("\n");
-    } else {
-        montantTotal = prixUnitaire[articleIndex] * quantite;
-
-        clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
-
-        if (clientIndex != -1) {
-            cagnottes[clientIndex] += 0.1 * montantTotal;
-        }
-
-        panier[*taillePanier] = reference;
-        quantites[*taillePanier] = quantite;
-        (*taillePanier)++;
-
-        printf("Contenu du panier : ");
-        for (int i = 0; i < *taillePanier; i++) {
-            printf("%d ", panier[i]);
-        }
-        printf("\n");
-
-        printf("Référence : %d\nQuantité : %d\n", reference, quantite);
-        printf("Récap :\n");
-        printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte\n");
-        printf("%d   %d     %.2f        %.2f      %.2f     %.2f           %.2f      %.2f      %.2f\n",
-               reference, quantite, poids[articleIndex], volume[articleIndex],
-               prixUnitaire[articleIndex], poidsTotal, volumeTotal, montantTotal,
-               cagnottes[clientIndex]);
-        printf("Prix total à payer: %.2f euros\n", montantTotal);
-        printf("Cagnotte totale : %.2f euros\n", cagnottes[clientIndex]);
-        printf("Volume utilise : %.2f litres\n", volumeTotal);
-        printf("Volume restant : %.2f litres\n", volumeCoffre - volumeTotal);
-        printf("Charge Actuelle: %.2f kg\n", poidsTotal);
-        printf("Charge restante: %.2f kg\n", chargeMaximale - poidsTotal);
     }
+
+    montantTotal = prixUnitaire[articleIndex] * quantite;
+
+    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+
+    if (clientIndex != -1) {
+        cagnottes[clientIndex] += 0.1 * montantTotal;
+    }
+
+    panier[*taillePanier] = reference;
+    quantites[*taillePanier] = quantite;
+    (*taillePanier)++;
+
+    printf("Contenu du panier : ");
+    for (int i = 0; i < *taillePanier; i++) {
+        printf("%d ", panier[i]);
+    }
+    printf("\n");
+
+    printf("Référence : %d\nQuantité : %d\n", reference, quantite);
+    printf("Récap :\n");
+    printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte\n");
+    printf("%d   %d     %.2f        %.2f      %.2f     %.2f           %.2f      %.2f      %.2f\n",
+           reference, quantite, poids[articleIndex], volume[articleIndex],
+           prixUnitaire[articleIndex], poidsTotal, volumeTotal, montantTotal,
+           cagnottes[clientIndex]);
+    printf("Prix total à payer: %.2f euros\n", montantTotal);
+    printf("Cagnotte totale : %.2f euros\n", cagnottes[clientIndex]);
+    printf("Volume utilise : %.2f litres\n", volumeTotal);
+    printf("Volume restant : %.2f litres\n", volumeCoffre - volumeTotal);
+    printf("Charge Actuelle: %.2f kg\n", poidsTotal);
+    printf("Charge restante: %.2f kg\n", chargeMaximale - poidsTotal);
+
 }
 
 
@@ -202,13 +203,16 @@ void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanie
  * @param nombreClients - Nombre de clients.
  * @param volumeCoffre - Volume total du coffre.
  * @param chargeMaximale - Charge maximale du coffre.
+ * @param budget - Budget du client.
  */
 void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
                           float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
-                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale) {
+                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale, float budget) {
 
     int reference, articleIndex, quantite, clientIndex;
     float poidsTotal = 0, volumeTotal = 0, montantTotal = 0, prixArticle = 0, poidsArticle = 0, volumeArticle = 0;
+    char attentionDepassement[200] = "";
+
     printf("Contenu du panier : ");
     for (int i = 0; i < taillePanier; i++) {
         printf("%d ", panier[i]);
@@ -234,6 +238,25 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
         poidsTotal += poidsArticle * quantite;
         volumeTotal += volumeArticle * quantite;
         montantTotal += prixArticle * quantite;
+
+        if (poidsTotal > chargeMaximale) {
+            float depassement = poidsTotal - chargeMaximale;
+            char message[100];
+            sprintf(message, "Dépassement de la charge autorisée de %.2f kg.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
+        if (volumeTotal > volumeCoffre) {
+            float depassement = volumeTotal - volumeCoffre;
+            char message[100];
+            sprintf(message, "Dépassement du volume autorisé de %.2f litres.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
+        if (budget > 0 && montantTotal > budget) {
+            float depassement = montantTotal - budget;
+            char message[100];
+            sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
     }
 
     clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
@@ -241,9 +264,11 @@ void affiche_recap_panier(int panier[], int taillePanier, int references[], floa
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     printf("Cagnotte totale : %.2f euros\n", cagnottes[clientIndex]);
     printf("Volume utilise : %.2f litres\n", volumeTotal);
-    printf("Volume restant : %.2f litres\n", volumeCoffre - volumeTotal);
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
-    printf("Charge restante: %.2f kg\n", chargeMaximale - poidsTotal);
+
+    if (strlen(attentionDepassement) > 0) {
+        printf("Attention : %s", attentionDepassement);
+    }
 }
 
 /**
@@ -271,7 +296,7 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
     indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
 
     while (indexClient == -1) {
-        printf("Client non trouvé. Veuillez entrer un numéro de client valide : ");
+        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
         while (scanf("%d", numeroClient) != 1) {
             while (getchar() != '\n');
             printf("ERREUR : Veuillez entrer un numéro de client valide : ");
@@ -425,6 +450,28 @@ void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagn
 }
 
 
+void quitterApplication(int *choixCagnotte, float *montant, double *budget, float *cagnottes, int numeroClient,
+                        int *numeros, int nombreClients, int *suspendus) {
+    printf("%lf\n", *budget);
+    printf("%f\n", *montant);
+    printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
+    scanf("%d", choixCagnotte);
+    if (*choixCagnotte == 1) {
+        printf("Entrez le montant à déduire de votre cagnotte : ");
+        scanf("%f", montant);
+
+        deduire_cagnotte(numeroClient, *montant, numeros, cagnottes, nombreClients, suspendus);
+        printf("Le montant a été déduit de votre cagnotte.\n");
+    }
+
+    if (*budget > 0) {
+        if (*budget < *montant) {
+            printf("Attention : Votre budget est dépassé. Vous ne pourrez pas payer.\n");
+        } else if (*budget < *montant + cagnottes[numeroClient]) {
+            printf("Attention : Votre budget est dépassé, mais vous avez suffisamment dans votre cagnotte pour payer.\n");
+        }
+    }
+}
 /**
  * @brief Laisse l'utilisateur choisir une option du menu.
  *
@@ -448,7 +495,7 @@ void menu_client(int *choix) {
  */
 void global_client() {
     int choix, references[MAX_ARTICLES], numeros[MAX_CLIENTS], suspendus[MAX_CLIENTS], nombreArticles,
-        nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0, choixCagnotte;
+        nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0, choixCagnotte = 0;
 
     float poids[MAX_ARTICLES], volume[MAX_ARTICLES], prixUnitaire[MAX_ARTICLES], cagnottes[MAX_CLIENTS],
           volumeCoffre, chargeMaximale, montant;
@@ -465,7 +512,7 @@ void global_client() {
         switch (choix) {
             case 1:
                 affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites, cagnottes,
-                                     numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale);
+                                     numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale, budget);
                 break;
             case 2:
                 ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
@@ -482,17 +529,8 @@ void global_client() {
                 printf("Le panier a été réinitialisé.\n");
                 break;
             case 9:
-                printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
-                scanf("%d", &choixCagnotte);
-                if (choixCagnotte == 1) {
-                    printf("Entrez le montant à déduire de votre cagnotte : ");
-                    scanf("%f", &montant);
 
-                    deduire_cagnotte(numeroClient, montant, numeros, cagnottes, nombreClients, suspendus);
-
-                    printf("Le montant a été déduit de votre cagnotte.\n");
-                }
-
+                quitterApplication(&choixCagnotte, &montant, &budget, cagnottes, numeroClient, numeros, nombreClients, suspendus);
                 sauvegarde_clients(numeros, cagnottes, suspendus, nombreClients);
                 printf("Au revoir !\n");
                 return;
