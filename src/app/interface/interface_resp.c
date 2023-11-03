@@ -11,7 +11,8 @@
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100
-#define MENU_QUIT 11
+#define MAX_SIZE_MDP 20
+#define MENU_QUIT 12
 
 /**
  * @brief Affiche le menu principal de l'interface du responsable.
@@ -34,7 +35,8 @@ void affiche_resp(void) {
     printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
     printf("||\t9 : Modifier le statut du client\t\t\t||\n");
     printf("||\t10 : Supprimer un client\t\t\t\t||\n");
-    printf("||\t11 : Quittez.\t\t\t\t\t\t||\n");
+    printf("||\t11 : Modifier le mot de passe\t\t\t\t||\n");
+    printf("||\t12 : Quittez.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
 
@@ -351,6 +353,52 @@ void suppressionClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLo
     return;
 }
 
+void affichModifMDP()
+{
+    int choix, decalage;
+    char newMDP[MAX_SIZE_MDP], confirmMDP[MAX_SIZE_MDP];
+    printf("\t /!/ Vous entrez dans le menu de modification du mot de passe /!/\n");
+    printf("\t Êtes-vous sur de vouloir changer le mot de passe ?\n Si oui, entrez 0 et sinon entrez 1\n");
+    while (scanf("%d", &choix) !=1 || choix < 0 || choix > 1)
+    {
+        printf("/!/ Entrez une valeur valide /!/");
+    }
+    if ( choix == 1 )
+    {
+        printf("\t Vous quittez le menu de modification du mot de passe.\n");
+        return;
+    }
+    else
+    {
+        printf("Veuillez entrer le nouveau mot de passe.\n\n\tMAXIXMUM 20 CARACTERES ET SEULEMENT DES LETTRES\n");
+        while (scanf("%s", newMDP) != 1)
+        {
+            printf("Veuillez recommencer la saisie : ");
+        }
+        printf("Veuillez entrer à nouveau le mot de passe.\n");
+        while (scanf("%s", confirmMDP) != 1)
+        {
+            printf("Veuillez recommencer la saisie : ");
+        }
+        printf("\t Veuillez entrer le nouveau décalage\n");
+        while (scanf("%d", &decalage) != 1 || decalage < 0)
+        {
+            printf("\t Veuillez entrer un nombre valide : ");
+        }
+        int verif = verifModifMDP(newMDP, confirmMDP, decalage);  
+        if ( verif == 0 )
+        {
+            printf("\t Mot de passe modifié !\n");
+            return;
+        }
+        else
+        {
+            printf("\t/!/ Erreur lors du changement de mot de passe. /!/\n");
+            return;
+        }
+    }
+}
+
 /**
  * @brief Fonction de menu pour le responsable.
  *
@@ -382,7 +430,6 @@ void global_resp() {
 
     int tLogArticle = chargementArticles(tRef, tPoids, tVol, tPrix, MAX_ARTICLES);
     int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
-
     do {
         menu_resp(&choix);
         switch (choix) {
@@ -417,6 +464,9 @@ void global_resp() {
                 suppressionClient(tNumClient, tCagnotte ,tSus , &tLogClient);
                 break;
             case 11:
+                affichModifMDP();
+                break;
+            case 12:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
                 sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
                 printf("Sauvegarde des articles effectuée.\n");

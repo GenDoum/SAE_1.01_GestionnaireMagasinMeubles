@@ -118,3 +118,7 @@ int decodageMDP(char *mdpEnter);
  * @param decalage entier qui sert de clé pour déchiffrer le mot de passe.
 */
 void dechiffrerCesar(char *texte, int decalage);
+
+void chiffrementCesar(char *mdp, int decalage);
+int verifModifMDP(char *mdp, char *confirmMDP, int decalage);
+int enregistrerMotDePasse(char *mdp, int decalage);

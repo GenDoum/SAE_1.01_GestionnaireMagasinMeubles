@@ -9,6 +9,8 @@
 #include "responsable.h"
 #include "../interface/interface_resp.h"
 
+#define MAX_SIZE_MDP 20
+
 /**
  * @brief Charge les informations des articles à partir d'un fichier dans des tableaux.
  *
@@ -267,4 +269,47 @@ int decodageMDP(char *mdpEnter)
     {
         return -2;
     }
+}
+
+void chiffrementCesar(char *mdp, int decalage) {
+    int i;
+    int longueur = strlen(mdp);
+    for (i = 0; i < longueur; ++i) 
+        {
+        if (mdp[i] >= 'a' && mdp[i] <= 'z') {
+            mdp[i] = 'a' + (mdp[i] - 'a' + decalage) % 26;
+        } else if (mdp[i] >= 'A' && mdp[i] <= 'Z') 
+        {
+            mdp[i] = 'A' + (mdp[i] - 'A' + decalage) % 26;
+        }
+    }
+}
+
+int verifModifMDP(char *mdp, char *confirmMDP, int decalage)
+{
+    if ( strcmp(mdp, confirmMDP) == 0 )
+    {
+        enregistrerMotDePasse(mdp, decalage);
+        return 0;
+    }
+    fprintf(stderr, "\tLes mot de passe ne sont pas identiques !\n");
+    return -1;
+    
+}
+
+int enregistrerMotDePasse(char *mdp, int decalage) 
+{
+    FILE *fe;
+    fe = fopen("donnee/mdp.txt", "w");
+    if (fe == NULL) 
+    {
+        fprintf(stderr,"Erreur lors de l'ouverture du fichier.\n");
+        return -1;
+    }
+
+    chiffrementCesar(mdp, decalage);
+
+    fprintf(fe,"%s %d", mdp, decalage);
+    fclose(fe);
+    return 0;
 }
