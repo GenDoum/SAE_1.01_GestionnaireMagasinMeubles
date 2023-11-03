@@ -59,7 +59,7 @@ Un autre bénéfice majeur réside dans la facilité de maintenance. En segmenta
 
 Le code de César est un chiffrement que nous avons vu en cours de **bases mathématiques 1**. Il s'agit d'un chiffrement simple qui fonctionne grâce à un numéro qui correspond au décalage des lettres de l'alphabet. Pour obtenir le mot de passe, si nous n'avions pas mis en place ce chiffrement, il aurait simplement fallu ouvrir le fichier `mdp.txt`. Alors nous avons pensé qu'un minimum de sécurité était nécessaire.
 
-## Fonctionnalités de sortie de l'application
+### Fonctionnalités de sortie de l'application
 
 Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios sont possibles en fonction de sa situation financière et des fonctionnalités de l'application.
 
