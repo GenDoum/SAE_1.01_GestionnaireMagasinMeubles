@@ -63,9 +63,13 @@ Le code de César est un chiffrement que nous avons vu en cours de **bases math�
 
 Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios sont possibles en fonction de sa situation financière et des fonctionnalités de l'application.
 
+- Si l'utilisateur n'a pas défini de budget, il a juste a payer ses articles et quitter l'application.
+
 - Si l'utilisateur a respecté son budget et a suffisamment d'argent dans son solde, il peut simplement quitter l'application sans aucune autre action requise.
 
 - Si l'utilisateur a dépassé son budget autorisé, l'application l'informera du montant excédentaire et de la possibilité d'utiliser sa cagnotte pour couvrir cet excédent. L'utilisateur aura alors le choix de déduire un montant de sa cagnotte pour payer l'excédent.
+
+- Si l'utilisateur n'a pas assez d'argent dans sa cagnotte pour couvrir l'excédent, l'application lui indiquera qu'il n'a pas assez et l'application se fermera.
 
 - Si l'utilisateur a utilisé sa cagnotte pour couvrir un excédent de dépenses, l'application déduira le montant approprié de sa cagnotte et informera l'utilisateur que le montant a été déduit avec succès.
 
