@@ -38,7 +38,7 @@ Cependant, il va sans dire que même avec une telle organisation nous avons tout
 Pour démarrer l'application, nous vous recommandons d'utiliser le script `build.sh`. Ce script vous permet de compiler et de lancer l'application en utilisant l'option `-rb`. Vous n'avez pas besoin de compiler l'application manuellement ni d'exécuter l'exécutable vous-même. Exécutez simplement la commande `./build.sh -rb` pour que l'ensemble du processus soit automatisé.
 Pour plus détail vous pouvez consulter le `README.md` afin d'y voir les différentes fonctionnalités.
 
-**En cas d'erreurs :** Si il y a un problème d'execution avec le script faite un `make all` et ensuite faite un `./app`
+**En cas d'erreurs :** Si il y a un problème d'exécution avec le script faire un `make all` et ensuite faire un `./app`
 
 ## Conception
 
@@ -52,6 +52,8 @@ L'adoption d'une telle architecture permet, comme précédemment expliqué, de d
 Mais nous avons, grâce a cette architecture aucun problème pour créer d'autre interface comme l'interface des responsable.
 
 Un autre bénéfice majeur réside dans la facilité de maintenance. En segmentant le programme en couches et en composants distincts, nous avons la possibilité d'apporter des modifications à chacun d'eux sans altérer le code source des autres parties qui ne dépendent pas de ces modifications, préservant ainsi leur fonctionnement initial.
+
+## Les fonctionnalités en plus : 
 
 ### Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?
 
