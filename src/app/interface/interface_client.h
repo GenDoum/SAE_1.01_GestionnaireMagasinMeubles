@@ -151,5 +151,25 @@ void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagn
  */
 void global_client();
 
-void quitterApplication(int *choixCagnotte, float *montant, double *budget, float *cagnottes, int numeroClient,
-                        int *numeros, int nombreClients, int *suspendus);
+/**
+ * @brief Quitte l'application.
+ *
+ * Cette fonction permet de quitter l'application en affichant un récapitulatif du panier et en proposant de déduire un montant de la cagnotte.
+ *
+ * @param panier
+ * @param taillePanier
+ * @param references
+ * @param poids
+ * @param volume
+ * @param prixUnitaire
+ * @param quantites
+ * @param cagnottes
+ * @param numeroClient
+ * @param numeros
+ * @param nombreClients
+ * @param budget
+ * @param suspendus
+ */
+void quitter_application(int panier[], int taillePanier, int references[], float poids[], float volume[],
+                        float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
+                        int numeros[], int nombreClients, float budget, int suspendus[]);

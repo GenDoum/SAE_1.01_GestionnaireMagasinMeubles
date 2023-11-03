@@ -447,31 +447,102 @@ void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagn
     }
 
     cagnottes[clientIndex] -= montant;
+
+    printf("Montant déduit de la cagnotte avec succès.\n");
 }
 
+/**
+ * @brief Quitte l'application.
+ *
+ * Cette fonction permet de quitter l'application en affichant un récapitulatif du panier et en proposant de déduire un montant de la cagnotte.
+ *
+ * @param panier
+ * @param taillePanier
+ * @param references
+ * @param poids
+ * @param volume
+ * @param prixUnitaire
+ * @param quantites
+ * @param cagnottes
+ * @param numeroClient
+ * @param numeros
+ * @param nombreClients
+ * @param budget
+ * @param suspendus
+ */
+void quitter_application(int panier[], int taillePanier, int references[], float poids[], float volume[],
+                        float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
+                        int numeros[], int nombreClients, float budget, int suspendus[]) {
 
-void quitterApplication(int *choixCagnotte, float *montant, double *budget, float *cagnottes, int numeroClient,
-                        int *numeros, int nombreClients, int *suspendus) {
-    printf("%lf\n", *budget);
-    printf("%f\n", *montant);
-    printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
-    scanf("%d", choixCagnotte);
-    if (*choixCagnotte == 1) {
-        printf("Entrez le montant à déduire de votre cagnotte : ");
-        scanf("%f", montant);
+    int reference, articleIndex, quantite, clientIndex, choixCagnotte = 0;
+    float montantTotal = 0, prixArticle = 0, montantDeduction = 0;
+    char attentionDepassement[200] = "";
 
-        deduire_cagnotte(numeroClient, *montant, numeros, cagnottes, nombreClients, suspendus);
-        printf("Le montant a été déduit de votre cagnotte.\n");
+    for (int i = 0; i < taillePanier; i++) {
+        reference = panier[i];
+        articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
+
+        prixArticle = prixUnitaire[articleIndex];
+        quantite = quantites[i];
+
+        montantTotal += prixArticle * quantite;
+
+        if (budget > 0 && montantTotal > budget) {
+            float depassement = montantTotal - budget;
+            char message[100];
+            sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
     }
 
-    if (*budget > 0) {
-        if (*budget < *montant) {
-            printf("Attention : Votre budget est dépassé. Vous ne pourrez pas payer.\n");
-        } else if (*budget < *montant + cagnottes[numeroClient]) {
-            printf("Attention : Votre budget est dépassé, mais vous avez suffisamment dans votre cagnotte pour payer.\n");
+    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+
+    printf("Prix total à payer: %.2f euros\n", montantTotal);
+    if (budget > 0) {
+        printf("Budget : %.2f euros\n", budget);
+    }
+
+    if (budget > 0 && montantTotal > budget && cagnottes[clientIndex] < (montantTotal - budget)) {
+        printf("Attention : %s", attentionDepassement);
+        printf("Vous ne pourrez pas payer. De plus vous n'avez pas assez dans votre cagnotte pour la déduire et payer\n");
+        printf("Montant de votre cagnotte %.2f\n", cagnottes[clientIndex]);
+    }
+
+    if (budget > 0 && montantTotal > budget && montantTotal < budget + cagnottes[clientIndex]) {
+        printf("Attention : %s", attentionDepassement);
+        printf("Vous ne pourrez pas payer, mais vous avez suffisamment dans votre cagnotte pour payer.\n");
+        printf("Montant de votre cagnotte %.2f\n", cagnottes[clientIndex]);
+        printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
+        while (scanf("%d", &choixCagnotte) != 1 || (choixCagnotte != 0 && choixCagnotte != 1)) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+        }
+
+        if (choixCagnotte == 1) {
+            printf("Entrez le montant à déduire de votre cagnotte : ");
+            while (scanf("%f", &montantDeduction) != 1) {
+                while (getchar() != '\n');
+                printf("ERREUR : Veuillez entrer un montant valide (nombre) : ");
+            }
+            while (getchar() != '\n');
+
+            while (montantDeduction < (montantTotal - budget)) {
+                printf("ERREUR : Vous devez déduire suffisamment pour payer l'intégralité du montant dû.\n");
+                printf("Montant minimum à déduire pour payer : %.2f\n", montantTotal - budget);
+                printf("Entrez le montant à déduire de votre cagnotte : ");
+                while (scanf("%f", &montantDeduction) != 1) {
+                    while (getchar() != '\n');
+                    printf("ERREUR : Veuillez entrer un montant valide (nombre) : ");
+                }
+                while (getchar() != '\n');
+            }
+
+            deduire_cagnotte(numeroClient, montantDeduction, numeros, cagnottes, nombreClients, suspendus);
+            printf("Le montant a été déduit de votre cagnotte.\n");
         }
     }
 }
+
 /**
  * @brief Laisse l'utilisateur choisir une option du menu.
  *
@@ -529,8 +600,7 @@ void global_client() {
                 printf("Le panier a été réinitialisé.\n");
                 break;
             case 9:
-
-                quitterApplication(&choixCagnotte, &montant, &budget, cagnottes, numeroClient, numeros, nombreClients, suspendus);
+                quitter_application(panier, taillePanier, references, poids, volume, prixUnitaire, quantites, cagnottes, numeroClient, numeros, nombreClients, budget, suspendus);
                 sauvegarde_clients(numeros, cagnottes, suspendus, nombreClients);
                 printf("Au revoir !\n");
                 return;
