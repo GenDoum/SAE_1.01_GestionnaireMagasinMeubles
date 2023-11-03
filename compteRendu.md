@@ -58,3 +58,17 @@ Un autre bénéfice majeur réside dans la facilité de maintenance. En segmenta
 ### Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?
 
 Le code de César est un chiffrement que nous avons vu en cours de **bases mathématiques 1**. Il s'agit d'un chiffrement simple qui fonctionne grâce à un numéro qui correspond au décalage des lettres de l'alphabet. Pour obtenir le mot de passe, si nous n'avions pas mis en place ce chiffrement, il aurait simplement fallu ouvrir le fichier `mdp.txt`. Alors nous avons pensé qu'un minimum de sécurité était nécessaire.
+
+## Fonctionnalités de sortie de l'application
+
+Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios sont possibles en fonction de sa situation financière et des fonctionnalités de l'application.
+
+- Si l'utilisateur a respecté son budget et a suffisamment d'argent dans son solde, il peut simplement quitter l'application sans aucune autre action requise.
+
+- Si l'utilisateur a dépassé son budget autorisé, l'application l'informera du montant excédentaire et de la possibilité d'utiliser sa cagnotte pour couvrir cet excédent. L'utilisateur aura alors le choix de déduire un montant de sa cagnotte pour payer l'excédent.
+
+- Si l'utilisateur a utilisé sa cagnotte pour couvrir un excédent de dépenses, l'application déduira le montant approprié de sa cagnotte et informera l'utilisateur que le montant a été déduit avec succès.
+
+- Si l'utilisateur n'a pas déduit suffisamment de sa cagnotte pour couvrir le montant dû, l'application lui indiquera le montant minimum à déduire pour effectuer le paiement complet.
+
+Ces fonctionnalités garantissent que l'application aide les utilisateurs à gérer leur budget et à utiliser leur cagnotte de manière efficace pour éviter les problèmes financiers.
