@@ -566,10 +566,10 @@ void menu_client(int *choix) {
  */
 void global_client() {
     int choix, references[MAX_ARTICLES], numeros[MAX_CLIENTS], suspendus[MAX_CLIENTS], nombreArticles,
-        nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0, choixCagnotte = 0;
+        nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0;
 
     float poids[MAX_ARTICLES], volume[MAX_ARTICLES], prixUnitaire[MAX_ARTICLES], cagnottes[MAX_CLIENTS],
-          volumeCoffre, chargeMaximale, montant;
+          volumeCoffre, chargeMaximale;
 
     double budget = -1.0;
 
