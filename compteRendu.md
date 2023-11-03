@@ -37,7 +37,8 @@ Cependant, il va sans dire que même avec une telle organisation nous avons tout
 
 Pour démarrer l'application, nous vous recommandons d'utiliser le script `build.sh`. Ce script vous permet de compiler et de lancer l'application en utilisant l'option `-rb`. Vous n'avez pas besoin de compiler l'application manuellement ni d'exécuter l'exécutable vous-même. Exécutez simplement la commande `./build.sh -rb` pour que l'ensemble du processus soit automatisé.
 Pour plus détail vous pouvez consulter le `README.md` afin d'y voir les différentes fonctionnalités.
-**En cas d'erreurs : ** Si il y a un problème d'execution avec le script faite un `make all` et ensuite faite un `./app`
+
+**En cas d'erreurs :** Si il y a un problème d'execution avec le script faite un `make all` et ensuite faite un `./app`
 
 ## Conception
 
