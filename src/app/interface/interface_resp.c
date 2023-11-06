@@ -1,7 +1,4 @@
-/**
-* @file interface_resp.c
-* @brief Implémentation des fonctions liées à l'interface du responsable.
-*/
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,9 +11,7 @@
 #define MAX_SIZE_MDP 20
 #define MENU_QUIT 12
 
-/**
- * @brief Affiche le menu principal de l'interface du responsable.
- */
+
 void affiche_resp(void) {
     printf("\n");
     printf("+-------------+\n");
@@ -40,15 +35,6 @@ void affiche_resp(void) {
     printf("+----------------------------------------------------------------+\n");
 }
 
-/**
- * @brief Affiche la liste des articles.
- *
- * @param tRef - Tableau des références d'articles.
- * @param tPoids - Tableau des poids d'articles.
- * @param tVol - Tableau des volumes d'articles.
- * @param tPrix - Tableau des prix d'articles.
- * @param tLogique - Taille logique des tableaux.
- */
 void affichArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique) {
     printf("\t Liste des articles\n\n");
     printf("\t Ref\t Poids\t Volume\t Prix\n");
@@ -57,15 +43,7 @@ void affichArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int
     }
 }
 
-/**
- * @brief Affiche un article spécifique.
- *
- * @param tRef - Tableau des références d'articles.
- * @param tPoids - Tableau des poids d'articles.
- * @param tVol - Tableau des volumes d'articles.
- * @param tPrix - Tableau des prix d'articles.
- * @param tLogique - Taille logique des tableaux.
- */
+
 void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique) {
     int ref;
     printf("\tQuelle est la référence de l'article à rechercher ?\n");
@@ -83,14 +61,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
     printf("\t Article introuvable\n");
 }
 
-/**
- * @brief Affiche un client spécifique.
- *
- * @param tNumClient - Tableau des numéros de client.
- * @param tCagnotte - Tableau des cagnottes des clients.
- * @param tSus - Tableau d'états des clients.
- * @param tLogique - Taille logique des tableaux.
- */
+
 void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogique) {
     int numC;
     printf("\tVeuillez entrer le numéro du client à rechercher\n");
@@ -108,14 +79,6 @@ void affichUnClient(int tNumClient[], float tCagnotte[], int tSus[], int tLogiqu
     printf("Client introuvable\n");
 }
 
-/**
- * @brief Affiche la liste des clients.
- *
- * @param tNumClient - Tableau des numéros de client.
- * @param tCagnotte - Tableau des cagnottes des clients.
- * @param tSus - Tableau d'états des clients.
- * @param tLogique - Taille logique des tableaux.
- */
 void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique) {
     printf("\t Liste des clients\n");
     printf("\t NumClient\t Cagnotte\t Etat\n");
@@ -125,14 +88,6 @@ void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique
     printf("\t Fin de la liste !\n");
 }
 
-/**
- * @brief Affiche les informations pour ajouter un nouvel article.
- *
- * @param[in, out] ref - Référence du nouvel article.
- * @param[in, out] poids - Poids du nouvel article.
- * @param[in, out] volume - Volume du nouvel article.
- * @param[in, out] prix - Prix du nouvel article.
- */
 void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix) {
     printf("\t Entrez la ref du nouveau produit\n");
     while (scanf("%d", ref) != 1 || *ref <= 0) {
@@ -160,11 +115,6 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix) {
     }
 }
 
-/**
- * @brief Affiche les informations pour supprimer un article.
- *
- * @param[in, out] ref - Référence de l'article à supprimer.
- */
 void affichSupprimerArticle(int *ref) {
     printf("\t Quelle est la référence de l'article que vous voulez supprimer ?\n");
     while (scanf("%d", ref) != 1 || *ref <= 0) {
@@ -173,14 +123,7 @@ void affichSupprimerArticle(int *ref) {
     }
 }
 
-/**
- * @brief Affiche les informations pour modifier un article.
- *
- * @param[in, out] ref - Référence de l'article à modifier.
- * @param[in, out] poids - Nouveau poids de l'article.
- * @param[in, out] volume - Nouveau volume de l'article.
- * @param[in, out] prix - Nouveau prix de l'article.
- */
+
 void affichModifierArticle(int *ref, float *poids, float *volume, float *prix) {
     printf("\t Quelle est la référence de l'article que vous voulez modifier ?\n");
     while (scanf("%d", ref) != 1 || *ref <= 0) {
@@ -207,13 +150,6 @@ void affichModifierArticle(int *ref, float *poids, float *volume, float *prix) {
     }
 }
 
-/**
- * @brief Affiche les informations pour ajouter un nouveau client.
- *
- * @param[in] tNumClient - Tableau des numéros de client.
- * @param[in] tLogique - Taille logique des tableaux.
- * @param[in, out] numC - Numéro du nouveau client.
- */
 void affichAjoutClient(int tNumClient[], int tLogique, int *numC) {
     printf("\t Veuillez entrer le numéro du nouveau client\n");
     while (scanf("%d", numC) != 1 || *numC <= 0) {
@@ -228,12 +164,6 @@ void affichAjoutClient(int tNumClient[], int tLogique, int *numC) {
     }
 }
 
-
-/**
- * @brief Affiche les informations nécessaires pour entrer le mod de passe responsable.
- *
- * Cette fonction permet au responsable de confirmer son identité
-*/
 int affichageConnexion(void)
 {
     char mdpEnter[20];
@@ -399,11 +329,6 @@ void affichModifMDP()
     }
 }
 
-/**
- * @brief Fonction de menu pour le responsable.
- *
- * @param[in, out] choix - L'option choisie par le responsable.
- */
 void menu_resp(int *choix) {
     affiche_resp();
     printf("Vous choisissez: ");
@@ -414,9 +339,6 @@ void menu_resp(int *choix) {
     }
 }
 
-/**
- * @brief Fonction principale de l'interface du responsable.
- */
 void global_resp() {
     int choix, ref = 0;
     float poids = 0, volume = 0, prix = 0;
