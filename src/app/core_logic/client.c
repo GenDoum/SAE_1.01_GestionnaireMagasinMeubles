@@ -3,7 +3,7 @@
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
-int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhysique) {
+int charger_clients(int tNumCLient[], float tCagnotte[], int tSus[], int tPhysique) {
     int i = 0, numero, suspendue;
     float cagnotte;
     FILE *fe;
@@ -17,66 +17,67 @@ int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhy
             fprintf(stderr, "Tableau plein");
             break;
         }
-        numeros[i] = numero;
-        cagnottes[i] = cagnotte;
-        suspendues[i] = suspendue;
+        tNumCLient[i] = numero;
+        tCagnotte[i] = cagnotte;
+        tSus[i] = suspendue;
         i++;
     }
     fclose(fe);
     return i;
 }
 
-void sauvegarde_clients(int numeros[], float cagnottes[], int suspendus[], int nombreClients) {
+void sauvegarde_clients(int tNumClient[], float tCagnotte[], int tSus[], int tLogClient) {
     FILE *fe;
     fe = fopen("donnee/client.txt", "w");
     if (fe == NULL) {
         perror("fopen");
         return;
     }
-    for (int i = 0; i < nombreClients; i++) {
-        fprintf(fe, "%d %.2f %d\n", numeros[i], cagnottes[i], suspendus[i]);
+    for (int i = 0; i < tLogClient; i++) {
+        fprintf(fe, "%d %.2f %d\n", tNumClient[i], tCagnotte[i], tSus[i]);
     }
     fclose(fe);
 }
 
-int trouver_index_article(int reference, int references[], int nombreArticles) {
-    for (int i = 0; i < nombreArticles; i++) {
-        if (references[i] == reference) {
+int trouver_index_article(int reference, int tRef[], int tLogArticle) {
+    for (int i = 0; i < tLogArticle; i++) {
+        if (tRef[i] == reference) {
             return i;
         }
     }
     return -1;
 }
 
-int trouver_index_client(int numeroClient, int numeros[], int nombreClients) {
-    for (int i = 0; i < nombreClients; i++) {
-        if (numeros[i] == numeroClient) {
+int trouver_index_client(int numClient, int tNumClient[], int tLogClient) {
+    for (int i = 0; i < tLogClient; i++) {
+        if (tNumClient[i] == numClient) {
             return i;
         }
     }
     return -1;
 }
 
-void supprimer_article(int panier[], int quantites[], int *taillePanier, int reference, int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[], float cagnottes[]) {
+void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int reference, int numClient, int tNumClient[],
+                       int tLogClient, int tRef[], float tPrixUnitaire[], float tCagnotte[]) {
     int articleIndex, clientIndex, quantite = 0;
-    articleIndex = trouver_index_article(reference, references, MAX_ARTICLES);
-    for (int i = 0; i < *taillePanier; i++) {
-        if (panier[i] == reference) {
-            quantite = quantites[i];
-            for (int j = i; j < *taillePanier - 1; j++) {
-                panier[j] = panier[j + 1];
-                quantites[j] = quantites[j + 1];
+    articleIndex = trouver_index_article(reference, tRef, MAX_ARTICLES);
+    for (int i = 0; i < *tLogPanier; i++) {
+        if (tPanier[i] == reference) {
+            quantite = tQuantite[i];
+            for (int j = i; j < *tLogPanier - 1; j++) {
+                tPanier[j] = tPanier[j + 1];
+                tQuantite[j] = tQuantite[j + 1];
             }
             break;
         }
     }
 
-    (*taillePanier)--;
+    (*tLogPanier)--;
 
-    clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
+    clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
 
     if (clientIndex != -1) {
-        float montantTotal = prixUnitaire[articleIndex] * quantite;
-        cagnottes[clientIndex] -= 0.1 * montantTotal;
+        float montantTotal = tPrixUnitaire[articleIndex] * quantite;
+        tCagnotte[clientIndex] -= 0.1 * montantTotal;
     }
 }
