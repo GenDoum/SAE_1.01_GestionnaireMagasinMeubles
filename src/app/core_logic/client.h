@@ -17,61 +17,62 @@
 /**
  * @brief Charger les données des clients depuis un fichier.
  *
- * @param numeros - Un tableau de numéros de clients.
- * @param cagnottes - Un tableau de cagnottes des clients.
- * @param suspendues - Un tableau d'état des clients suspendus.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tCagnotte - Un tableau de cagnottes des clients.
+ * @param tSus - Un tableau d'état des clients suspendus.
  * @param tPhysique - La taille physique du tableau des clients.
  *
  * @return Le nombre de clients chargés depuis le fichier.
  */
-int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhysique);
+int charger_clients(int tNumClient[], float tCagnotte[], int tSus[], int tPhysique);
 
 /**
  * @brief Sauvegarder les données des clients dans un fichier.
  *
- * @param numeros - Un tableau de numéros de clients.
- * @param cagnottes - Un tableau de cagnottes des clients.
- * @param suspendus - Un tableau d'état des clients suspendus.
- * @param nombreClients - Le nombre total de clients.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tCagnotte - Un tableau de cagnottes des clients.
+ * @param tSus - Un tableau d'état des clients suspendus.
+ * @param tLogClient - Le nombre total de clients.
  */
-void sauvegarde_clients(int numeros[], float cagnottes[], int suspendus[], int nombreClients);
-
-/**
- * @brief Supprimer un article du panier du client.
- *
- * @param panier - Le panier d'achat du client.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
- * @param reference - La référence de l'article à supprimer.
- * @param numeroClient - Le numéro du client.
- * @param numeros - Un tableau de numéros de clients.
- * @param nombreClients - Le nombre total de clients.
- * @param references - Un tableau de références d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- * @param cagnottes - Un tableau de cagnottes des clients.
- */
-void supprimer_article(int panier[], int quantites[], int *taillePanier, int reference, int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[], float cagnottes[]);
+void sauvegarde_clients(int tNumClient[], float tCagnotte[], int tSus[], int tLogClient);
 
 /**
  * @brief Trouver l'index d'une référence d'article dans un tableau.
  *
  * @param reference - La référence de l'article à rechercher.
- * @param references - Un tableau de références d'articles.
- * @param nombreArticles - Le nombre total d'articles.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tLogArticle - Le nombre total d'articles.
  *
  * @return L'index de la référence dans le tableau ou -1 si la référence n'est pas trouvée.
  */
-int trouver_index_article(int reference, int references[], int nombreArticles);
+int trouver_index_article(int reference, int tRef[], int tLogArticle);
 
 /**
  * @brief Trouver l'index d'un numéro de client dans un tableau.
  *
- * @param numeroClient - Le numéro de client à rechercher.
- * @param numeros - Un tableau de numéros de clients.
- * @param nombreClients - Le nombre total de clients.
+ * @param numClient - Le numéro de client à rechercher.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tLogClient - Le nombre total de clients.
  *
  * @return L'index du numéro de client dans le tableau ou -1 si le numéro de client n'est pas trouvé.
  */
-int trouver_index_client(int numeroClient, int numeros[], int nombreClients);
+int trouver_index_client(int numClient, int tNumClient[], int tLogClient);
+
+/**
+ * @brief Supprimer un article du panier du client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param[out] tLogPanier - Un pointeur pour stocker la taille du panier.
+ * @param reference - La référence de l'article à supprimer.
+ * @param numClient - Le numéro du client.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tLogClient - Le nombre total de clients.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param tCagnotte - Un tableau de cagnottes des clients.
+ */
+void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int reference, int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[], float tCagnotte[]);
+
 
 #endif // CLIENT_H

@@ -23,148 +23,147 @@
 void affiche_client(void);
 
 /**
+ * @brief Ajouter des articles au panier du client.
+ *
+ * @param numClient - Le numéro du client.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPoids - Un tableau de poids d'articles.
+ * @param tVol - Un tableau de volumes d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param tNumClient - Un tableau de numéros d'articles.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param tSus - Un tableau d'articles suspendus.
+ * @param tLogArticle - Le nombre total d'articles disponibles.
+ * @param tLogClient - Le nombre total de clients.
+ * @param volumeCoffre - La limite de volume pour le panier du client.
+ * @param chargeMaximale - La limite de poids pour le panier du client.
+ * @param tPanier - Le panier d'achat du client.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param[out] tLogPanier - Un pointeur pour stocker la taille du panier.
+ * @param budget - Le budget du client.
+ */
+void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float tVol[], float tPrixUnitaire[],
+                               int tNumClient[], float tCagnotte[], int tSus[], int tLogArticle, int tLogClient,
+                               float volumeCoffre, float chargeMaximale, int tPanier[], int tQuantite[], int *tLogPanier, float budget);
+
+/**
+ * @brief Supprimer un article du panier du client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param[out] tLogPanier - Un pointeur pour stocker la taille du panier.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param numClient - Le numéro du client.
+ * @param tNumClient - Un tableau de numéros d'articles.
+ * @param tLogClient - Le nombre total de clients.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ */
+void supprimer_article_du_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[]);
+
+/**
+ * @brief Afficher un récapitulatif du panier du client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tLogPanier - La taille du panier.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPoid - Un tableau de poids d'articles.
+ * @param tVol - Un tableau de volumes d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param numClient - Le numéro du client.
+ * @param tNumClient - Un tableau de numéros d'articles.
+ * @param tLogClient - Le nombre total de clients.
+ * @param volumeCoffre - La limite de volume pour le panier du client.
+ * @param chargeMaximale - La limite de poids pour le panier du client.
+ * @param budget - Le budget du client.
+ */
+void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
+                          float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
+                          int tNumClient[], int tLogClient, float volumeCoffre, float chargeMaximale, float budget);
+
+/**
+ * @brief Configurer la session client.
+ *
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tLogClient - Le nombre total de clients.
+ * @param[out] budget - Un pointeur pour stocker le budget du client.
+ * @param[out] volumeCoffre - Un pointeur pour stocker la limite de volume du panier du client.
+ * @param[out] chargeMaximale - Un pointeur pour stocker la limite de poids du panier du client.
+ * @param[out] numClient - Un pointeur pour stocker le numéro du client.
+ */
+void configurer_session_client(int tNumClient[], int tLogClient, double *budget, float *volumeCoffre, float *chargeMaximale, int *numClient);
+
+/**
+ * @brief Modifier la quantité d'un article dans le panier du client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param[out] tLogPanier - Un pointeur pour stocker la taille du panier.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param numClient - Le numéro du client.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tLogClient - Le nombre total de clients.
+ * @param tNumClient - Un tableau de numéros client.
+ */
+void modifier_quantite_article_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, float tPrixUnitaire[], int tRef[], int tLogClient, int tNumClient[]);
+
+/**
+ * @brief Réinitialiser le panier du client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param[out] tLogPanier - Un pointeur pour stocker la taille du panier.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param numClient - Le numéro du client.
+ * @param tNumClient - Un tableau de numéros de client.
+ * @param tLogClient - Le nombre total de clients.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ */
+void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[]);
+
+/**
+ * @brief Déduire un montant de la cagnotte du client.
+ *
+ * @param numClient - Le numéro du client.
+ * @param montant - Le montant à déduire de la cagnotte.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param tLogClient - Le nombre total de clients.
+ * @param tSus - Un tableau d'état des clients suspendus.
+ */
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]);
+
+/**
+ * @brief Quitter l'application client.
+ *
+ * @param tPanier - Le panier d'achat du client.
+ * @param tLogPanier - La taille du panier.
+ * @param tRef - Un tableau de références d'articles.
+ * @param tPoid - Un tableau de poids d'articles.
+ * @param tVol - Un tableau de volumes d'articles.
+ * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param tQuantite - Un tableau de quantités d'articles dans le panier.
+ * @param tCagnotte - Un tableau de cagnottes.
+ * @param numClient - Le numéro du client.
+ * @param tNumClient - Un tableau de numéros de clients.
+ * @param tLogClient - Le nombre total de clients.
+ * @param budget - Le budget du client.
+ * @param tSus - Un tableau d'état des clients suspendus.
+ */
+void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
+                         float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
+                         int tNumClient[], int tLogClient, float budget, int tSus[]);
+
+/**
  * @brief Afficher le menu du client et enregistrer le choix de l'utilisateur.
  *
  * @param[out] choix - Un pointeur pour stocker le choix de l'utilisateur.
  */
 void menu_client(int *choix);
-
-/**
- * @brief Ajouter des articles au panier du client.
- *
- * @param numeroClient - Le numéro du client.
- * @param references - Un tableau de références d'articles.
- * @param poids - Un tableau de poids d'articles.
- * @param volume - Un tableau de volumes d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- * @param numeros - Un tableau de numéros d'articles.
- * @param cagnottes - Un tableau de cagnottes.
- * @param suspendues - Un tableau d'articles suspendus.
- * @param nombreArticles - Le nombre total d'articles disponibles.
- * @param nombreClients - Le nombre total de clients.
- * @param volumeCoffre - La limite de volume pour le panier du client.
- * @param chargeMaximale - La limite de poids pour le panier du client.
- * @param panier - Le panier d'achat du client.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
- * @param budget - Le budget du client.
- */
-void ajouter_article_au_panier(int numeroClient, int references[], float poids[], float volume[], float prixUnitaire[],
-                               int numeros[], float cagnottes[], int suspendues[], int nombreArticles, int nombreClients,
-                               float volumeCoffre, float chargeMaximale, int panier[], int quantites[], int *taillePanier, float budget);
-
-/**
- * @brief Supprimer un article du panier du client.
- *
- * @param panier - Le panier d'achat du client.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
- * @param cagnottes - Un tableau de cagnottes.
- * @param numeroClient - Le numéro du client.
- * @param numeros - Un tableau de numéros d'articles.
- * @param nombreClients - Le nombre total de clients.
- * @param references - Un tableau de références d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- */
-void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]);
-
-/**
- * @brief Afficher un récapitulatif du panier du client.
- *
- * @param panier - Le panier d'achat du client.
- * @param taillePanier - La taille du panier.
- * @param references - Un tableau de références d'articles.
- * @param poids - Un tableau de poids d'articles.
- * @param volume - Un tableau de volumes d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param cagnottes - Un tableau de cagnottes.
- * @param numeroClient - Le numéro du client.
- * @param numeros - Un tableau de numéros d'articles.
- * @param nombreClients - Le nombre total de clients.
- * @param volumeCoffre - La limite de volume pour le panier du client.
- * @param chargeMaximale - La limite de poids pour le panier du client.
- * @param budget - Le budget du client.
- */
-void affiche_recap_panier(int panier[], int taillePanier, int references[], float poids[], float volume[],
-                          float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
-                          int numeros[], int nombreClients, float volumeCoffre, float chargeMaximale, float budget);
-
-/**
- * @brief Configurer la session client.
- *
- * @param numeros - Un tableau de numéros de clients.
- * @param suspendus - Un tableau d'état des clients suspendus.
- * @param nombreClients - Le nombre total de clients.
- * @param[out] budget - Un pointeur pour stocker le budget du client.
- * @param[out] volumeCoffre - Un pointeur pour stocker la limite de volume du panier du client.
- * @param[out] chargeMaximale - Un pointeur pour stocker la limite de poids du panier du client.
- * @param[out] numeroClient - Un pointeur pour stocker le numéro du client.
- */
-void configurer_session_client(int numeros[], int suspendus[], int nombreClients, double *budget, float *volumeCoffre, float *chargeMaximale, int *numeroClient);
-
-/**
- * @brief Modifier la quantité d'un article dans le panier du client.
- *
- * @param panier - Le panier d'achat du client.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
- * @param cagnottes - Un tableau de cagnottes.
- * @param numeroClient - Le numéro du client.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- * @param references - Un tableau de références d'articles.
- * @param nombreClients - Le nombre total de clients.
- * @param numeros - Un tableau de numéros d'articles.
- */
-void modifier_quantite_article_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, float prixUnitaire[], int references[], int nombreClients, int numeros[]);
-
-/**
- * @brief Réinitialiser le panier du client.
- *
- * @param panier - Le panier d'achat du client.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
- * @param cagnottes - Un tableau de cagnottes.
- * @param numeroClient - Le numéro du client.
- * @param numeros - Un tableau de numéros d'articles.
- * @param nombreClients - Le nombre total de clients.
- * @param references - Un tableau de références d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- */
-void reinitialiser_panier(int panier[], int quantites[], int *taillePanier, float cagnottes[], int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[]);
-
-/**
- * @brief Déduire un montant de la cagnotte du client.
- *
- * @param numeroClient - Le numéro du client.
- * @param montant - Le montant à déduire de la cagnotte.
- * @param numeros - Un tableau de numéros de clients.
- * @param cagnottes - Un tableau de cagnottes.
- * @param nombreClients - Le nombre total de clients.
- * @param suspendus - Un tableau d'état des clients suspendus.
- */
-void deduire_cagnotte(int numeroClient, float montant, int numeros[], float cagnottes[], int nombreClients, int suspendus[]);
-
-/**
- * @brief Quitter l'application client.
- *
- * @param panier - Le panier d'achat du client.
- * @param taillePanier - La taille du panier.
- * @param references - Un tableau de références d'articles.
- * @param poids - Un tableau de poids d'articles.
- * @param volume - Un tableau de volumes d'articles.
- * @param prixUnitaire - Un tableau de prix unitaires d'articles.
- * @param quantites - Un tableau de quantités d'articles dans le panier.
- * @param cagnottes - Un tableau de cagnottes.
- * @param numeroClient - Le numéro du client.
- * @param numeros - Un tableau de numéros d'articles.
- * @param nombreClients - Le nombre total de clients.
- * @param budget - Le budget du client.
- * @param suspendus - Un tableau d'état des clients suspendus.
- */
-void quitter_application(int panier[], int taillePanier, int references[], float poids[], float volume[],
-                         float prixUnitaire[], int quantites[], float cagnottes[], int numeroClient,
-                         int numeros[], int nombreClients, float budget, int suspendus[]);
 
 /**
  * @brief Exécute l'ensemble des fonctions de l'interface client.
