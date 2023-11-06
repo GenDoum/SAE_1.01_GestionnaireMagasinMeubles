@@ -58,7 +58,7 @@ function build {
     show_success "Compilation completed."
 }
 
-# Execute 
+# Execute
 function execute {
     local executable="$APP_NAME"
     local command="./$executable"
@@ -79,6 +79,7 @@ function show_help {
     echo -e "\t-rbuild, -rb  : \t➔ Clean before rebuilding and execute (alternative)"
     echo -e "\t-debug, -d    : \t➔ Configure compilation in debug mode"
     echo -e "\t-run, -r      : \t➔ Execute the generated executable"
+    echo -e "\t-build, -b    : \t➔ Only compile (no cleaning or execution)"
     echo -e "\t-clean, -c    : \t➔ Clean before rebuilding and execute"
     echo -e "\t-docs         : \t➔ Generate Doxygen documentation"
     echo -e "\t--help, -h    : \t➔ Display help"
@@ -115,6 +116,10 @@ while [ "$#" -gt 0 ]; do
             clean
             build
             execute
+            shift
+            ;;
+        -build | -b)
+            build
             shift
             ;;
         -docs)
