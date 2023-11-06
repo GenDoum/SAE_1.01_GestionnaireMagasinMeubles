@@ -2,7 +2,7 @@
 #define MAX_ARTICLES 100
 #define MAX_CLIENTS 100
 
-void affiche_client() {
+void affiche_client(void) {
     printf("\n");
     printf("+-------------+\n");
     printf("|| Bonjour ! ||\n");
@@ -420,7 +420,7 @@ void menu_client(int *choix) {
     }
 }
 
-void global_client() {
+void global_client(void) {
     int choix, references[MAX_ARTICLES], numeros[MAX_CLIENTS], suspendus[MAX_CLIENTS], nombreArticles,
         nombreClients, numeroClient, quantites[MAX_ARTICLES], panier[MAX_ARTICLES], taillePanier = 0;
 

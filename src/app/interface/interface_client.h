@@ -20,7 +20,7 @@
 /**
  * @brief Afficher les informations du client.
  */
-void affiche_client();
+void affiche_client(void);
 
 /**
  * @brief Afficher le menu du client et enregistrer le choix de l'utilisateur.
@@ -169,6 +169,6 @@ void quitter_application(int panier[], int taillePanier, int references[], float
 /**
  * @brief Exécute l'ensemble des fonctions de l'interface client.
  */
-void global_client();
+void global_client(void);
 
 #endif // INTERFACE_CLIENT_H
