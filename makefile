@@ -1,4 +1,4 @@
-GCCFLAGS = -Wall -Wextra -I src -Wno-unused-parameter -Wno-unused-but-set-variable
+GCCFLAGS = -Wall -Wextra -pedantic -I src -Wno-unused-parameter -Wno-unused-but-set-variable
 BUILD_DIR = build
 SOURCES = $(shell find src -name '*.c')
 TARGETS = $(patsubst %.c, %.o, $(SOURCES))
@@ -22,6 +22,7 @@ $(TARGETS): $(SOURCES)
 clean:
 	@rm -r $(BUILD_DIR) $(APP_NAME)
 	@rm -r docs/html docs/latex
+	@rm -r obj/*.o, obj/*.d
 	@echo clean done.
 
 docs:
