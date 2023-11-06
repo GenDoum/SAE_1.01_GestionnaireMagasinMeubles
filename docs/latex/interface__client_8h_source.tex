@@ -1,0 +1,45 @@
+\doxysection{interface\+\_\+client.\+h}
+\hypertarget{interface__client_8h_source}{}\label{interface__client_8h_source}\index{src/app/interface/interface\_client.h@{src/app/interface/interface\_client.h}}
+\mbox{\hyperlink{interface__client_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ INTERFACE\_CLIENT\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ INTERFACE\_CLIENT\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../core\_logic/client.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}../core\_logic/responsable.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}../interface/interface\_resp.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a0ee281249d9a07abd6143449b761d212}{affiche\_client}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a49de18c6560633af132a56085d28a8ba}{menu\_client}}(\textcolor{keywordtype}{int}\ *choix);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_aa92d76f0c1463d0ad7d6479e6c27e99e}{ajouter\_article\_au\_panier}}(\textcolor{keywordtype}{int}\ numeroClient,\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{float}\ poids[],\ \textcolor{keywordtype}{float}\ volume[],\ \textcolor{keywordtype}{float}\ prixUnitaire[],}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ suspendues[],\ \textcolor{keywordtype}{int}\ nombreArticles,\ \textcolor{keywordtype}{int}\ nombreClients,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ volumeCoffre,\ \textcolor{keywordtype}{float}\ chargeMaximale,\ \textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{int}\ *taillePanier,\ \textcolor{keywordtype}{float}\ budget);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a31471d992b6f14d5249bbb6efdeec3cd}{supprimer\_article\_du\_panier}}(\textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{int}\ *taillePanier,\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ numeroClient,\ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{float}\ prixUnitaire[]);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_aa7f83065dbcf53ea2df22f9724c47470}{affiche\_recap\_panier}}(\textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ taillePanier,\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{float}\ poids[],\ \textcolor{keywordtype}{float}\ volume[],}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ prixUnitaire[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ numeroClient,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{float}\ volumeCoffre,\ \textcolor{keywordtype}{float}\ chargeMaximale,\ \textcolor{keywordtype}{float}\ budget);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a7caca9094610ed2dfcbfe0b350b678cf}{configurer\_session\_client}}(\textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{int}\ suspendus[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{double}\ *budget,\ \textcolor{keywordtype}{float}\ *volumeCoffre,\ \textcolor{keywordtype}{float}\ *chargeMaximale,\ \textcolor{keywordtype}{int}\ *numeroClient);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a87e47382ab2c90e6d5949fa78f50900e}{modifier\_quantite\_article\_panier}}(\textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{int}\ *taillePanier,\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ numeroClient,\ \textcolor{keywordtype}{float}\ prixUnitaire[],\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{int}\ numeros[]);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00134\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_ac55e8aab165ed0541827f10be23c9d97}{reinitialiser\_panier}}(\textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{int}\ *taillePanier,\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ numeroClient,\ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{float}\ prixUnitaire[]);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00146\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a7203df964d63cb07d7b19912d5e3c3bd}{deduire\_cagnotte}}(\textcolor{keywordtype}{int}\ numeroClient,\ \textcolor{keywordtype}{float}\ montant,\ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{int}\ suspendus[]);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00165\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a75ce35e6cd3b58c6359897a8aa131509}{quitter\_application}}(\textcolor{keywordtype}{int}\ panier[],\ \textcolor{keywordtype}{int}\ taillePanier,\ \textcolor{keywordtype}{int}\ references[],\ \textcolor{keywordtype}{float}\ poids[],\ \textcolor{keywordtype}{float}\ volume[],}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ prixUnitaire[],\ \textcolor{keywordtype}{int}\ quantites[],\ \textcolor{keywordtype}{float}\ cagnottes[],\ \textcolor{keywordtype}{int}\ numeroClient,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numeros[],\ \textcolor{keywordtype}{int}\ nombreClients,\ \textcolor{keywordtype}{float}\ budget,\ \textcolor{keywordtype}{int}\ suspendus[]);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interface__client_8h_a40507f288c72ef9b92d113990bc0ed40}{global\_client}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INTERFACE\_CLIENT\_H}}
+
+\end{DoxyCode}

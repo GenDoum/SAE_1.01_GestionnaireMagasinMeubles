@@ -1,0 +1,158 @@
+\doxysection{src/app/core\+\_\+logic/client.h File Reference}
+\hypertarget{client_8h}{}\label{client_8h}\index{src/app/core\_logic/client.h@{src/app/core\_logic/client.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête pour les fonctions de gestion des clients.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}../interface/interface\+\_\+client.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{client_8h_a8bc792436cb2773b638667f7a898a625}{charger\+\_\+clients}} (int numeros\mbox{[}$\,$\mbox{]}, float cagnottes\mbox{[}$\,$\mbox{]}, int suspendues\mbox{[}$\,$\mbox{]}, int t\+Physique)
+\begin{DoxyCompactList}\small\item\em Charger les données des clients depuis un fichier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client_8h_a029f0d2d057a55b541f2cb82c76b9cda}{sauvegarde\+\_\+clients}} (int numeros\mbox{[}$\,$\mbox{]}, float cagnottes\mbox{[}$\,$\mbox{]}, int suspendus\mbox{[}$\,$\mbox{]}, int nombre\+Clients)
+\begin{DoxyCompactList}\small\item\em Sauvegarder les données des clients dans un fichier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client_8h_acad182f42a0cd24ad98b174fba322ad1}{supprimer\+\_\+article}} (int panier\mbox{[}$\,$\mbox{]}, int quantites\mbox{[}$\,$\mbox{]}, int \texorpdfstring{$\ast$}{*}taille\+Panier, int reference, int numero\+Client, int numeros\mbox{[}$\,$\mbox{]}, int nombre\+Clients, int references\mbox{[}$\,$\mbox{]}, float prix\+Unitaire\mbox{[}$\,$\mbox{]}, float cagnottes\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Supprimer un article du panier du client. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client_8h_a5e81c9bb0e47fe7a39ae0235da80b05e}{trouver\+\_\+index\+\_\+article}} (int reference, int references\mbox{[}$\,$\mbox{]}, int nombre\+Articles)
+\begin{DoxyCompactList}\small\item\em Trouver l\textquotesingle{}index d\textquotesingle{}une référence d\textquotesingle{}article dans un tableau. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client_8h_ac5dad689583b01a2f96595f2d1069550}{trouver\+\_\+index\+\_\+client}} (int numero\+Client, int numeros\mbox{[}$\,$\mbox{]}, int nombre\+Clients)
+\begin{DoxyCompactList}\small\item\em Trouver l\textquotesingle{}index d\textquotesingle{}un numéro de client dans un tableau. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Fichier d\textquotesingle{}en-\/tête pour les fonctions de gestion des clients. 
+
+Ce fichier d\textquotesingle{}en-\/tête définit les fonctions liées à la gestion des clients, telles que le chargement des clients, la sauvegarde, etc.
+
+\begin{DoxyAuthor}{Author}
+Hersan Mathéo 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{client_8h_a8bc792436cb2773b638667f7a898a625}\label{client_8h_a8bc792436cb2773b638667f7a898a625} 
+\index{client.h@{client.h}!charger\_clients@{charger\_clients}}
+\index{charger\_clients@{charger\_clients}!client.h@{client.h}}
+\doxysubsubsection{\texorpdfstring{charger\_clients()}{charger\_clients()}}
+{\footnotesize\ttfamily int charger\+\_\+clients (\begin{DoxyParamCaption}\item[{int}]{numeros\mbox{[}$\,$\mbox{]},  }\item[{float}]{cagnottes\mbox{[}$\,$\mbox{]},  }\item[{int}]{suspendues\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Physique }\end{DoxyParamCaption})}
+
+
+
+Charger les données des clients depuis un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em numeros} & -\/ Un tableau de numéros de clients. \\
+\hline
+{\em cagnottes} & -\/ Un tableau de cagnottes des clients. \\
+\hline
+{\em suspendues} & -\/ Un tableau d\textquotesingle{}état des clients suspendus. \\
+\hline
+{\em t\+Physique} & -\/ La taille physique du tableau des clients.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le nombre de clients chargés depuis le fichier. 
+\end{DoxyReturn}
+\Hypertarget{client_8h_a029f0d2d057a55b541f2cb82c76b9cda}\label{client_8h_a029f0d2d057a55b541f2cb82c76b9cda} 
+\index{client.h@{client.h}!sauvegarde\_clients@{sauvegarde\_clients}}
+\index{sauvegarde\_clients@{sauvegarde\_clients}!client.h@{client.h}}
+\doxysubsubsection{\texorpdfstring{sauvegarde\_clients()}{sauvegarde\_clients()}}
+{\footnotesize\ttfamily void sauvegarde\+\_\+clients (\begin{DoxyParamCaption}\item[{int}]{numeros\mbox{[}$\,$\mbox{]},  }\item[{float}]{cagnottes\mbox{[}$\,$\mbox{]},  }\item[{int}]{suspendus\mbox{[}$\,$\mbox{]},  }\item[{int}]{nombre\+Clients }\end{DoxyParamCaption})}
+
+
+
+Sauvegarder les données des clients dans un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em numeros} & -\/ Un tableau de numéros de clients. \\
+\hline
+{\em cagnottes} & -\/ Un tableau de cagnottes des clients. \\
+\hline
+{\em suspendus} & -\/ Un tableau d\textquotesingle{}état des clients suspendus. \\
+\hline
+{\em nombre\+Clients} & -\/ Le nombre total de clients. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{client_8h_acad182f42a0cd24ad98b174fba322ad1}\label{client_8h_acad182f42a0cd24ad98b174fba322ad1} 
+\index{client.h@{client.h}!supprimer\_article@{supprimer\_article}}
+\index{supprimer\_article@{supprimer\_article}!client.h@{client.h}}
+\doxysubsubsection{\texorpdfstring{supprimer\_article()}{supprimer\_article()}}
+{\footnotesize\ttfamily void supprimer\+\_\+article (\begin{DoxyParamCaption}\item[{int}]{panier\mbox{[}$\,$\mbox{]},  }\item[{int}]{quantites\mbox{[}$\,$\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{taille\+Panier,  }\item[{int}]{reference,  }\item[{int}]{numero\+Client,  }\item[{int}]{numeros\mbox{[}$\,$\mbox{]},  }\item[{int}]{nombre\+Clients,  }\item[{int}]{references\mbox{[}$\,$\mbox{]},  }\item[{float}]{prix\+Unitaire\mbox{[}$\,$\mbox{]},  }\item[{float}]{cagnottes\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Supprimer un article du panier du client. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em panier} & -\/ Le panier d\textquotesingle{}achat du client. \\
+\hline
+ & {\em quantites} & -\/ Un tableau de quantités d\textquotesingle{}articles dans le panier. \\
+\hline
+\mbox{\texttt{ out}}  & {\em taille\+Panier} & -\/ Un pointeur pour stocker la taille du panier. \\
+\hline
+ & {\em reference} & -\/ La référence de l\textquotesingle{}article à supprimer. \\
+\hline
+ & {\em numero\+Client} & -\/ Le numéro du client. \\
+\hline
+ & {\em numeros} & -\/ Un tableau de numéros de clients. \\
+\hline
+ & {\em nombre\+Clients} & -\/ Le nombre total de clients. \\
+\hline
+ & {\em references} & -\/ Un tableau de références d\textquotesingle{}articles. \\
+\hline
+ & {\em prix\+Unitaire} & -\/ Un tableau de prix unitaires d\textquotesingle{}articles. \\
+\hline
+ & {\em cagnottes} & -\/ Un tableau de cagnottes des clients. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{client_8h_a5e81c9bb0e47fe7a39ae0235da80b05e}\label{client_8h_a5e81c9bb0e47fe7a39ae0235da80b05e} 
+\index{client.h@{client.h}!trouver\_index\_article@{trouver\_index\_article}}
+\index{trouver\_index\_article@{trouver\_index\_article}!client.h@{client.h}}
+\doxysubsubsection{\texorpdfstring{trouver\_index\_article()}{trouver\_index\_article()}}
+{\footnotesize\ttfamily int trouver\+\_\+index\+\_\+article (\begin{DoxyParamCaption}\item[{int}]{reference,  }\item[{int}]{references\mbox{[}$\,$\mbox{]},  }\item[{int}]{nombre\+Articles }\end{DoxyParamCaption})}
+
+
+
+Trouver l\textquotesingle{}index d\textquotesingle{}une référence d\textquotesingle{}article dans un tableau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reference} & -\/ La référence de l\textquotesingle{}article à rechercher. \\
+\hline
+{\em references} & -\/ Un tableau de références d\textquotesingle{}articles. \\
+\hline
+{\em nombre\+Articles} & -\/ Le nombre total d\textquotesingle{}articles.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}index de la référence dans le tableau ou -\/1 si la référence n\textquotesingle{}est pas trouvée. 
+\end{DoxyReturn}
+\Hypertarget{client_8h_ac5dad689583b01a2f96595f2d1069550}\label{client_8h_ac5dad689583b01a2f96595f2d1069550} 
+\index{client.h@{client.h}!trouver\_index\_client@{trouver\_index\_client}}
+\index{trouver\_index\_client@{trouver\_index\_client}!client.h@{client.h}}
+\doxysubsubsection{\texorpdfstring{trouver\_index\_client()}{trouver\_index\_client()}}
+{\footnotesize\ttfamily int trouver\+\_\+index\+\_\+client (\begin{DoxyParamCaption}\item[{int}]{numero\+Client,  }\item[{int}]{numeros\mbox{[}$\,$\mbox{]},  }\item[{int}]{nombre\+Clients }\end{DoxyParamCaption})}
+
+
+
+Trouver l\textquotesingle{}index d\textquotesingle{}un numéro de client dans un tableau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em numero\+Client} & -\/ Le numéro de client à rechercher. \\
+\hline
+{\em numeros} & -\/ Un tableau de numéros de clients. \\
+\hline
+{\em nombre\+Clients} & -\/ Le nombre total de clients.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}index du numéro de client dans le tableau ou -\/1 si le numéro de client n\textquotesingle{}est pas trouvé. 
+\end{DoxyReturn}

@@ -48,7 +48,7 @@ int choixInterface(void) {
  *
  * @return 0 si le programme s'est exécuté avec succès.
  */
-int main() {
+int main(void) {
     int verif;
     switch (choixInterface()) {
         case 1:

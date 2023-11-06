@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface_resp.h"
-#include "app/core_logic/responsable.h"
-#include "app/core_logic/client.h"
+#include "../core_logic/responsable.h"
+#include "../core_logic/client.h"
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100

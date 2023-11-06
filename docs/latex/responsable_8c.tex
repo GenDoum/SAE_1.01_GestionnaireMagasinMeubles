@@ -1,0 +1,304 @@
+\doxysection{src/app/core\+\_\+logic/responsable.c File Reference}
+\hypertarget{responsable_8c}{}\label{responsable_8c}\index{src/app/core\_logic/responsable.c@{src/app/core\_logic/responsable.c}}
+
+
+Définition des fonctions de \doxylink{responsable_8c}{responsable.\+c}.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}responsable.\+h"{}}\newline
+{\ttfamily \#include "{}../interface/interface\+\_\+resp.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{responsable_8c_af5ec89901489d7ff972b5713b906baf9}\label{responsable_8c_af5ec89901489d7ff972b5713b906baf9} 
+\#define {\bfseries MAX\+\_\+\+SIZE\+\_\+\+MDP}~21
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{responsable_8c_a937ddfa15445cc5d2336130fb6567ce1}{chargement\+Articles}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int t\+Physique)
+\begin{DoxyCompactList}\small\item\em Charge les informations des articles à partir d\textquotesingle{}un fichier dans des tableaux. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_ac9e79c89d04823f4b1b5572c9865e57d}{sauvegard\+Articles}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Sauvegarde les informations des articles dans un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{responsable_8c_abce68a203cf18b85ebdad34e468815f0}{ajouter\+Article}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int \texorpdfstring{$\ast$}{*}t\+Logique, int t\+Physique, int ref, float poids, float volume, float prix)
+\begin{DoxyCompactList}\small\item\em Ajoute un nouvel article aux tableaux d\textquotesingle{}articles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_a33f342ec6aaff14efce87b42350d9bee}{recherche\+Ref\+Article}} (int t\+Ref\mbox{[}$\,$\mbox{]}, int ref, int \texorpdfstring{$\ast$}{*}index, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Recherche une référence d\textquotesingle{}article dans le tableau t\+Ref. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_a0f8076a332f73d1edca58cfaeb42167e}{supprimer\+Article}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int \texorpdfstring{$\ast$}{*}t\+Logique)
+\begin{DoxyCompactList}\small\item\em Supprime un article des tableaux d\textquotesingle{}articles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_ab02f9ff38b359630bc980bae859f7512}{modifier\+Article}} (int t\+Ref\mbox{[}$\,$\mbox{]}, float t\+Poids\mbox{[}$\,$\mbox{]}, float t\+Vol\mbox{[}$\,$\mbox{]}, float t\+Prix\mbox{[}$\,$\mbox{]}, int t\+Logique)
+\begin{DoxyCompactList}\small\item\em Modifie les informations d\textquotesingle{}un article existant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_a185476dbf2dae604d3deb6a3085580a2}{ajouter\+Client}} (int t\+Num\+Client\mbox{[}$\,$\mbox{]}, float t\+Cagnotte\mbox{[}$\,$\mbox{]}, int t\+Sus\mbox{[}$\,$\mbox{]}, int \texorpdfstring{$\ast$}{*}t\+Logique, int t\+Physique)
+\begin{DoxyCompactList}\small\item\em Ajoute un nouveau client aux tableaux de clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{responsable_8c_ad21f0252145711b8da85feef17902fbc}{dechiffrer\+Cesar}} (char \texorpdfstring{$\ast$}{*}texte, int decalage)
+\begin{DoxyCompactList}\small\item\em Lis le mot de passe codé dans le fichier mdp.\+txt, le compare au mot de passe entré à laide de decodage\+MDP. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{responsable_8c_aa02b66bb7f733cf9bcb6a7fc2b4598e0}{decodage\+MDP}} (char \texorpdfstring{$\ast$}{*}mdp\+Enter)
+\begin{DoxyCompactList}\small\item\em Décode le mot de passe du fichier mdp.\+txt pour le comparer avec le mdp entré. \end{DoxyCompactList}\item 
+\Hypertarget{responsable_8c_a0b3515864e8480ef500c2d9fd24d664a}\label{responsable_8c_a0b3515864e8480ef500c2d9fd24d664a} 
+void {\bfseries chiffrement\+Cesar} (char \texorpdfstring{$\ast$}{*}mdp, int decalage)
+\item 
+\Hypertarget{responsable_8c_a841dc44be0e28562f4c84982e13201a1}\label{responsable_8c_a841dc44be0e28562f4c84982e13201a1} 
+int {\bfseries verif\+Modif\+MDP} (char \texorpdfstring{$\ast$}{*}mdp, char \texorpdfstring{$\ast$}{*}confirm\+MDP, int decalage)
+\item 
+\Hypertarget{responsable_8c_a9b054657f51a33188e8f73e8ebccea99}\label{responsable_8c_a9b054657f51a33188e8f73e8ebccea99} 
+int {\bfseries enregistrer\+Mot\+De\+Passe} (char \texorpdfstring{$\ast$}{*}mdp, int decalage)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Définition des fonctions de \doxylink{responsable_8c}{responsable.\+c}. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{responsable_8c_abce68a203cf18b85ebdad34e468815f0}\label{responsable_8c_abce68a203cf18b85ebdad34e468815f0} 
+\index{responsable.c@{responsable.c}!ajouterArticle@{ajouterArticle}}
+\index{ajouterArticle@{ajouterArticle}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{ajouterArticle()}{ajouterArticle()}}
+{\footnotesize\ttfamily int ajouter\+Article (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{t\+Logique,  }\item[{int}]{t\+Physique,  }\item[{int}]{ref,  }\item[{float}]{poids,  }\item[{float}]{volume,  }\item[{float}]{prix }\end{DoxyParamCaption})}
+
+
+
+Ajoute un nouvel article aux tableaux d\textquotesingle{}articles. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction ajoute un nouvel article aux tableaux t\+Ref, t\+Poids, t\+Vol, et t\+Prix et incrémente la taille logique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & Tableau des poids des articles. \\
+\hline
+{\em t\+Vol} & Tableau des volumes des articles. \\
+\hline
+{\em t\+Prix} & Tableau des prix unitaires des articles. \\
+\hline
+{\em t\+Logique} & Taille logique des tableaux. \\
+\hline
+{\em t\+Physique} & Taille physique des tableaux. \\
+\hline
+{\em ref} & Référence du nouvel article. \\
+\hline
+{\em poids} & Poids du nouvel article. \\
+\hline
+{\em volume} & Volume du nouvel article. \\
+\hline
+{\em prix} & Prix unitaire du nouvel article. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, -\/2 si le tableau est plein. 
+\end{DoxyReturn}
+\Hypertarget{responsable_8c_a185476dbf2dae604d3deb6a3085580a2}\label{responsable_8c_a185476dbf2dae604d3deb6a3085580a2} 
+\index{responsable.c@{responsable.c}!ajouterClient@{ajouterClient}}
+\index{ajouterClient@{ajouterClient}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{ajouterClient()}{ajouterClient()}}
+{\footnotesize\ttfamily void ajouter\+Client (\begin{DoxyParamCaption}\item[{int}]{t\+Num\+Client\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Cagnotte\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Sus\mbox{[}$\,$\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{t\+Logique,  }\item[{int}]{t\+Physique }\end{DoxyParamCaption})}
+
+
+
+Ajoute un nouveau client aux tableaux de clients. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction ajoute un nouveau client aux tableaux t\+Num\+Client, t\+Cagnotte et t\+Sus et incrémente la taille logique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Num\+Client} & Tableau des numéros de client. \\
+\hline
+{\em t\+Cagnotte} & Tableau des cagnottes des clients. \\
+\hline
+{\em t\+Sus} & Tableau des états de suspension des clients. \\
+\hline
+{\em t\+Logique} & Pointeur vers la taille logique des tableaux. \\
+\hline
+{\em t\+Physique} & Taille physique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_a937ddfa15445cc5d2336130fb6567ce1}\label{responsable_8c_a937ddfa15445cc5d2336130fb6567ce1} 
+\index{responsable.c@{responsable.c}!chargementArticles@{chargementArticles}}
+\index{chargementArticles@{chargementArticles}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{chargementArticles()}{chargementArticles()}}
+{\footnotesize\ttfamily int chargement\+Articles (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Physique }\end{DoxyParamCaption})}
+
+
+
+Charge les informations des articles à partir d\textquotesingle{}un fichier dans des tableaux. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction lit les informations des articles à partir du fichier "{}donnee/articles.\+txt"{} et les stocke dans les tableaux t\+Ref, t\+Poids, t\+Vol, et t\+Prix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & Tableau des poids des articles. \\
+\hline
+{\em t\+Vol} & Tableau des volumes des articles. \\
+\hline
+{\em t\+Prix} & Tableau des prix unitaires des articles. \\
+\hline
+{\em t\+Physique} & Taille physique des tableaux. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le nombre d\textquotesingle{}articles chargés avec succès ou -\/1 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{responsable_8c_ad21f0252145711b8da85feef17902fbc}\label{responsable_8c_ad21f0252145711b8da85feef17902fbc} 
+\index{responsable.c@{responsable.c}!dechiffrerCesar@{dechiffrerCesar}}
+\index{dechiffrerCesar@{dechiffrerCesar}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{dechiffrerCesar()}{dechiffrerCesar()}}
+{\footnotesize\ttfamily void dechiffrer\+Cesar (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{texte,  }\item[{int}]{decalage }\end{DoxyParamCaption})}
+
+
+
+Lis le mot de passe codé dans le fichier mdp.\+txt, le compare au mot de passe entré à laide de decodage\+MDP. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em texte} & chaine de caractère comparé avec le mot de passe du fichier. \\
+\hline
+{\em decalage} & entier qui sert de clé pour déchiffrer le mot de passe. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_aa02b66bb7f733cf9bcb6a7fc2b4598e0}\label{responsable_8c_aa02b66bb7f733cf9bcb6a7fc2b4598e0} 
+\index{responsable.c@{responsable.c}!decodageMDP@{decodageMDP}}
+\index{decodageMDP@{decodageMDP}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{decodageMDP()}{decodageMDP()}}
+{\footnotesize\ttfamily int decodage\+MDP (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{mdp\+Enter }\end{DoxyParamCaption})}
+
+
+
+Décode le mot de passe du fichier mdp.\+txt pour le comparer avec le mdp entré. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em mdp\+Enter} & Mot de passe entrer par l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_ab02f9ff38b359630bc980bae859f7512}\label{responsable_8c_ab02f9ff38b359630bc980bae859f7512} 
+\index{responsable.c@{responsable.c}!modifierArticle@{modifierArticle}}
+\index{modifierArticle@{modifierArticle}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{modifierArticle()}{modifierArticle()}}
+{\footnotesize\ttfamily void modifier\+Article (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Modifie les informations d\textquotesingle{}un article existant. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction permet de modifier les informations (poids, volume, prix) d\textquotesingle{}un article existant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & Tableau des poids des articles. \\
+\hline
+{\em t\+Vol} & Tableau des volumes des articles. \\
+\hline
+{\em t\+Prix} & Tableau des prix unitaires des articles. \\
+\hline
+{\em t\+Logique} & Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_a33f342ec6aaff14efce87b42350d9bee}\label{responsable_8c_a33f342ec6aaff14efce87b42350d9bee} 
+\index{responsable.c@{responsable.c}!rechercheRefArticle@{rechercheRefArticle}}
+\index{rechercheRefArticle@{rechercheRefArticle}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{rechercheRefArticle()}{rechercheRefArticle()}}
+{\footnotesize\ttfamily void recherche\+Ref\+Article (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{int}]{ref,  }\item[{int \texorpdfstring{$\ast$}{*}}]{index,  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Recherche une référence d\textquotesingle{}article dans le tableau t\+Ref. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction recherche une référence d\textquotesingle{}article dans le tableau t\+Ref et renvoie l\textquotesingle{}index si l\textquotesingle{}article est trouvé.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em ref} & Référence de l\textquotesingle{}article à rechercher. \\
+\hline
+{\em index} & Pointeur vers la variable pour stocker l\textquotesingle{}index de l\textquotesingle{}article trouvé. \\
+\hline
+{\em t\+Logique} & Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_ac9e79c89d04823f4b1b5572c9865e57d}\label{responsable_8c_ac9e79c89d04823f4b1b5572c9865e57d} 
+\index{responsable.c@{responsable.c}!sauvegardArticles@{sauvegardArticles}}
+\index{sauvegardArticles@{sauvegardArticles}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{sauvegardArticles()}{sauvegardArticles()}}
+{\footnotesize\ttfamily void sauvegard\+Articles (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Sauvegarde les informations des articles dans un fichier. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction sauvegarde les informations des articles depuis les tableaux t\+Ref, t\+Poids, t\+Vol et t\+Prix dans le fichier "{}donnee/articles.\+txt"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & Tableau des poids des articles. \\
+\hline
+{\em t\+Vol} & Tableau des volumes des articles. \\
+\hline
+{\em t\+Prix} & Tableau des prix unitaires des articles. \\
+\hline
+{\em t\+Logique} & Taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{responsable_8c_a0f8076a332f73d1edca58cfaeb42167e}\label{responsable_8c_a0f8076a332f73d1edca58cfaeb42167e} 
+\index{responsable.c@{responsable.c}!supprimerArticle@{supprimerArticle}}
+\index{supprimerArticle@{supprimerArticle}!responsable.c@{responsable.c}}
+\doxysubsubsection{\texorpdfstring{supprimerArticle()}{supprimerArticle()}}
+{\footnotesize\ttfamily void supprimer\+Article (\begin{DoxyParamCaption}\item[{int}]{t\+Ref\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Poids\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Vol\mbox{[}$\,$\mbox{]},  }\item[{float}]{t\+Prix\mbox{[}$\,$\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{t\+Logique }\end{DoxyParamCaption})}
+
+
+
+Supprime un article des tableaux d\textquotesingle{}articles. 
+
+\begin{DoxyAuthor}{Author}
+Yannis Doumir Fernandes
+\end{DoxyAuthor}
+Cette fonction supprime un article des tableaux t\+Ref, t\+Poids, t\+Vol, et t\+Prix et met à jour la taille logique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Ref} & Tableau des références d\textquotesingle{}articles. \\
+\hline
+{\em t\+Poids} & Tableau des poids des articles. \\
+\hline
+{\em t\+Vol} & Tableau des volumes des articles. \\
+\hline
+{\em t\+Prix} & Tableau des prix unitaires des articles. \\
+\hline
+{\em t\+Logique} & Pointeur vers la taille logique des tableaux. \\
+\hline
+\end{DoxyParams}
