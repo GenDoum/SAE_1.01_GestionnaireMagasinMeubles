@@ -32,7 +32,6 @@ void affiche_client(void);
  * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
  * @param tNumClient - Un tableau de numéros d'articles.
  * @param tCagnotte - Un tableau de cagnottes.
- * @param tSus - Un tableau d'articles suspendus.
  * @param tLogArticle - Le nombre total d'articles disponibles.
  * @param tLogClient - Le nombre total de clients.
  * @param volumeCoffre - La limite de volume pour le panier du client.
@@ -43,7 +42,7 @@ void affiche_client(void);
  * @param budget - Le budget du client.
  */
 void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float tVol[], float tPrixUnitaire[],
-                               int tNumClient[], float tCagnotte[], int tSus[], int tLogArticle, int tLogClient,
+                               int tNumClient[], float tCagnotte[], int tLogArticle, int tLogClient,
                                float volumeCoffre, float chargeMaximale, int tPanier[], int tQuantite[], int *tLogPanier, float budget);
 
 /**
@@ -133,9 +132,8 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
  * @param tNumClient - Un tableau de numéros de clients.
  * @param tCagnotte - Un tableau de cagnottes.
  * @param tLogClient - Le nombre total de clients.
- * @param tSus - Un tableau d'état des clients suspendus.
  */
-void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]);
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient);
 
 /**
  * @brief Quitter l'application client.

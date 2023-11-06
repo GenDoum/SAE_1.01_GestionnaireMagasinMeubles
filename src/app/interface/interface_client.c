@@ -22,7 +22,7 @@ void affiche_client(void) {
 
 
 void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float tVol[], float tPrixUnitaire[],
-                               int tNumClient[], float tCagnotte[], int tSus[], int tLogArticle, int tLogClient,
+                               int tNumClient[], float tCagnotte[], int tLogArticle, int tLogClient,
                                float volumeCoffre, float chargeMaximale, int tPanier[], int tQuantite[], int *tLogPanier, float budget) {
 
     int reference, quantite, articleIndex, clientIndex;
@@ -308,7 +308,7 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
     *tLogPanier = 0;
 }
 
-void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]) {
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient) {
     int clientIndex = -1;
     for (int i = 0; i < tLogClient; i++) {
         if (tNumClient[i] == numClient) {
@@ -403,7 +403,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
                 while (getchar() != '\n');
             }
 
-            deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
+            deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
             printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
         }
     }
@@ -422,7 +422,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         }
         while (getchar() != '\n');
 
-        deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
+        deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
         printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
     }
 }
@@ -462,7 +462,7 @@ void global_client(void) {
                 break;
             case 3:
                 ajouter_article_au_panier(numClient, tRef, tPoids, tVol, tPrixUnitaire, tNumClient, tCagnotte,
-                                          tSus, tLogArticle, tLogClient, volumeCoffre, chargeMaximale, tPanier, tQuantite, &tLogPanier, budget);
+                                          tLogArticle, tLogClient, volumeCoffre, chargeMaximale, tPanier, tQuantite, &tLogPanier, budget);
                 break;
             case 4:
                 supprimer_article_du_panier(tPanier, tQuantite, &tLogPanier, tCagnotte, numClient, tNumClient, tLogClient, tRef, tPrixUnitaire);
