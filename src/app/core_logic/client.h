@@ -1,82 +1,77 @@
-#ifndef SAE_101_CLIENT_H
-#define SAE_101_CLIENT_H
+/**
+ * @file client.h
+ * @brief Fichier d'en-tête pour les fonctions de gestion des clients.
+ *
+ * Ce fichier d'en-tête définit les fonctions liées à la gestion des clients, telles que le chargement des clients, la sauvegarde, etc.
+ *
+ * @author Hersan Mathéo
+ */
+
+#ifndef CLIENT_H
+#define CLIENT_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "../interface/interface_client.h"
 
 /**
- * @file client.h
- * @brief Fonctions liées à la gestion des clients et de leur panier.
- */
-
-/**
- * @brief Charge les données des clients à partir d'un fichier.
+ * @brief Charger les données des clients depuis un fichier.
  *
- * @param numeros - Tableau des numéros de clients.
- * @param cagnottes - Tableau des cagnottes des clients.
- * @param suspendues - Tableau des états de suspension des clients.
- * @param tPhysique - Taille du tableau physique.
- * @return Le nombre de clients chargés ou -1 en cas d'erreur.
+ * @param numeros - Un tableau de numéros de clients.
+ * @param cagnottes - Un tableau de cagnottes des clients.
+ * @param suspendues - Un tableau d'état des clients suspendus.
+ * @param tPhysique - La taille physique du tableau des clients.
+ *
+ * @return Le nombre de clients chargés depuis le fichier.
  */
 int charger_clients(int numeros[], float cagnottes[], int suspendues[], int tPhysique);
 
-
 /**
- * @brief Sauvegarde les données clients dans un fichier.
+ * @brief Sauvegarder les données des clients dans un fichier.
  *
- * Cette fonction permet de sauvegarder les données clients, y compris les numéros de clients, les cagnottes,
- * et les états de suspension, dans un fichier texte.
- *
- * @param numeros - Tableau des numéros de clients.
- * @param cagnottes - Tableau des cagnottes des clients.
- * @param suspendus - Tableau des états de suspension des clients.
- * @param nombreClients - Nombre de clients.
+ * @param numeros - Un tableau de numéros de clients.
+ * @param cagnottes - Un tableau de cagnottes des clients.
+ * @param suspendus - Un tableau d'état des clients suspendus.
+ * @param nombreClients - Le nombre total de clients.
  */
 void sauvegarde_clients(int numeros[], float cagnottes[], int suspendus[], int nombreClients);
 
-
 /**
- * @brief Supprime un article du panier du client.
+ * @brief Supprimer un article du panier du client.
  *
- * Cette fonction permet de supprimer un article du panier du client tout en metant a jour la cagnotte.
- *
- * @param panier
- * @param quantites
- * @param taillePanier
- * @param reference
- * @param numeroClient
- * @param numeros
- * @param nombreClients
- * @param references
- * @param prixUnitaire
- * @param cagnottes
+ * @param panier - Le panier d'achat du client.
+ * @param quantites - Un tableau de quantités d'articles dans le panier.
+ * @param[out] taillePanier - Un pointeur pour stocker la taille du panier.
+ * @param reference - La référence de l'article à supprimer.
+ * @param numeroClient - Le numéro du client.
+ * @param numeros - Un tableau de numéros de clients.
+ * @param nombreClients - Le nombre total de clients.
+ * @param references - Un tableau de références d'articles.
+ * @param prixUnitaire - Un tableau de prix unitaires d'articles.
+ * @param cagnottes - Un tableau de cagnottes des clients.
  */
 void supprimer_article(int panier[], int quantites[], int *taillePanier, int reference, int numeroClient, int numeros[], int nombreClients, int references[], float prixUnitaire[], float cagnottes[]);
 
 /**
- * @brief Recherche l'index de l'article dans le tableau des références.
+ * @brief Trouver l'index d'une référence d'article dans un tableau.
  *
- * Cette fonction recherche l'index de l'article avec la référence donnée dans le tableau des références.
+ * @param reference - La référence de l'article à rechercher.
+ * @param references - Un tableau de références d'articles.
+ * @param nombreArticles - Le nombre total d'articles.
  *
- * @param reference - Référence de l'article à rechercher.
- * @param references - Tableau des références des articles.
- * @param nombreArticles - Nombre d'articles disponibles.
- * @return L'index de l'article s'il est trouvé, sinon -1.
+ * @return L'index de la référence dans le tableau ou -1 si la référence n'est pas trouvée.
  */
 int trouver_index_article(int reference, int references[], int nombreArticles);
 
 /**
- * @brief Trouve l'index d'un client dans le tableau des numéros de clients.
+ * @brief Trouver l'index d'un numéro de client dans un tableau.
  *
- * Cette fonction recherche le numéro du client dans le tableau des numéros de clients
- * et retourne l'index du client s'il est trouvé.
+ * @param numeroClient - Le numéro de client à rechercher.
+ * @param numeros - Un tableau de numéros de clients.
+ * @param nombreClients - Le nombre total de clients.
  *
- * @param numeroClient - Numéro du client à rechercher.
- * @param numeros - Tableau des numéros de clients.
- * @param nombreClients - Nombre de clients dans le tableau.
- * @return L'index du client s'il est trouvé, -1 sinon.
+ * @return L'index du numéro de client dans le tableau ou -1 si le numéro de client n'est pas trouvé.
  */
 int trouver_index_client(int numeroClient, int numeros[], int nombreClients);
 
-#endif // SAE_101_CLIENT_H
+#endif // CLIENT_H
