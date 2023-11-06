@@ -11,10 +11,11 @@ void affiche_client() {
     printf("+----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
     printf("||\t1 : Afficher le récapitulatif du panier.\t \t||\n");
-    printf("||\t2 : Ajouter un article au panier.   \t\t\t||\n");
-    printf("||\t3 : Supprimer un article du panier. \t\t\t||\n");
-    printf("||\t4 : Modifier la quantité d'un article du panier. \t||\n");
-    printf("||\t5 : Réinitialiser le panier.\t\t\t\t||\n");
+    printf("||\t2 : Afficher les articles disponibles.\t\t\t||\n");
+    printf("||\t3 : Ajouter un article au panier.   \t\t\t||\n");
+    printf("||\t4 : Supprimer un article du panier. \t\t\t||\n");
+    printf("||\t5 : Modifier la quantité d'un article du panier. \t||\n");
+    printf("||\t6 : Réinitialiser le panier.\t\t\t\t||\n");
     printf("||\t9 : Quitter.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
@@ -139,7 +140,6 @@ void supprimer_article_du_panier(int panier[], int quantites[], int *taillePanie
     }
 
     supprimer_article(panier, quantites, taillePanier, reference, numeroClient, numeros, nombreClients, references, prixUnitaire, cagnottes);
-
 
     printf("Article supprimé du panier avec succès.\n");
 }
@@ -274,7 +274,7 @@ void modifier_quantite_article_panier(int panier[], int quantites[], int *taille
     articleIndex = trouver_index_article(reference, panier, *taillePanier);
 
     while (articleIndex == -1) {
-        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide.");
+        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide : ");
         while (scanf("%d", &reference) != 1) {
             while (getchar() != '\n');
             printf("ERREUR : Veuillez entrer une référence valide (nombre) : ");
@@ -284,7 +284,7 @@ void modifier_quantite_article_panier(int panier[], int quantites[], int *taille
     }
 
     printf("Entrez la quantité : ");
-    while (scanf("%d", &quantite) != 1) {
+    while (scanf("%d", &quantite) != 1 || quantite <= 0) {
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer une quantité valide (nombre) : ");
     }
@@ -442,16 +442,21 @@ void global_client() {
                                      numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale, budget);
                 break;
             case 2:
+                affichArticles(references, poids, volume, prixUnitaire, nombreArticles);
+                break;
+            case 3:
                 ajouter_article_au_panier(numeroClient, references, poids, volume, prixUnitaire, numeros, cagnottes,
                                           suspendus, nombreArticles, nombreClients, volumeCoffre, chargeMaximale, panier, quantites, &taillePanier, budget);
                 break;
-            case 3:
-                supprimer_article_du_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
-                break;
             case 4:
-                modifier_quantite_article_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, prixUnitaire, references, nombreClients, numeros);
+                supprimer_article_du_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
+                affiche_recap_panier(panier, taillePanier, references, poids, volume, prixUnitaire, quantites, cagnottes,
+                                     numeroClient, numeros, nombreClients, volumeCoffre, chargeMaximale, budget);
                 break;
             case 5:
+                modifier_quantite_article_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, prixUnitaire, references, nombreClients, numeros);
+                break;
+            case 6:
                 reinitialiser_panier(panier, quantites, &taillePanier, cagnottes, numeroClient, numeros, nombreClients, references, prixUnitaire);
                 printf("Le panier a été réinitialisé.\n");
                 break;

@@ -15,6 +15,7 @@
 #include <string.h>
 #include "../core_logic/client.h"
 #include "../core_logic/responsable.h"
+#include "../interface/interface_resp.h"
 
 /**
  * @brief Afficher les informations du client.
