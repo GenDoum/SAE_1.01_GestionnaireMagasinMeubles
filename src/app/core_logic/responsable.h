@@ -3,8 +3,6 @@
  * @brief Déclaration des fonctions de responsable.c.
  */
 
-#include <stdio.h>
-
 /**
  * @brief Charge les informations des articles à partir d'un fichier dans des tableaux.
  * @author Yannis Doumir Fernandes

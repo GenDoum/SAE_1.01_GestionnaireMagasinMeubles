@@ -6,6 +6,7 @@
 /**
  * @brief Affiche la liste des articles.
  * @author Yannis Doumir Fernandes
+ * 
  * @param tRef - Tableau des références des articles.
  * @param tPoids - Tableau des poids des articles.
  * @param tVol - Tableau des volumes des articles.
@@ -56,8 +57,10 @@ void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique
  * @param poids - Poids du nouvel article.
  * @param volume - Volume du nouvel article.
  * @param prix - Prix du nouvel article.
+ * @param tRef - Tableau de référence des articles.
+ * @param tLogArticle - Taille logique du tableau des références.
  */
-void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix);
+void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix, int tRef[], int tLogArticle);
 
 /**
  * @brief Affiche les informations nécessaires pour supprimer un article.
@@ -83,7 +86,7 @@ void affichModifierArticle(int *ref, float *poids, float *volume, float *prix);
  * @author Yannis Doumir Fernandes
  * 
  */
-void problemRechercheArticle();
+void problemRechercheArticle(void);
 
 /**
  * @brief Affiche les informations nécessaires pour ajouter un nouveau client.
@@ -125,10 +128,10 @@ void affichModifClient(int tNumClient[], int tSus[], int tLogique);
  *
  * Cette fonction permet au responsable d'effectuer diverses actions telles que la gestion des articles et des clients.
  */
-void global_resp();
+void global_resp(void);
 
 /**
  * @brief Affiche le menu principal de l'interface du responsable.
  * @author Yannis Doumir Fernandes
  */
-void affiche_resp();
+void affiche_resp(void);
