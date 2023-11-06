@@ -304,10 +304,6 @@ void configurer_session_client(int numeros[], int suspendus[], int nombreClients
         indexClient = trouver_index_client(*numeroClient, numeros, nombreClients);
     }
 
-    if (suspendus[indexClient] == 1) {
-        printf("Le client est suspendu et ne peut pas utiliser l'application.\n");
-        exit(1);  // Quitter l'application si le client est suspendu.
-    }
 
     printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
     while (scanf("%d", &choixBudget) != 1 || (choixBudget != 0 && choixBudget != 1)) {
@@ -497,6 +493,11 @@ void quitter_application(int panier[], int taillePanier, int references[], float
 
     clientIndex = trouver_index_client(numeroClient, numeros, nombreClients);
 
+    if (suspendus[clientIndex] == 1) {
+        printf("Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
+    }
+
+
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     if (budget > 0) {
         printf("Budget : %.2f euros\n", budget);
@@ -539,6 +540,7 @@ void quitter_application(int panier[], int taillePanier, int references[], float
 
             deduire_cagnotte(numeroClient, montantDeduction, numeros, cagnottes, nombreClients, suspendus);
             printf("Le montant a été déduit de votre cagnotte.\n");
+            printf("Il vous reste %.2f euros dans votre cagnotte.\n", cagnottes[clientIndex]);
         }
     }
 }
