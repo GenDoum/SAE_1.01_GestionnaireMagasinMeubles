@@ -337,7 +337,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
                         int tNumClient[], int tLogClient, float budget, int tSus[]) {
 
     int reference, articleIndex, quantite, clientIndex, choixCagnotte = 0;
-    float montantTotal = 0, prixArticle = 0, montantDeduction = 0;
+    float montantTotal = 0, prixArticle = 0, montantDeduction = 0, depassement = 0;
     char attentionDepassement[200] = "";
 
     for (int i = 0; i < tLogPanier; i++) {
@@ -350,7 +350,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         montantTotal += prixArticle * quantite;
 
         if (budget > 0 && montantTotal > budget) {
-            float depassement = montantTotal - budget;
+            depassement = montantTotal - budget;
             char message[100];
             sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
             strcat(attentionDepassement, message);
@@ -362,7 +362,6 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
     if (tSus[clientIndex] == 1) {
         printf("Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
     }
-
 
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     if (budget > 0) {
@@ -405,9 +404,26 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
             }
 
             deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
-            printf("Le montant a été déduit de votre cagnotte.\n");
             printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
         }
+    }
+
+    printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
+    while (scanf("%d", &choixCagnotte) != 1 || (choixCagnotte != 0 && choixCagnotte != 1)) {
+        while (getchar() != '\n');
+        printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+    }
+
+    if (choixCagnotte == 1) {
+        printf("Entrez le montant à déduire de votre cagnotte : ");
+        while (scanf("%f", &montantDeduction) != 1) {
+            while (getchar() != '\n');
+            printf("ERREUR : Veuillez entrer un montant valide (nombre) : ");
+        }
+        while (getchar() != '\n');
+
+        deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
+        printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
     }
 }
 
