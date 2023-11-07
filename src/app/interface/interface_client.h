@@ -134,7 +134,7 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
  * @param tLogClient - Le nombre total de clients.
  * @param tSus - Un tableau d'état des clients suspendus.
  */
-void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]);
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient);
 
 /**
  * @brief Quitter l'application client.

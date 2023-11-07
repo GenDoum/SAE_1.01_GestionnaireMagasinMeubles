@@ -35,7 +35,7 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
     articleIndex = trouver_index_article(reference, tRef, tLogArticle);
 
     while (articleIndex == -1) {
-        printf("ERREUR : Article non trouvé. Veuillez entrer une référence valide : ");
+        fprintf(stderr, "\x1B[31mERREUR : Article non trouvé. Veuillez entrer une référence valide :\x1B[0m ");
         verifInt(&reference);
         articleIndex = trouver_index_article(reference, tRef, tLogArticle);
     }
@@ -44,9 +44,9 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
     verifInt(&quantite);
 
 
-    poidsTotal = tPoids[articleIndex] * quantite;
-    volumeTotal = tVol[articleIndex] * quantite;
-    montantTotal = tPrixUnitaire[articleIndex] * quantite;
+    poidsTotal = tPoids[articleIndex] * (float)quantite;
+    volumeTotal = tVol[articleIndex] * (float)quantite;
+    montantTotal = tPrixUnitaire[articleIndex] * (float)quantite;
 
     if (poidsTotal > chargeMaximale) {
         depassementCharge = poidsTotal - chargeMaximale;
@@ -60,7 +60,7 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
         depassementBudget = montantTotal - budget;
     }
 
-    montantTotal = tPrixUnitaire[articleIndex] * quantite;
+    montantTotal = tPrixUnitaire[articleIndex] * (float)quantite;
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
 
@@ -108,14 +108,14 @@ void supprimer_article_du_panier(int tPanier[], int tQuantite[], int *tLogPanier
     articleIndex = trouver_index_article(reference, tPanier, *tLogPanier);
 
     while (articleIndex == -1) {
-        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide : ");
+        fprintf(stderr, "\x1B[31mERREUR : Article non trouvé dans le panier. Veuillez entrer une référence valide :\x1B[0m ");
         verifInt(&reference);
         articleIndex = trouver_index_article(reference, tPanier, *tLogPanier);
     }
 
     supprimer_article(tPanier, tQuantite, tLogPanier, reference, numClient, tNumClient, tLogClient, tRef, tPrixUnitaire, tCagnotte);
 
-    printf("Article supprimé du panier avec succès.\n");
+    printf("\033[32mArticle supprimé du panier avec succès.\033[0m\n");
 }
 
 
@@ -126,12 +126,6 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
     int reference, articleIndex, quantite, clientIndex;
     float poidsTotal = 0, volumeTotal = 0, montantTotal = 0, prixArticle = 0, poidsArticle = 0, volumeArticle = 0;
     char attentionDepassement[200] = "";
-
-    printf("Contenu du panier : ");
-    for (int i = 0; i < tLogPanier; i++) {
-        printf("%d ", tPanier[i]);
-    }
-    printf("\n");
 
     printf("Récap :\n");
     printf("Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot\n");
@@ -147,7 +141,7 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
 
         printf("%d\t %d\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
                reference, quantite, poidsArticle, volumeArticle,
-               prixArticle, poidsArticle * quantite, volumeArticle * quantite, prixArticle * quantite);
+               prixArticle, poidsArticle * (float)quantite, volumeArticle * (float)quantite, prixArticle * (float)quantite);
 
         poidsTotal += poidsArticle * (float)quantite;
         volumeTotal += volumeArticle * (float)quantite;
@@ -181,12 +175,13 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
 
     if (strlen(attentionDepassement) > 0) {
-        printf("Attention : %s", attentionDepassement);
+        printf("Attention : \n");
+        printf("%s", attentionDepassement);
     }
 }
 
 void configurer_session_client(int tNumClient[], int tLogClient, double *budget, float *volumeCoffre, float *chargeMaximale, int *numClient) {
-    int indexClient, choixBudget = 0, choix;
+    int indexClient, choixBudget = 0;
 
     printf("Veuillez saisir votre numéro de client : ");
     verifInt(numClient);
@@ -195,7 +190,7 @@ void configurer_session_client(int tNumClient[], int tLogClient, double *budget,
     indexClient = trouver_index_client(*numClient, tNumClient, tLogClient);
 
     while (indexClient == -1) {
-        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer un numéro de client valide :\x1B[0m ");
         verifInt(numClient);
         indexClient = trouver_index_client(*numClient, tNumClient, tLogClient);
     }
@@ -204,14 +199,14 @@ void configurer_session_client(int tNumClient[], int tLogClient, double *budget,
     printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
     while (scanf("%d", &choixBudget) != 1 || (choixBudget != 0 && choixBudget != 1)) {
         while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non :\x1B[0m ");
     }
 
     if (choixBudget == 1) {
         printf("Entrez le budget à ne pas dépasser : ");
         while (scanf("%lf", budget) != 1 || *budget <= 0) {
             while (getchar() != '\n');
-            printf("ERREUR : Veuillez entrer un budget valide (nombre positif) : ");
+            fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer un budget valide (nombre positif) :\x1B[0m ");
         }
     }
 
@@ -233,7 +228,7 @@ void modifier_quantite_article_panier(int tPanier[], int tQuantite[], int *tLogP
     articleIndex = trouver_index_article(reference, tPanier, *tLogPanier);
 
     while (articleIndex == -1) {
-        printf("Article non trouvé dans le panier. Veuillez entrer une référence valide : ");
+        fprintf(stderr, "\x1B[31mERREUR : Article non trouvé dans le panier. Veuillez entrer une référence valide :\x1B[0m ");
         verifInt(&reference);
         articleIndex = trouver_index_article(reference, tPanier, *tLogPanier);
     }
@@ -249,7 +244,7 @@ void modifier_quantite_article_panier(int tPanier[], int tQuantite[], int *tLogP
 
     tQuantite[articleIndex] = quantite;
 
-    printf("Quantité modifiée avec succès.\n");
+    printf("\033[32mQuantité modifiée avec succès.\033[0m\n");
 }
 
 void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[]) {
@@ -257,26 +252,28 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
         supprimer_article(tPanier, tQuantite, tLogPanier, tPanier[i], numClient, tNumClient, tLogClient, tRef, tPrixUnitaire, tCagnotte);
     }
     *tLogPanier = 0;
+    printf("\033[32mLe panier a été réinitialisé avec succès.\033[0m\n");
 }
 
-void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]) {
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient) {
     int clientIndex;
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
 
     if (clientIndex == -1) {
-        printf("Client non trouvé. Impossible de déduire la cagnotte.\n");
+        fprintf(stderr, "\x1B[31mERREUR : Client non trouvé. Impossible de déduire la cagnotte.\x1B[0m\n ");
         return;
     }
 
     if (tCagnotte[clientIndex] < montant) {
-        printf("Cagnotte insuffisante. Impossible de déduire la cagnotte.\n");
+        fprintf(stderr, "\x1B[31mERREUR : Cagnotte insuffisante. Impossible de déduire la cagnotte.\x1B[0m\n ");
         return;
     }
 
     tCagnotte[clientIndex] -= montant;
 
-    printf("Montant déduit de la cagnotte avec succès.\n");
+    printf("\033[32mMontant déduit de la cagnotte avec succès.\033[0m\n");
+    printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
 }
 
 void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
@@ -294,7 +291,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         prixArticle = tPrixUnitaire[articleIndex];
         quantite = tQuantite[i];
 
-        montantTotal += prixArticle * quantite;
+        montantTotal += prixArticle * (float)quantite;
 
         if (budget > 0 && montantTotal > budget) {
             depassement = montantTotal - budget;
@@ -312,7 +309,14 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         printf("Budget : %.2f euros\n", budget);
     }
 
-    if(tSus[clientIndex] == 1) {
+    if(tSus[clientIndex] == 1 && budget > 0 && montantTotal > budget) {
+        printf("Attention : %s", attentionDepassement);
+        printf("Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
+        printf("Payement non effectué.\n");
+        return;
+    }
+
+    if(tSus[clientIndex] == 1 && budget > 0 && montantTotal < budget) {
         printf("Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
         return;
     }
@@ -324,17 +328,15 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
     if (budget > 0 && montantTotal > budget && tCagnotte[clientIndex] < (montantTotal - budget)) {
         printf("Attention : %s", attentionDepassement);
         printf("Vous ne pourrez pas payer. De plus vous n'avez pas assez dans votre cagnotte pour la déduire et payer\n");
-        printf("Montant de votre cagnotte %.2f\n", tCagnotte[clientIndex]);
     }
 
     if (budget > 0 && montantTotal > budget && montantTotal < budget + tCagnotte[clientIndex]) {
         printf("Attention : %s", attentionDepassement);
-        printf("Vous ne pourrez pas payer, mais vous avez suffisamment dans votre cagnotte pour payer.\n");
-        printf("Montant de votre cagnotte %.2f\n", tCagnotte[clientIndex]);
+        printf("Vous ne pourrez pas payer, mais vous avez suffisamment dans votre cagnotte pour déduire le prix.\n");
         printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
         while (scanf("%d", &choixCagnotte) != 1 || (choixCagnotte != 0 && choixCagnotte != 1)) {
             while (getchar() != '\n');
-            printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+            fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non :\x1B[0m ");
         }
 
         if (choixCagnotte == 1) {
@@ -342,28 +344,29 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
             verifFloat(&montantDeduction);
 
             while (montantDeduction < (montantTotal - budget)) {
-                printf("ERREUR : Vous devez déduire suffisamment pour payer l'intégralité du montant dû.\n");
+                fprintf(stderr, "\x1B[31mERREUR : Vous devez déduire suffisamment pour payer l'intégralité du montant dû.\x1B[0m\n");
                 printf("Montant minimum à déduire pour payer : %.2f\n", montantTotal - budget);
                 printf("Entrez le montant à déduire de votre cagnotte : ");
                 verifFloat(&montantDeduction);
             }
-
-            deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
-            printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
+            deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
+            return;
+        } else {
+            printf("Payement non effectué.\n");
+            return;
         }
     }
 
     printf("Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : ");
     while (scanf("%d", &choixCagnotte) != 1 || (choixCagnotte != 0 && choixCagnotte != 1)) {
         while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non :\x1B[0m ");
     }
 
     if (choixCagnotte == 1) {
         printf("Entrez le montant à déduire de votre cagnotte : ");
         verifFloat(&montantDeduction);
-        deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient, tSus);
-        printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
+        deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
     }
 }
 
@@ -372,7 +375,7 @@ void menu_client(int *choix) {
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9 || (*choix > 6 && *choix < 9)) {
         while (getchar() != '\n');
-        printf("ERREUR : Veuillez entrer un choix valide : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer un choix valide :\x1B[0m ");
     }
 }
 
@@ -414,7 +417,6 @@ void global_client(void) {
                 break;
             case 6:
                 reinitialiser_panier(tPanier, tQuantite, &tLogPanier, tCagnotte, numClient, tNumClient, tLogClient, tRef, tPrixUnitaire);
-                printf("Le panier a été réinitialisé.\n");
                 break;
             case 9:
                 quitter_application(tPanier, tLogPanier, tRef, tPoids, tVol, tPrixUnitaire, tQuantite, tCagnotte, numClient, tNumClient, tLogClient, budget, tSus);

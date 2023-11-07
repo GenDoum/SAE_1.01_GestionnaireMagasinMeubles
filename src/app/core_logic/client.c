@@ -84,7 +84,7 @@ void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int refe
 
 void verifInt(int *var) {
     while (scanf("%d", var) != 1 || *var < 0) {
-        fprintf(stderr, "Erreur de saisie, veuillez recommencer : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer une valeur valide (entier positif) :\x1B[0m ");
         while (getchar() != '\n');
     }
     while (getchar() != '\n');
@@ -92,8 +92,8 @@ void verifInt(int *var) {
 
 
 void verifFloat(float *var) {
-    while (scanf("%f", var) != 1 || *var < -1) {
+    while (scanf("%f", var) != 1 || *var < -0) {
         while (getchar() != '\n');
-        fprintf(stderr, "ERREUR : Veuillez entrer une valeur valide (entier positif) : ");
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer une valeur valide (valeur positive) :\x1B[0m ");
     }
 }
