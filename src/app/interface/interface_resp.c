@@ -430,7 +430,7 @@ void global_resp(void) {
                 modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
                 break;
             case 8:
-                ajouterClient(tNumClient, tCagnotte, tSus, &tLogClient, MAX_CLIENTS);
+                ajouterClient(tNumClient, tCagnotte, tSus, &tLogClient);
                 break;
             case 9:
                 affichModifClient(tNumClient, tSus, tLogClient);

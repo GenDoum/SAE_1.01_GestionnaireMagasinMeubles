@@ -107,7 +107,7 @@ void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
  * @param tLogique Pointeur vers la taille logique des tableaux.
  * @param tPhysique Taille physique des tableaux.
  */
-void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique, int tPhysique);
+void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique);
 
 /**
  * @brief Décode le mot de passe du fichier mdp.txt pour le comparer avec le mdp entré.

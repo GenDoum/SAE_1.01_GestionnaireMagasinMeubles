@@ -124,7 +124,7 @@ void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 
 }
 
-void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique, int tPhysique)
+void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique)
 {
     int numC = 0;
     affichAjoutClient(tNumClient, *tLogique, &numC);
