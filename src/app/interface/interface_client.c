@@ -278,10 +278,10 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
 
 void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
                         float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
-                        int tNumClient[], int tLogClient, float budget, int tSus[]) {
+                        int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale) {
 
     int reference, articleIndex, quantite, clientIndex, choixCagnotte = 0;
-    float montantTotal = 0, prixArticle = 0, montantDeduction = 0, depassement = 0;
+    float montantTotal = 0, prixArticle = 0, montantDeduction = 0, depassement = 0 , poidsTotal = 0, volumeTotal = 0, poidsArticle = 0, volumeArticle = 0;
     char attentionDepassement[200] = "";
 
     for (int i = 0; i < tLogPanier; i++) {
@@ -291,7 +291,22 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         prixArticle = tPrixUnitaire[articleIndex];
         quantite = tQuantite[i];
 
+        poidsTotal += poidsArticle * (float)quantite;
+        volumeTotal += volumeArticle * (float)quantite;
         montantTotal += prixArticle * (float)quantite;
+
+        if (poidsTotal > chargeMaximale) {
+            depassement = poidsTotal - chargeMaximale;
+            char message[100];
+            sprintf(message, "Dépassement de la charge autorisée de %.2f kg.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
+        if (volumeTotal > volumeCoffre) {
+            depassement = volumeTotal - volumeCoffre;
+            char message[100];
+            sprintf(message, "Dépassement du volume autorisé de %.2f litres.\n", depassement);
+            strcat(attentionDepassement, message);
+        }
 
         if (budget > 0 && montantTotal > budget) {
             depassement = montantTotal - budget;
@@ -303,11 +318,16 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
 
+    if (strlen(attentionDepassement) > 0) {
+        printf("Attention : \n");
+        printf("%s", attentionDepassement);
+    }
 
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     if (budget > 0) {
         printf("Budget : %.2f euros\n", budget);
     }
+
 
     if(tSus[clientIndex] == 1 && budget > 0 && montantTotal > budget) {
         printf("Attention : %s", attentionDepassement);
@@ -430,7 +450,7 @@ void global_client(void) {
                 reinitialiser_panier(tPanier, tQuantite, &tLogPanier, tCagnotte, numClient, tNumClient, tLogClient, tRef, tPrixUnitaire);
                 break;
             case 9:
-                quitter_application(tPanier, tLogPanier, tRef, tPoids, tVol, tPrixUnitaire, tQuantite, tCagnotte, numClient, tNumClient, tLogClient, budget, tSus);
+                quitter_application(tPanier, tLogPanier, tRef, tPoids, tVol, tPrixUnitaire, tQuantite, tCagnotte, numClient, tNumClient, tLogClient, budget, tSus, volumeCoffre, chargeMaximale);
                 sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
                 printf("Au revoir !\n");
                 return;

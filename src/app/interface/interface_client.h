@@ -152,10 +152,12 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
  * @param tLogClient - Le nombre total de clients.
  * @param budget - Le budget du client.
  * @param tSus - Un tableau d'état des clients suspendus.
+ * @param volumeCoffre - La limite de volume pour le véhicul du client.
+ * @param chargeMaximale - La limite de poids pour le véhicul du client.
  */
 void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
                          float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
-                         int tNumClient[], int tLogClient, float budget, int tSus[]);
+                         int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale);
 
 /**
  * @brief Afficher le menu du client et enregistrer le choix de l'utilisateur.
