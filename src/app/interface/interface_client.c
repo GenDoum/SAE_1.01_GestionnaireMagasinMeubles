@@ -378,6 +378,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         printf("Payement effectué.\n");
     } else {
         printf("Payement effectué.\n");
+    }
 }
 
 void menu_client(int *choix) {
