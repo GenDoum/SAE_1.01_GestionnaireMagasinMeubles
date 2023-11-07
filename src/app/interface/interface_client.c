@@ -28,8 +28,9 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
     float poidsTotal, montantTotal, volumeTotal, depassementCharge = 0, depassementVolume, depassementBudget = 0;
 
 
-    printf("Entrez la référence de l'article : ");
+    printf("Entrez la référence de l'article (-1 pour revenir en arrière) : ");
     verifInt(&reference);
+
     articleIndex = trouver_index_article(reference, tRef, tLogArticle);
 
     while (articleIndex == -1) {
@@ -38,8 +39,12 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
         articleIndex = trouver_index_article(reference, tRef, tLogArticle);
     }
 
-    printf("Entrez la quantité : ");
+    printf("Entrez la quantité (-1 pour revenir en arrière) : ");
     verifInt(&quantite);
+
+    if(quantite == -1) {
+        return;
+    }
 
     poidsTotal = tPoids[articleIndex] * quantite;
     volumeTotal = tVol[articleIndex] * quantite;
@@ -99,8 +104,12 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
 void supprimer_article_du_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[]) {
     int reference, articleIndex;
 
-    printf("Entrez la référence de l'article à supprimer : ");
+    printf("Entrez la référence de l'article à supprimer (-1 pour revenir en arrière) : ");
     verifInt(&reference);
+
+    if(reference == -1) {
+        return;
+    }
 
     articleIndex = trouver_index_article(reference, tRef, MAX_ARTICLES);
 
@@ -185,19 +194,23 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
 void configurer_session_client(int tNumClient[], int tLogClient, double *budget, float *volumeCoffre, float *chargeMaximale, int *numClient) {
     int indexClient, choixBudget = 0;
 
-    printf("Veuillez saisir votre numéro de client : ");
+    printf("Veuillez saisir votre numéro de client (ou -1 pour revenir en arrière) : ");
     verifInt(numClient);
+
+    if(*numClient == -1) {
+        return;
+    }
 
     indexClient = trouver_index_client(*numClient, tNumClient, tLogClient);
 
     while (indexClient == -1) {
-        printf("ERREUR : Veuillez entrer un numéro de client valide : ");
+        printf("ERREUR : Veuillez entrer un numéro de client valide (ou -1 pour revenir en arrière) : ");
         verifInt(numClient);
         indexClient = trouver_index_client(*numClient, tNumClient, tLogClient);
     }
 
 
-    printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : ");
+    printf("Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non ou -1 pour revenir en arrière) : ");
     while (scanf("%d", &choixBudget) != 1 || (choixBudget != 0 && choixBudget != 1)) {
         while (getchar() != '\n');
         printf("ERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non : ");
