@@ -92,8 +92,8 @@ void verifInt(int *var) {
 
 
 void verifFloat(float *var) {
-    while (scanf("%f", var) != 1 || *var < -0) {
-        while (getchar() != '\n');
+    while (scanf("%f", var) != 1 || *var < 0) {
         fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer une valeur valide (valeur positive) :\x1B[0m ");
+        while (getchar() != '\n');
     }
 }

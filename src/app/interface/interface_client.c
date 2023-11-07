@@ -318,6 +318,13 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
 
     if(tSus[clientIndex] == 1 && budget > 0 && montantTotal < budget) {
         printf("Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
+        printf("Payement effectué.\n");
+        return;
+    }
+
+    if(tSus[clientIndex] == 1) {
+        printf("Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.\n");
+        printf("Payement effectué.\n");
         return;
     }
 
@@ -350,6 +357,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
                 verifFloat(&montantDeduction);
             }
             deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
+            printf("Payement effectué.\n");
             return;
         } else {
             printf("Payement non effectué.\n");
@@ -367,7 +375,9 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         printf("Entrez le montant à déduire de votre cagnotte : ");
         verifFloat(&montantDeduction);
         deduire_cagnotte(numClient, montantDeduction, tNumClient, tCagnotte, tLogClient);
-    }
+        printf("Payement effectué.\n");
+    } else {
+        printf("Payement effectué.\n");
 }
 
 void menu_client(int *choix) {
