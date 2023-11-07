@@ -155,9 +155,9 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
                reference, quantite, poidsArticle, volumeArticle,
                prixArticle, poidsArticle * quantite, volumeArticle * quantite, prixArticle * quantite);
 
-        poidsTotal += poidsArticle * quantite;
-        volumeTotal += volumeArticle * quantite;
-        montantTotal += prixArticle * quantite;
+        poidsTotal += poidsArticle * (float)quantite;
+        volumeTotal += volumeArticle * (float)quantite;
+        montantTotal += prixArticle * (float)quantite;
 
         if (poidsTotal > chargeMaximale) {
             float depassement = poidsTotal - chargeMaximale;
