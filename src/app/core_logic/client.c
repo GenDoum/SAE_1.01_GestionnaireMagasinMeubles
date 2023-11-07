@@ -83,7 +83,7 @@ void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int refe
 }
 
 void verifInt(int *var) {
-    while (scanf("%d", var) != 1 || *var < -1) {
+    while (scanf("%d", var) != 1 || *var < 0) {
         fprintf(stderr, "Erreur de saisie, veuillez recommencer : ");
         while (getchar() != '\n');
     }
