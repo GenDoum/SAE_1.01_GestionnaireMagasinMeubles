@@ -135,3 +135,6 @@ void global_resp(void);
  * @author Yannis Doumir Fernandes
  */
 void affiche_resp(void);
+
+void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueReduc, int tRef[], float tPrix[], int tLogArticle);
+int affichSuprReduc(int tRefReduc[], int tLogReduc, int *indexReduc);

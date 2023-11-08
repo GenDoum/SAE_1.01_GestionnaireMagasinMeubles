@@ -277,8 +277,8 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
 }
 
 void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
-                        float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
-                        int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale) {
+                         float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
+                         int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale) {
 
     int reference, articleIndex, quantite, clientIndex, choixCagnotte = 0;
     float montantTotal = 0, prixArticle = 0, montantDeduction = 0, depassement = 0 , poidsTotal = 0, volumeTotal = 0, poidsArticle = 0, volumeArticle = 0;
@@ -425,10 +425,10 @@ void menu_client(int *choix) {
 
 void global_client(void) {
     int choix, tRef[MAX_ARTICLES], tNumClient[MAX_CLIENTS], tSus[MAX_CLIENTS], tLogArticle, tLogClient,
-        numClient, tQuantite[MAX_ARTICLES], tPanier[MAX_ARTICLES], tLogPanier = 0;
+            numClient, tQuantite[MAX_ARTICLES], tPanier[MAX_ARTICLES], tLogPanier = 0;
 
     float tPoids[MAX_ARTICLES], tVol[MAX_ARTICLES], tPrixUnitaire[MAX_ARTICLES], tCagnotte[MAX_CLIENTS],
-          volumeCoffre, chargeMaximale;
+            volumeCoffre, chargeMaximale;
 
     double budget = -1.0;
 

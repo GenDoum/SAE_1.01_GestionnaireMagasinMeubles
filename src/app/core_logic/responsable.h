@@ -107,12 +107,12 @@ void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
  * @param tLogique Pointeur vers la taille logique des tableaux.
  * @param tPhysique Taille physique des tableaux.
  */
-void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique, int tPhysique);
+void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique);
 
 /**
  * @brief Décode le mot de passe du fichier mdp.txt pour le comparer avec le mdp entré.
  * @author Yannis Doumir Fernandes
- * 
+ *
  * @param mdpEnter Mot de passe entrer par l'utilisateur.
 */
 int decodageMDP(char *mdpEnter);
@@ -120,7 +120,7 @@ int decodageMDP(char *mdpEnter);
 /**
  * @brief Lis le mot de passe codé dans le fichier mdp.txt, le compare au mot de passe entré à laide de decodageMDP
  * @author Yannis Doumir Fernandes
- * 
+ *
  * @param texte chaine de caractère comparé avec le mot de passe du fichier.
  * @param decalage entier qui sert de clé pour déchiffrer le mot de passe.
 */
@@ -129,3 +129,7 @@ void dechiffrerCesar(char *texte, int decalage);
 void chiffrementCesar(char *mdp, int decalage);
 int verifModifMDP(char *mdp, char *confirmMDP, int decalage);
 int enregistrerMotDePasse(char *mdp, int decalage);
+int chargementReduc( int tRefProm[], int tReduc[], int tPhysique);
+void sauvegardeReduc(int tRefReduc[], int tReduc[], int tLogReduc);
+float retrouvePrix(float prixReduit, int reduction);
+void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[], float tPrix[], int tLogArticle);

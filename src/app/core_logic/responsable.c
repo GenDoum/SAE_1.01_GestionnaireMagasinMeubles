@@ -47,7 +47,7 @@ void sauvegardArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
         fprintf(stderr, "\n Problème ouverture ficher\n");
         return;
     }
-    
+
     for ( i = 0; i < tLogique; i++)
     {
         fprintf(fe,"\t %d\t  %.2f\t %.2f\t %.2f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
@@ -124,7 +124,7 @@ void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 
 }
 
-void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique, int tPhysique)
+void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogique)
 {
     int numC = 0;
     affichAjoutClient(tNumClient, *tLogique, &numC);
@@ -180,11 +180,11 @@ int decodageMDP(char *mdpEnter)
 void chiffrementCesar(char *mdp, int decalage) {
     int i;
     int longueur = strlen(mdp);
-    for (i = 0; i < longueur; ++i) 
-        {
+    for (i = 0; i < longueur; ++i)
+    {
         if (mdp[i] >= 'a' && mdp[i] <= 'z') {
             mdp[i] = 'a' + (mdp[i] - 'a' + decalage) % 26;
-        } else if (mdp[i] >= 'A' && mdp[i] <= 'Z') 
+        } else if (mdp[i] >= 'A' && mdp[i] <= 'Z')
         {
             mdp[i] = 'A' + (mdp[i] - 'A' + decalage) % 26;
         }
@@ -200,14 +200,14 @@ int verifModifMDP(char *mdp, char *confirmMDP, int decalage)
     }
     fprintf(stderr, "\tLes mot de passe ne sont pas identiques !\n");
     return -1;
-    
+
 }
 
-int enregistrerMotDePasse(char *mdp, int decalage) 
+int enregistrerMotDePasse(char *mdp, int decalage)
 {
     FILE *fe;
     fe = fopen("donnee/mdp.txt", "w");
-    if (fe == NULL) 
+    if (fe == NULL)
     {
         fprintf(stderr,"Erreur lors de l'ouverture du fichier.\n");
         return -1;
@@ -219,22 +219,64 @@ int enregistrerMotDePasse(char *mdp, int decalage)
     fclose(fe);
     return 0;
 }
-/*
-int chargementReduc( int tRefProm[], int tReduc[])
+
+int chargementReduc( int tRefProm[], int tReduc[], int tPhysique)
 {
     int i = 0, ref, reduc;
     FILE *fe;
-    fe = fopen("promotion.txt", "r");
+    fe = fopen("donnee/promotion.txt", "r");
     if ( fe == NULL )
-    {  
+    {
         fprintf(fe, "Problème ouverture fichier");
         return -1;
     }
-    while ( scanf("%d %d", &ref, &reduc) == 2)
+    while ( i < tPhysique && fscanf(fe, "%d %d", &ref, &reduc) == 2 )
     {
         tRefProm[i] = ref;
         tReduc[i] = reduc;
         ++i;
     }
+    fclose(fe);
+    return i;
 }
-*/
+
+void sauvegardeReduc( int tRefReduc[], int tReduc[], int tLogReduc)
+{
+    FILE * fe;
+    fe = fopen("donnee/promotion.txt", "w");
+    if ( fe == NULL )
+    {
+        fprintf(stderr, "Problème ouverture fichier.\n");
+        return;
+    }
+
+    for ( int i = 0; i < tLogReduc; ++i)
+    {
+        fprintf(fe, "%d\t%d\n", tRefReduc[i], tReduc[i]);
+    }
+    fclose(fe);
+    return;
+}
+
+float retrouvePrix(float prixReduit, int reduction)
+{
+    printf("BLABLA%d", reduction);
+    return prixReduit / (1.0 - (reduction / 100.0));
+}
+
+void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[], float tPrix[], int tLogArticle)
+{
+    int indexReduc, indexPrix, ref;
+    float temp;
+    ref = affichSuprReduc( tRefReduc, *tLogReduc, &indexReduc);
+    for ( int i = indexReduc; i < *tLogReduc-1; ++i)
+    {
+        tRefReduc[i] = tRefReduc[i+1];
+        tReduc[i] = tReduc[i+1];
+    }
+
+    --(*tLogReduc);
+    indexPrix = trouver_index_article(ref, tRef, tLogArticle);
+    tPrix[indexPrix] = retrouvePrix(tPrix[indexPrix], tReduc[indexReduc]);
+
+}
