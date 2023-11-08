@@ -32,7 +32,6 @@ void affiche_client(void);
  * @param tPrixUnitaire - Un tableau de prix unitaires d'articles.
  * @param tNumClient - Un tableau de numéros d'articles.
  * @param tCagnotte - Un tableau de cagnottes.
- * @param tSus - Un tableau d'articles suspendus.
  * @param tLogArticle - Le nombre total d'articles disponibles.
  * @param tLogClient - Le nombre total de clients.
  * @param volumeCoffre - La limite de volume pour le panier du client.
@@ -43,7 +42,7 @@ void affiche_client(void);
  * @param budget - Le budget du client.
  */
 void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float tVol[], float tPrixUnitaire[],
-                               int tNumClient[], float tCagnotte[], int tSus[], int tLogArticle, int tLogClient,
+                               int tNumClient[], float tCagnotte[], int tLogArticle, int tLogClient,
                                float volumeCoffre, float chargeMaximale, int tPanier[], int tQuantite[], int *tLogPanier, float budget);
 
 /**
@@ -135,7 +134,7 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
  * @param tLogClient - Le nombre total de clients.
  * @param tSus - Un tableau d'état des clients suspendus.
  */
-void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient, int tSus[]);
+void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient);
 
 /**
  * @brief Quitter l'application client.
@@ -153,10 +152,12 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
  * @param tLogClient - Le nombre total de clients.
  * @param budget - Le budget du client.
  * @param tSus - Un tableau d'état des clients suspendus.
+ * @param volumeCoffre - La limite de volume pour le véhicul du client.
+ * @param chargeMaximale - La limite de poids pour le véhicul du client.
  */
 void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
                          float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
-                         int tNumClient[], int tLogClient, float budget, int tSus[]);
+                         int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale);
 
 /**
  * @brief Afficher le menu du client et enregistrer le choix de l'utilisateur.

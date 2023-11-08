@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface_resp.h"
@@ -66,7 +64,7 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
         printf("\tEntrez une référence valide\n");
         while (getchar() != '\n');
     }
-    
+
     for (int i = 0; i < tLogique; ++i) {
         if (ref == tRef[i]) {
             printf("\t Ref\t Poids\t Volume\t Prix\n");
@@ -107,7 +105,7 @@ void affichClients(int tNumClient[], float tCagnotte[], int tSus[], int tLogique
 void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix, int tRef[], int tLogArticle) {
     printf("\t Entrez la ref du nouveau produit\n");
     while (scanf("%d", ref) != 1 || *ref <= 0) {
-        
+
         printf("\t Veuillez entrer une référence valide.\n");
         while (getchar() != '\n');
     }
@@ -120,28 +118,28 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix, int 
     else
     {
         printf("\t Entrez le poids du nouveau produit\n");
-        while (scanf("%f", poids) != 1 || *poids <= 0) 
+        while (scanf("%f", poids) != 1 || *poids <= 0)
         {
             printf("\t Veuillez entrer un poids valide.\n");
             while (getchar() != '\n');
         }
 
-    printf("\t Entrez le volume du nouveau produit\n");
-        while (scanf("%f", volume) != 1 || *volume <= 0) 
+        printf("\t Entrez le volume du nouveau produit\n");
+        while (scanf("%f", volume) != 1 || *volume <= 0)
         {
             printf("\t Veuillez entrer un volume valide.\n");
             while (getchar() != '\n');
         }
 
-    printf("\t Entrez le prix du nouveau produit\n");
-        while (scanf("%f", prix) != 1 || *prix <= 0) 
+        printf("\t Entrez le prix du nouveau produit\n");
+        while (scanf("%f", prix) != 1 || *prix <= 0)
         {
             printf("\t Veuillez entrer un prix valide.\n");
             while (getchar() != '\n');
         }
     }
 
-    
+
 }
 
 void affichSupprimerArticle(int *ref) {
@@ -200,7 +198,7 @@ int affichageConnexion(void)
     scanf("%s", mdpEnter);
 
     int verif = decodageMDP(mdpEnter);
-    
+
     if ( verif == 0 )
     {
         printf("+--------------------------------------------+\n");
@@ -228,7 +226,7 @@ void affichModifClient(int tNumClient[], int tSus[], int tLogique)
         printf("\t Entrez une valeur valide ! \n");
         while (getchar() != '\n');
     }
-    
+
     for ( int i = 0; i <=  tLogique; i++)
     {
         if ( numC == tNumClient[i] )
@@ -289,8 +287,8 @@ void suppressionClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLo
         printf("\t Entrez une valeur valide ! \n");
         while (getchar() != '\n');
     }
-    
-    
+
+
     for ( int i = 0; i <  *tLogique; ++i)
     {
         if ( numC == tNumClient[i] )
@@ -364,14 +362,14 @@ void affichModifMDP(void)
             printf("Veuillez recommencer la saisie : ");
             while (getchar() != '\n');
         }
-        
+
         printf("\t Veuillez entrer le nouveau décalage\n");
         while (scanf("%d", &decalage) != 1 || decalage < 0)
         {
             printf("\t Veuillez entrer un nombre valide : ");
             while (getchar() != '\n');
         }
-        int verif = verifModifMDP(newMDP, confirmMDP, decalage);  
+        int verif = verifModifMDP(newMDP, confirmMDP, decalage);
         if ( verif == 0 )
         {
             printf("\t Mot de passe modifié !\n");
@@ -395,7 +393,7 @@ void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueRed
         fprintf(stderr, "\tTableau pleins !\n");
         return;
     }
-    
+
     printf("\tA quel article voulez-vous ajouter une promotion ?\n");
     while (scanf("%d", &ref) !=1 || ref < 0)
     {
@@ -405,16 +403,16 @@ void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueRed
 
     int verif = trouver_index_article(ref, tRef, tLogArticle);
 
-    while ( (verif = trouver_index_article(ref, tRef, tLogArticle)) == -1 ) 
+    while ( (verif = trouver_index_article(ref, tRef, tLogArticle)) == -1 )
     {
         printf("\t Entrez une référence existante !\n");
         while (scanf("%d", &ref) !=1 || ref < 0)
         {
             printf("\t Entrez une référence correcte !\n");
             while (getchar() != '\n');
-        }        
+        }
     }
-    
+
     printf("\tQuel pourcentage ?\n");
     while (scanf("%f", &reduc) !=1 || reduc < 0 || reduc > 100)
     {
@@ -439,7 +437,7 @@ int affichSuprReduc(int tRefReduc[], int tLogReduc, int *indexReduc)
         fprintf(stderr, "\t Entrez une référence correcte !\n");
         while (getchar() != '\n');
     }
-    
+
     while( ( *indexReduc = trouver_index_article(ref, tRefReduc, tLogReduc) )== -1 )
     {
         printf("\t Entrez une référence qui a une réduction !\n");
@@ -447,7 +445,7 @@ int affichSuprReduc(int tRefReduc[], int tLogReduc, int *indexReduc)
         {
             printf("\t Entrez une référence correcte !\n");
             while (getchar() != '\n');
-        }      
+        }
     }
     printf("\t Suppression réussi !\n");
     return ref;
@@ -483,8 +481,8 @@ void global_resp(void) {
     do {
         menu_resp(&choix);
         switch (choix) {
-            
-            
+
+
             case 1:
                 affichUnClient(tNumClient, tCagnotte, tSus, tLogClient);
                 break;
@@ -496,10 +494,10 @@ void global_resp(void) {
                 break;
             case 4:
                 suppressionClient(tNumClient, tCagnotte ,tSus , &tLogClient);
-                break; 
+                break;
             case 5:
                 affichModifClient(tNumClient, tSus, tLogClient);
-                break; 
+                break;
             case 6:
                 affichUnArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
                 break;
@@ -538,5 +536,5 @@ void global_resp(void) {
                 break;
         }
     } while (choix != MENU_QUIT);
-    
+
 }

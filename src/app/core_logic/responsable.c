@@ -47,7 +47,7 @@ void sauvegardArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], 
         fprintf(stderr, "\n Problème ouverture ficher\n");
         return;
     }
-    
+
     for ( i = 0; i < tLogique; i++)
     {
         fprintf(fe,"\t %d\t  %.2f\t %.2f\t %.2f\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
@@ -180,11 +180,11 @@ int decodageMDP(char *mdpEnter)
 void chiffrementCesar(char *mdp, int decalage) {
     int i;
     int longueur = strlen(mdp);
-    for (i = 0; i < longueur; ++i) 
-        {
+    for (i = 0; i < longueur; ++i)
+    {
         if (mdp[i] >= 'a' && mdp[i] <= 'z') {
             mdp[i] = 'a' + (mdp[i] - 'a' + decalage) % 26;
-        } else if (mdp[i] >= 'A' && mdp[i] <= 'Z') 
+        } else if (mdp[i] >= 'A' && mdp[i] <= 'Z')
         {
             mdp[i] = 'A' + (mdp[i] - 'A' + decalage) % 26;
         }
@@ -200,14 +200,14 @@ int verifModifMDP(char *mdp, char *confirmMDP, int decalage)
     }
     fprintf(stderr, "\tLes mot de passe ne sont pas identiques !\n");
     return -1;
-    
+
 }
 
-int enregistrerMotDePasse(char *mdp, int decalage) 
+int enregistrerMotDePasse(char *mdp, int decalage)
 {
     FILE *fe;
     fe = fopen("donnee/mdp.txt", "w");
-    if (fe == NULL) 
+    if (fe == NULL)
     {
         fprintf(stderr,"Erreur lors de l'ouverture du fichier.\n");
         return -1;
@@ -277,6 +277,6 @@ void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[],
 
     --(*tLogReduc);
     indexPrix = trouver_index_article(ref, tRef, tLogArticle);
-   tPrix[indexPrix] = retrouvePrix(tPrix[indexPrix], tReduc[indexReduc]);
+    tPrix[indexPrix] = retrouvePrix(tPrix[indexPrix], tReduc[indexReduc]);
 
 }

@@ -74,5 +74,18 @@ int trouver_index_client(int numClient, int tNumClient[], int tLogClient);
  */
 void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int reference, int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[], float tCagnotte[]);
 
+/**
+ * @brief Vérifie l'entrée utilisateur pour un entier.
+ *
+ * @param var une variable de type int
+ */
+void verifInt(int *var);
+
+/**
+ * @brief Vérifie l'entrée utilisateur pour un float.
+ *
+ * @param var une variable de type float
+ */
+void verifFloat(float *var);
 
 #endif // CLIENT_H

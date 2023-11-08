@@ -112,7 +112,7 @@ void ajouterClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLogiqu
 /**
  * @brief Décode le mot de passe du fichier mdp.txt pour le comparer avec le mdp entré.
  * @author Yannis Doumir Fernandes
- * 
+ *
  * @param mdpEnter Mot de passe entrer par l'utilisateur.
 */
 int decodageMDP(char *mdpEnter);
@@ -120,7 +120,7 @@ int decodageMDP(char *mdpEnter);
 /**
  * @brief Lis le mot de passe codé dans le fichier mdp.txt, le compare au mot de passe entré à laide de decodageMDP
  * @author Yannis Doumir Fernandes
- * 
+ *
  * @param texte chaine de caractère comparé avec le mot de passe du fichier.
  * @param decalage entier qui sert de clé pour déchiffrer le mot de passe.
 */

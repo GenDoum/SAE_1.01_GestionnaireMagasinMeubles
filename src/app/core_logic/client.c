@@ -81,3 +81,19 @@ void supprimer_article(int tPanier[], int tQuantite[], int *tLogPanier, int refe
         tCagnotte[clientIndex] -= 0.1 * montantTotal;
     }
 }
+
+void verifInt(int *var) {
+    while (scanf("%d", var) != 1 || *var < 0) {
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer une valeur valide (entier positif) :\x1B[0m ");
+        while (getchar() != '\n');
+    }
+    while (getchar() != '\n');
+}
+
+
+void verifFloat(float *var) {
+    while (scanf("%f", var) != 1 || *var < 0) {
+        fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer une valeur valide (valeur positive) :\x1B[0m ");
+        while (getchar() != '\n');
+    }
+}
