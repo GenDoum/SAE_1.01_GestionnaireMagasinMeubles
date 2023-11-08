@@ -137,7 +137,9 @@ void reinitialiser_panier(int tPanier[], int tQuantite[], int *tLogPanier, float
 void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCagnotte[], int tLogClient);
 
 /**
- * @brief Quitter l'application client.
+ * @brief Passe a la phase de paiement.
+ *
+ * Cette fonction vérifie les dépassement de volume, de poids et de budget avant de quitter l'application.
  *
  * @param tPanier - Le panier d'achat du client.
  * @param tLogPanier - La taille du panier.
@@ -155,7 +157,7 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
  * @param volumeCoffre - La limite de volume pour le véhicul du client.
  * @param chargeMaximale - La limite de poids pour le véhicul du client.
  */
-void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
+void payer(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
                          float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
                          int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale);
 

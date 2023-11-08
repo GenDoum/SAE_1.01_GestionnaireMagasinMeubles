@@ -16,6 +16,7 @@ void affiche_client(void) {
     printf("||\t4 : Supprimer un article du panier. \t\t\t||\n");
     printf("||\t5 : Modifier la quantité d'un article du panier. \t||\n");
     printf("||\t6 : Réinitialiser le panier.\t\t\t\t||\n");
+    printf("||\t7 : Passer au payement.\t\t\t\t\t||\n");
     printf("||\t9 : Quitter.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
@@ -276,7 +277,7 @@ void deduire_cagnotte(int numClient, float montant, int tNumClient[], float tCag
     printf("Il vous reste %.2f euros dans votre cagnotte.\n", tCagnotte[clientIndex]);
 }
 
-void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
+void payer(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[],
                          float tPrixUnitaire[], int tQuantite[], float tCagnotte[], int numClient,
                          int tNumClient[], int tLogClient, float budget, int tSus[], float volumeCoffre, float chargeMaximale) {
 
@@ -328,18 +329,21 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
     printf("Volume utilise : %.2f litres\n", volumeTotal);
     printf("Charge Actuelle: %.2f kg\n", poidsTotal);
 
-    if(volumeTotal > volumeCoffre) {
+    if(poidsTotal > chargeMaximale || volumeTotal > volumeCoffre) {
         printf("Attention : %s", attentionDepassement);
         printf("Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.\n");
-        printf("Payement non effectué.\n");
-        return;
-    }
+        printf("Voulez vous revenir en arrière pour modifier votre panier ? (1 pour Oui, 0 pour Non) : ");
+        while (scanf("%d", &choixCagnotte) != 1 || (choixCagnotte != 0 && choixCagnotte != 1)) {
+            while (getchar() != '\n');
+            fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer 1 pour Oui ou 0 pour Non :\x1B[0m ");
+        }
 
-    if(poidsTotal > chargeMaximale) {
-        printf("Attention : %s", attentionDepassement);
-        printf("Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.\n");
-        printf("Payement non effectué.\n");
-        return;
+        if (choixCagnotte == 1) {
+            return;
+        } else {
+            printf("Payement non effectué.\n");
+            return;
+        }
     }
 
     if(tSus[clientIndex] == 1 && budget > 0 && montantTotal > budget) {
@@ -417,7 +421,7 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
 void menu_client(int *choix) {
     affiche_client();
     printf("Vous choisissez: ");
-    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9 || (*choix > 6 && *choix < 9)) {
+    while (scanf("%d", choix) != 1 || *choix < 0 || *choix > 9 || (*choix > 7 && *choix < 9)) {
         while (getchar() != '\n');
         fprintf(stderr, "\x1B[31mERREUR : Veuillez entrer un choix valide :\x1B[0m ");
     }
@@ -462,8 +466,10 @@ void global_client(void) {
             case 6:
                 reinitialiser_panier(tPanier, tQuantite, &tLogPanier, tCagnotte, numClient, tNumClient, tLogClient, tRef, tPrixUnitaire);
                 break;
+            case 7:
+                payer(tPanier, tLogPanier, tRef, tPoids, tVol, tPrixUnitaire, tQuantite, tCagnotte, numClient, tNumClient, tLogClient, budget, tSus, volumeCoffre, chargeMaximale);
+                break;
             case 9:
-                quitter_application(tPanier, tLogPanier, tRef, tPoids, tVol, tPrixUnitaire, tQuantite, tCagnotte, numClient, tNumClient, tLogClient, budget, tSus, volumeCoffre, chargeMaximale);
                 sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
                 printf("Au revoir !\n");
                 return;
