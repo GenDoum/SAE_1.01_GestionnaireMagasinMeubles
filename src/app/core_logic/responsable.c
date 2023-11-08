@@ -99,8 +99,33 @@ void rechercheRefArticle(int tRef[], int ref, int *index, int tLogique)
 void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int *tLogique)
 {
     int ref, index;
-    affichSupprimerArticle(&ref);
-    rechercheRefArticle(tRef, ref, &index, *tLogique);
+
+    if ( *tLogique == 0)
+    {
+        fprintf(stderr,"\x1B[31mERREUR : Aucun article dans le magasin pour l'instant.\x1B[0m");
+        return;
+    }
+
+    affichSupprimerArticle(&ref, *tLogique, tRef);
+    index = trouver_index_article(ref, tRef, *tLogique);
+
+    for( int i = index; i < *tLogique; ++i)
+    {
+        tRef[i] = tRef[i+1];
+        tPoids[i] = tPoids[i+1];
+        tVol[i] = tVol[i+1];
+        tPrix[i] = tPrix[i+1];
+    }
+    (*tLogique)--;
+}
+
+/*
+void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int *tLogique)
+{
+    int ref, index;
+    affichSupprimerArticle(&ref, *tLogique, tRef);
+    index = trouver_index_article(ref, tRef, *tLogique);
+    //rechercheRefArticle(tRef, ref, &index, *tLogique);
 
     for( int i = index; i < *tLogique-1; ++i)
     {
@@ -111,6 +136,7 @@ void supprimerArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], i
     }
     (*tLogique)--;
 }
+*/
 
 void modifierArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique)
 {
@@ -261,7 +287,6 @@ void sauvegardeReduc( int tRefReduc[], int tReduc[], int tLogReduc)
 
 float retrouvePrix(float prixReduit, int reduction)
 {
-    printf("BLABLA%d", reduction);
     return prixReduit / (1.0 - (reduction / 100.0));
 }
 

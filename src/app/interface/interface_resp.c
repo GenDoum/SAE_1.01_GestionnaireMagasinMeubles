@@ -44,9 +44,9 @@ void affiche_resp(void) {
 
 void affichArticles(int tRef[], float tPoids[], float tVol[], float tPrix[], int tLogique) {
     printf("\t Liste des articles\n\n");
-    printf("\t Ref\t Poids\t Volume\t Prix\n");
+    printf("\t Ref\t\t Poids\t\t Volume\t\t Prix\n");
     for (int i = 0; i < tLogique; ++i) {
-        printf("\t %d\t  %.2f\t  %.2f\t  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
+        printf("\t %d\t\t  %.2f\t\t  %.2f\t\t  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
     }
 }
 
@@ -58,8 +58,8 @@ void affichUnArticle(int tRef[], float tPoids[], float tVol[], float tPrix[], in
 
     for (int i = 0; i < tLogique; ++i) {
         if (ref == tRef[i]) {
-            printf("\t Ref\t Poids\t Volume\t Prix\n");
-            printf("\t %d\t %.2f\t %.2f\t  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
+            printf("\t Ref\t\t Poids\t\t Volume\t\t Prix\n");
+            printf("\t %d\t\t %.2f\t\t %.2f\t\t  %.2f\n\n", tRef[i], tPoids[i], tVol[i], tPrix[i]);
             return;
         }
     }
@@ -118,11 +118,18 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix, int 
 
 }
 
-void affichSupprimerArticle(int *ref) {
+void affichSupprimerArticle(int *ref, int tLogArticle, int tRef[]) 
+{
     printf("Entrez la référence de l'article que vous voulez supprimer : ");
     verifInt(ref);
+    
+    int index = trouver_index_article(*ref, tRef, tLogArticle);
+    while (index == -1) {
+        fprintf(stderr, "\x1B[31mERREUR : Article inexistant. Veuillez entrer un numéro valide :\x1B[0m ");
+        verifInt(ref);
+        index = trouver_index_article(*ref, tRef, tLogArticle);
+    }
 }
-
 
 void affichModifierArticle(int *ref, float *poids, float *volume, float *prix) {
     printf("\t Quelle est la référence de l'article que vous voulez modifier ?\n");
@@ -394,7 +401,6 @@ void menu_resp(int *choix) {
     printf("Vous choisissez: ");
     while (scanf("%d", choix) != 1 || *choix < 0 || *choix > MENU_QUIT) {
         while (getchar() != '\n');
-        affiche_resp();
         printf("Veuillez entrer un choix valide : ");
     }
 }
