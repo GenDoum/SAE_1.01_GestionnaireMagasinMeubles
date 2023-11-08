@@ -125,7 +125,6 @@ void affichSupprimerArticle(int *ref) {
 
 
 void affichModifierArticle(int *ref, float *poids, float *volume, float *prix) {
-    int articleIndex;
     printf("\t Quelle est la référence de l'article que vous voulez modifier ?\n");
     verifInt(ref);
 
@@ -340,8 +339,8 @@ void affichModifMDP(void)
 
 void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueReduc, int tRef[], float tPrix[], int tLogArticle)
 {
-    int indexReduc, indexPrix, ref;
-    float newPrix, reduc;
+    int indexPrix, ref;
+    float reduc;
 
     if ( *tLogReduc == tPhysiqueReduc)
     {

@@ -268,7 +268,6 @@ float retrouvePrix(float prixReduit, int reduction)
 void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[], float tPrix[], int tLogArticle)
 {
     int indexReduc, indexPrix, ref;
-    float temp;
     ref = affichSuprReduc( tRefReduc, *tLogReduc, &indexReduc);
     for ( int i = indexReduc; i < *tLogReduc-1; ++i)
     {
