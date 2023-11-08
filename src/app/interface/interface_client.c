@@ -288,6 +288,8 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
         reference = tPanier[i];
         articleIndex = trouver_index_article(reference, tRef, MAX_ARTICLES);
 
+        poidsArticle = tPoid[articleIndex];
+        volumeArticle = tVol[articleIndex];
         prixArticle = tPrixUnitaire[articleIndex];
         quantite = tQuantite[i];
 
@@ -318,16 +320,27 @@ void quitter_application(int tPanier[], int tLogPanier, int tRef[], float tPoid[
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
 
-    if (strlen(attentionDepassement) > 0) {
-        printf("Attention : \n");
-        printf("%s", attentionDepassement);
-    }
-
     printf("Prix total à payer: %.2f euros\n", montantTotal);
     if (budget > 0) {
         printf("Budget : %.2f euros\n", budget);
     }
 
+    printf("Volume utilise : %.2f litres\n", volumeTotal);
+    printf("Charge Actuelle: %.2f kg\n", poidsTotal);
+
+    if(volumeTotal > volumeCoffre) {
+        printf("Attention : %s", attentionDepassement);
+        printf("Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.\n");
+        printf("Payement non effectué.\n");
+        return;
+    }
+
+    if(poidsTotal > chargeMaximale) {
+        printf("Attention : %s", attentionDepassement);
+        printf("Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.\n");
+        printf("Payement non effectué.\n");
+        return;
+    }
 
     if(tSus[clientIndex] == 1 && budget > 0 && montantTotal > budget) {
         printf("Attention : %s", attentionDepassement);
