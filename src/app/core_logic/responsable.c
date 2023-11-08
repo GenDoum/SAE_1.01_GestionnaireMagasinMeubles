@@ -8,6 +8,7 @@
 #include <string.h>
 #include "responsable.h"
 #include "../interface/interface_resp.h"
+#include "client.h"
 
 #define MAX_SIZE_MDP 21
 

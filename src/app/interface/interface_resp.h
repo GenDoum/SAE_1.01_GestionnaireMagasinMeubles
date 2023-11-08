@@ -3,6 +3,11 @@
  * @brief En-tête des fonctions liées à l'interface du responsable.
  */
 
+#include <stdio.h>
+#include <unistd.h>
+#include "../core_logic/responsable.h"
+#include "../core_logic/client.h"
+
 /**
  * @brief Affiche la liste des articles.
  * @author Yannis Doumir Fernandes
