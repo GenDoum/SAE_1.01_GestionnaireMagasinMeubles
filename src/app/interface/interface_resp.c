@@ -129,6 +129,9 @@ void affichSupprimerArticle(int *ref, int tLogArticle, int tRef[])
         verifInt(ref);
         index = trouver_index_article(*ref, tRef, tLogArticle);
     }
+
+    printf("\033[32mL'article %d a été supprimé avec succès.\033[0m\n", tRef[index]);
+
 }
 
 void affichModifierArticle(int *ref, float *poids, float *volume, float *prix) {
