@@ -219,22 +219,64 @@ int enregistrerMotDePasse(char *mdp, int decalage)
     fclose(fe);
     return 0;
 }
-/*
-int chargementReduc( int tRefProm[], int tReduc[])
+
+int chargementReduc( int tRefProm[], int tReduc[], int tPhysique)
 {
     int i = 0, ref, reduc;
     FILE *fe;
-    fe = fopen("promotion.txt", "r");
+    fe = fopen("donnee/promotion.txt", "r");
     if ( fe == NULL )
-    {  
+    {
         fprintf(fe, "Problème ouverture fichier");
         return -1;
     }
-    while ( scanf("%d %d", &ref, &reduc) == 2)
+    while ( i < tPhysique && fscanf(fe, "%d %d", &ref, &reduc) == 2 )
     {
         tRefProm[i] = ref;
         tReduc[i] = reduc;
         ++i;
     }
+    fclose(fe);
+    return i;
 }
-*/
+
+void sauvegardeReduc( int tRefReduc[], int tReduc[], int tLogReduc)
+{
+    FILE * fe;
+    fe = fopen("donnee/promotion.txt", "w");
+    if ( fe == NULL )
+    {
+        fprintf(stderr, "Problème ouverture fichier.\n");
+        return;
+    }
+
+    for ( int i = 0; i < tLogReduc; ++i)
+    {
+        fprintf(fe, "%d\t%d\n", tRefReduc[i], tReduc[i]);
+    }
+    fclose(fe);
+    return;
+}
+
+float retrouvePrix(float prixReduit, int reduction)
+{
+    printf("BLABLA%d", reduction);
+    return prixReduit / (1.0 - (reduction / 100.0));
+}
+
+void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[], float tPrix[], int tLogArticle)
+{
+    int indexReduc, indexPrix, ref;
+    float temp;
+    ref = affichSuprReduc( tRefReduc, *tLogReduc, &indexReduc);
+    for ( int i = indexReduc; i < *tLogReduc-1; ++i)
+    {
+        tRefReduc[i] = tRefReduc[i+1];
+        tReduc[i] = tReduc[i+1];
+    }
+
+    --(*tLogReduc);
+    indexPrix = trouver_index_article(ref, tRef, tLogArticle);
+   tPrix[indexPrix] = retrouvePrix(tPrix[indexPrix], tReduc[indexReduc]);
+
+}

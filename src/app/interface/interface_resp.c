@@ -5,11 +5,13 @@
 #include "interface_resp.h"
 #include "../core_logic/responsable.h"
 #include "../core_logic/client.h"
+#include "../interface/interface_client.h"
 
 #define MAX_CLIENTS 100
 #define MAX_ARTICLES 100
+#define MAX_REDUCTION 100
 #define MAX_SIZE_MDP 21
-#define MENU_QUIT 12
+#define MENU_QUIT 14
 
 
 void affiche_resp(void) {
@@ -20,18 +22,31 @@ void affiche_resp(void) {
     printf("\n");
     printf("+----------------------------------------------------------------+\n");
     printf("|| Que voulez-vous faire ?\t\t\t\t\t||\n");
-    printf("||\t1 : Afficher les articles\t\t\t\t||\n");
-    printf("||\t2 : Afficher un article\t\t\t\t\t||\n");
-    printf("||\t3 : Afficher un client\t\t\t\t\t||\n");
-    printf("||\t4 : Afficher les clients\t\t\t\t||\n");
-    printf("||\t5 : Ajouter un article\t\t\t\t\t||\n");
-    printf("||\t6 : Supprimer un article\t\t\t\t||\n");
-    printf("||\t7 : Modifier un article\t\t\t\t\t||\n");
-    printf("||\t8 : Ajouter un client\t\t\t\t\t||\n");
-    printf("||\t9 : Modifier le statut du client\t\t\t||\n");
-    printf("||\t10 : Supprimer un client\t\t\t\t||\n");
-    printf("||\t11 : Modifier le mot de passe\t\t\t\t||\n");
-    printf("||\t12 : Quittez.\t\t\t\t\t\t||\n");
+    printf("|| \t\t - Clients -\t\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("||\t1 : Afficher un client\t\t\t\t\t||\n");
+    printf("||\t2 : Afficher les clients\t\t\t\t||\n");
+    printf("||\t3 : Ajouter un client\t\t\t\t\t||\n");
+    printf("||\t4 : Supprimer un client\t\t\t\t\t||\n");
+    printf("||\t5 : Modifier le statut du client\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("|| \t\t - Articles -\t\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("||\t6 : Afficher un article\t\t\t\t\t||\n");
+    printf("||\t7 : Afficher les articles\t\t\t\t||\n");
+    printf("||\t8 : Ajouter un article\t\t\t\t\t||\n");
+    printf("||\t9 : Supprimer un article\t\t\t\t||\n");
+    printf("||\t10 : Modifier un article\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("|| \t\t - Réductions -\t\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("||\t11 : Ajouter réduction\t\t\t\t\t||\n");
+    printf("||\t12 : Supprimer réduction\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("|| \t\t - Autres -\t\t\t\t\t||\n");
+    printf("||\t\t\t\t\t\t\t\t||\n");
+    printf("||\t13 : Modifier le mot de passe\t\t\t\t||\n");
+    printf("||\t14 : Quittez.\t\t\t\t\t\t||\n");
     printf("+----------------------------------------------------------------+\n");
 }
 
@@ -99,6 +114,7 @@ void affichAjoutArticle(int *ref, float *poids, float *volume, float *prix, int 
 
     if ( trouver_index_article(*ref, tRef, tLogArticle) != -1)
     {
+        printf("\t L'article existe déjà\n");
         return;
     }
     else
@@ -368,18 +384,74 @@ void affichModifMDP(void)
         }
     }
 }
-/*
-void appliquerReduc( int tRefProm[], int tReduc[], int *tLogReduc, int tPhysiqueReduc)
+
+void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueReduc, int tRef[], float tPrix[], int tLogArticle)
 {
-    int i, ref;
+    int indexReduc, indexPrix, ref;
+    float newPrix, reduc;
+
+    if ( *tLogReduc == tPhysiqueReduc)
+    {
+        fprintf(stderr, "\tTableau pleins !\n");
+        return;
+    }
+    
     printf("\tA quel article voulez-vous ajouter une promotion ?\n");
     while (scanf("%d", &ref) !=1 || ref < 0)
     {
-        fprintf("\t Entrez une référence correcte !\n");
+        printf("\t Entrez une référence correcte !\n");
+        while (getchar() != '\n');
     }
-    if ()
+
+    int verif = trouver_index_article(ref, tRef, tLogArticle);
+
+    while ( (verif = trouver_index_article(ref, tRef, tLogArticle)) == -1 ) 
+    {
+        printf("\t Entrez une référence existante !\n");
+        while (scanf("%d", &ref) !=1 || ref < 0)
+        {
+            printf("\t Entrez une référence correcte !\n");
+            while (getchar() != '\n');
+        }        
+    }
+    
+    printf("\tQuel pourcentage ?\n");
+    while (scanf("%f", &reduc) !=1 || reduc < 0 || reduc > 100)
+    {
+        printf("\t Entrez un nombre correcte !\n");
+        while (getchar() != '\n');
+    }
+
+    indexPrix = trouver_index_article(ref, tRef, tLogArticle);
+    tPrix[indexPrix] = tPrix[indexPrix]*(1-reduc/100);
+    tReduc[*tLogReduc] = reduc;
+    tRefReduc[*tLogReduc] = ref;
+    printf("\n\tModification réussi !\n\n");
+    ++(*tLogReduc);
 }
-*/
+
+int affichSuprReduc(int tRefReduc[], int tLogReduc, int *indexReduc)
+{
+    int ref;
+    printf("\tQuel est la référence de l'article auquel il faut supprimer la réduction ?\n");
+    while (scanf("%d", &ref) !=1 || ref < 0)
+    {
+        fprintf(stderr, "\t Entrez une référence correcte !\n");
+        while (getchar() != '\n');
+    }
+    
+    while( ( *indexReduc = trouver_index_article(ref, tRefReduc, tLogReduc) )== -1 )
+    {
+        printf("\t Entrez une référence qui a une réduction !\n");
+        while (scanf("%d", &ref) !=1 || ref < 0)
+        {
+            printf("\t Entrez une référence correcte !\n");
+            while (getchar() != '\n');
+        }      
+    }
+    printf("\t Suppression réussi !\n");
+    return ref;
+}
 
 void menu_resp(int *choix) {
     affiche_resp();
@@ -401,51 +473,64 @@ void global_resp(void) {
     int tNumClient[MAX_CLIENTS];
     float tCagnotte[MAX_CLIENTS];
     int tSus[MAX_CLIENTS];
+    int tRefReduc[MAX_REDUCTION];
+    int tReduc[MAX_REDUCTION];
 
     int tLogArticle = chargementArticles(tRef, tPoids, tVol, tPrix, MAX_ARTICLES);
     int tLogClient = charger_clients(tNumClient, tCagnotte, tSus, MAX_CLIENTS);
+    int tLogReduc = chargementReduc(tRefReduc, tReduc, MAX_REDUCTION);
     // system("clear");
     do {
         menu_resp(&choix);
         switch (choix) {
+            
+            
             case 1:
-                affichArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
-                break;
-            case 2:
-                affichUnArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
-                break;
-            case 3:
                 affichUnClient(tNumClient, tCagnotte, tSus, tLogClient);
                 break;
-            case 4:
+            case 2:
                 affichClients(tNumClient, tCagnotte, tSus, tLogClient);
                 break;
-            case 5:
-                ajouterArticle(tRef, tPoids, tVol, tPrix, &tLogArticle, MAX_ARTICLES, ref, poids, volume, prix);
-                break;
-            case 6:
-                supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
-                break;
-            case 7:
-                modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
-                break;
-            case 8:
+            case 3:
                 ajouterClient(tNumClient, tCagnotte, tSus, &tLogClient);
                 break;
-            case 9:
+            case 4:
+                suppressionClient(tNumClient, tCagnotte ,tSus , &tLogClient);
+                break; 
+            case 5:
                 affichModifClient(tNumClient, tSus, tLogClient);
+                break; 
+            case 6:
+                affichUnArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
+                break;
+            case 7:
+                affichArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
+                break;
+            case 8:
+                ajouterArticle(tRef, tPoids, tVol, tPrix, &tLogArticle, MAX_ARTICLES, ref, poids, volume, prix);
+                break;
+            case 9:
+                supprimerArticle(tRef, tPoids, tVol, tPrix, &tLogArticle);
                 break;
             case 10:
-                suppressionClient(tNumClient, tCagnotte ,tSus , &tLogClient);
+                modifierArticle(tRef, tPoids, tVol, tPrix, tLogArticle);
                 break;
             case 11:
-                affichModifMDP();
+                creerReduc( tRefReduc, tReduc, &tLogReduc, MAX_REDUCTION, tRef, tPrix, tLogArticle);
                 break;
             case 12:
+                suppressionReduc(tRefReduc, tReduc, &tLogReduc, tRef, tPrix, tLogArticle);
+                break;
+            case 13:
+                affichModifMDP();
+                break;
+            case 14:
                 sauvegardArticles(tRef, tPoids, tVol, tPrix, tLogArticle);
                 sauvegarde_clients(tNumClient, tCagnotte, tSus, tLogClient);
+                sauvegardeReduc(tRefReduc, tReduc, tLogReduc);
                 printf("Sauvegarde des articles effectuée.\n");
                 printf("Sauvegarde des clients effectuée.\n");
+                printf("Sauvegarde des réductions effectuée.\n");
                 printf("Au revoir !\n");
                 return;
             default:

@@ -129,3 +129,7 @@ void dechiffrerCesar(char *texte, int decalage);
 void chiffrementCesar(char *mdp, int decalage);
 int verifModifMDP(char *mdp, char *confirmMDP, int decalage);
 int enregistrerMotDePasse(char *mdp, int decalage);
+int chargementReduc( int tRefProm[], int tReduc[], int tPhysique);
+void sauvegardeReduc(int tRefReduc[], int tReduc[], int tLogReduc);
+float retrouvePrix(float prixReduit, int reduction);
+void suppressionReduc(int tRefReduc[], int tReduc[], int *tLogReduc, int tRef[], float tPrix[], int tLogArticle);
