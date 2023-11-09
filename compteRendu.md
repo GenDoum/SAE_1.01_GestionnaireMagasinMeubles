@@ -2,21 +2,25 @@
 
 ## Informations sur les clients :
 
--   Numéro de client
--   Solde du client
--   Son état (suspension ou non)
+-   Numéro de client.
+-   Solde du client.
+-   Son état (suspension ou non).
 
 ## Informations sur les articles :
 
--   Référence de l'article
--   Poids de l'article
--   Volume de l'article
--   Prix unitaire de l'article
+-   Référence de l'article.
+-   Poids de l'article.
+-   Volume de l'article.
+-   Prix unitaire de l'article.
 
 ## Informations sur les mots de passe :
 
--   Mot de passe décalé
+-   Mot de passe décalé.
 -   Chiffre correspondant au décalage des lettres.
+
+## Information sur les promotions : 
+-	La référence de l'article en promotion.
+-	La promotion appliquée.
 
 ## Fichiers de données :
 
@@ -26,6 +30,8 @@
     -   Numéro de client, solde, suspension
 3.  mdp.txt :
     -   Mot de passe du responsable chiffré par le code de César
+4.	promotion.txt
+	-	Référence, promotion
 
 ## Répartition du travail :
 
@@ -83,12 +89,31 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 
 ## Jeu de données : 
 
-Voici un jeu de donnée pour client.txt :
+### Voici un jeu de donnée pour articles.txt :
 ```
-464	   50.00	 50.00	 50.00
-958	  	4.75	 60.00	 32.00
-101	    2.00	 2.00	 3.00
-32	  123.00	 123.00	 123.00
+464		50.00	50.00	50.00
+958	   	4.75	60.00	32.00
+101	   	2.00	2.00	3.00
+32	  	123.00	123.00	123.00
+```
+
+### Voici un jeu de donnée pour client.txt : 
+```
+32	73.70	1
+5079	575.10	0
+53	0.00	0
+```
+
+### Voici un jeu de donnée pour mdp.txt : 
+```
+lll 89
+```
+
+### Voici un jeu de donnée pour promotion.txt : 
+```
+958	50
+101	25
+464	50
 ```
 
 ## Traces d'exécution :
