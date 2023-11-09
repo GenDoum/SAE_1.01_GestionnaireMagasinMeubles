@@ -83,14 +83,13 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 
 ## Jeu de données : 
 
-Voici un jeu de donnée pour : 
-	- client.txt :
-		```
-			 464	  50.00	 50.00	 50.00
-	 		958	  	4.75	 60.00	 32.00
-	 		101	    2.00	 2.00	 3.00
-	 		32	  123.00	 123.00	 123.00
-		```
+Voici un jeu de donnée pour client.txt :
+```
+464	   50.00	 50.00	 50.00
+958	  	4.75	 60.00	 32.00
+101	    2.00	 2.00	 3.00
+32	  123.00	 123.00	 123.00
+```
 
 ## Traces d'exécution :
 ### Voici les traces d'execution pour la partie **client** :
