@@ -979,7 +979,7 @@ Veuillez entrer le numéro du client à rechercher : 32
 Vous choisissez: 
 ```
 #### 3. Ajouter un client
-##### précision : pour montrer que la création du client a bien fonctionné j'ai affiché la liste des clients juste après.
+##### précision : pour montrer que la création du client a bien fonctionné, j'ai affiché la liste des clients juste après.
 ```
 +-------------+
 || Bonjour ! ||
@@ -1063,3 +1063,90 @@ Vous choisissez: 2
 
 ```
 
+#### 4. Supprimer un client
+##### précision : pour montrer que la création du client a bien fonctionné, j'ai affiché la liste des clients juste après.
+
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 4
+Entrez le numéro du client : 999
+Êtes-vous sur de vouloir supprimer ce client ? ( Oui = 1 / Non = 0 ) : 1
+Le client 999 a été supprimé avec succès.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 2
+	 Liste des clients
+	 NumClient	 Cagnotte	 Etat
+	 32		 69.00		 1
+
+	 5079		 696.70		 0
+
+	 53		 0.00		 0
+
+	 Fin de la liste !
+
+
+```
