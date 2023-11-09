@@ -1152,7 +1152,7 @@ Vous choisissez: 2
 ```
 
 #### 5. Modifier le statut d'un client
-##### Dans le cas ou la cagnotte est suspendu.
+##### Dans le cas où la cagnotte est suspendu.
 ```
 +-------------+
 || Bonjour ! ||
@@ -1191,7 +1191,7 @@ Entrez le numéro du client : 32
 La cagnotte du client 32 est suspendue, voulez-vous l'activer à nouveau ? ( Oui = 1 / Non = 0 ) : 1
 La cagnotte n'est plus suspendu
 ```
-##### Dans le cas ou la cagnotte n'est pas suspendu
+##### Dans le cas où la cagnotte n'est pas suspendu
 ```
 +-------------+
 || Bonjour ! ||
@@ -1229,5 +1229,7 @@ Vous choisissez: 5
 Entrez le numéro du client : 32
 La cagnotte du client n'est pas suspendu, voulez-vous le suspendre ? ( Oui = 1 / Non = 0 ) : 1
 La cagnotte est maintenant suspendu
-
 ```
+#### Menu articles :
+
+#### 6. Afficher un article
