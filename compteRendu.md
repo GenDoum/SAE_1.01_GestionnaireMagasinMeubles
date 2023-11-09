@@ -83,5 +83,5 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 
 ## Traces d'exécution :
 Voici les traces d'execution pour la partie **client** :
-Tout d'abord les cas ou le client n'a pas de carte suspendu et choisis un budget:
+Tout d'abord les cas ou le client n'a pas de carte suspendu et ne choisis pas de budget:
 
