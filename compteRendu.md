@@ -81,6 +81,17 @@ Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios son
 
 Ces fonctionnalités garantissent que l'application aide les utilisateurs à gérer leur budget et à utiliser leur cagnotte de manière efficace pour éviter les problèmes financiers.
 
+## Jeu de données : 
+
+Voici un jeu de donnée pour : 
+	- client.txt :
+		```
+			 464	  50.00	 50.00	 50.00
+	 		958	  	4.75	 60.00	 32.00
+	 		101	    2.00	 2.00	 3.00
+	 		32	  123.00	 123.00	 123.00
+		```
+
 ## Traces d'exécution :
 ### Voici les traces d'execution pour la partie **client** :
 #### Tout d'abord les cas ou le client n'a pas de carte suspendu et ne choisis pas de budget:
