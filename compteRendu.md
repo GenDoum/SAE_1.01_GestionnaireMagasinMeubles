@@ -807,5 +807,5 @@ Process 10916 exited with status = 0 (0x00000000)
 
 
 ### Voici les traces d'execution pour la partie **responsable** :
-
+### La partie responsable possède un menu divisé en trois parties, la partie clients, la partie articles et la partie promotions. Par conséquent, cette partie sera divisé en 3 sous parties.
 
