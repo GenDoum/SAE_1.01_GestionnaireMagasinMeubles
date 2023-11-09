@@ -105,7 +105,7 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 ```
 
 ### Voici un jeu de donnée pour mdp.txt : 
-#### (Le mot de passe actuel est `aaa, il ne s'affiche pas lors de l'entrée au clavier)
+#### (Le mot de passe actuel est `aaa`, il ne s'affiche pas lors de l'entrée au clavier)
 ```
 lll 89
 ```
