@@ -804,3 +804,8 @@ Vous choisissez: 9
 Au revoir !
 Process 10916 exited with status = 0 (0x00000000)
 ```
+
+
+### Voici les traces d'execution pour la partie **responsable** :
+
+
