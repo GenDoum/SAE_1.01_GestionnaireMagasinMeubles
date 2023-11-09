@@ -29,7 +29,7 @@
 2.  clients.txt :
     -   Numéro de client, solde, suspension
 3.  mdp.txt :
-    -   Mot de passe du responsable chiffré par le code de César
+    -   Mot de passe du responsable chiffré par le code de César 
 4.	promotion.txt
 	-	Référence, promotion
 
@@ -105,6 +105,7 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 ```
 
 ### Voici un jeu de donnée pour mdp.txt : 
+#### (Le mot de passe actuel est 'oui', il ne s'affiche pas lors de l'entrée au clavier)
 ```
 lll 89
 ```
