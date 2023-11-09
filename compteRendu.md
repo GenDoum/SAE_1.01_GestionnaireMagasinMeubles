@@ -1150,3 +1150,84 @@ Vous choisissez: 2
 
 
 ```
+
+#### 5. Modifier le statut d'un client
+##### Dans le cas ou la cagnotte est suspendu.
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 5
+Entrez le numéro du client : 32
+La cagnotte du client 32 est suspendue, voulez-vous l'activer à nouveau ? ( Oui = 1 / Non = 0 ) : 1
+La cagnotte n'est plus suspendu
+```
+##### Dans le cas ou la cagnotte n'est pas suspendu
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 5
+Entrez le numéro du client : 32
+La cagnotte du client n'est pas suspendu, voulez-vous le suspendre ? ( Oui = 1 / Non = 0 ) : 1
+La cagnotte est maintenant suspendu
+
+```
