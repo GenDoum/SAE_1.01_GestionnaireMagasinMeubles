@@ -148,24 +148,25 @@ void affiche_recap_panier(int tPanier[], int tLogPanier, int tRef[], float tPoid
         volumeTotal += volumeArticle * (float)quantite;
         montantTotal += prixArticle * (float)quantite;
 
-        if (poidsTotal > chargeMaximale) {
-            float depassement = poidsTotal - chargeMaximale;
-            char message[100];
-            sprintf(message, "Dépassement de la charge autorisée de %.2f kg.\n", depassement);
-            strcat(attentionDepassement, message);
-        }
-        if (volumeTotal > volumeCoffre) {
-            float depassement = volumeTotal - volumeCoffre;
-            char message[100];
-            sprintf(message, "Dépassement du volume autorisé de %.2f litres.\n", depassement);
-            strcat(attentionDepassement, message);
-        }
-        if (budget > 0 && montantTotal > budget) {
-            float depassement = montantTotal - budget;
-            char message[100];
-            sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
-            strcat(attentionDepassement, message);
-        }
+    }
+
+    if (poidsTotal > chargeMaximale) {
+        float depassement = poidsTotal - chargeMaximale;
+        char message[100];
+        sprintf(message, "Dépassement de la charge autorisée de %.2f kg.\n", depassement);
+        strcat(attentionDepassement, message);
+    }
+    if (volumeTotal > volumeCoffre) {
+        float depassement = volumeTotal - volumeCoffre;
+        char message[100];
+        sprintf(message, "Dépassement du volume autorisé de %.2f litres.\n", depassement);
+        strcat(attentionDepassement, message);
+    }
+    if (budget > 0 && montantTotal > budget) {
+        float depassement = montantTotal - budget;
+        char message[100];
+        sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
+        strcat(attentionDepassement, message);
     }
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
