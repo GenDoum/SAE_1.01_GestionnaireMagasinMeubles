@@ -82,6 +82,689 @@ Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios son
 Ces fonctionnalités garantissent que l'application aide les utilisateurs à gérer leur budget et à utiliser leur cagnotte de manière efficace pour éviter les problèmes financiers.
 
 ## Traces d'exécution :
-Voici les traces d'execution pour la partie **client** :
-Tout d'abord les cas ou le client n'a pas de carte suspendu et ne choisis pas de budget:
+### Voici les traces d'execution pour la partie **client** :
+#### Tout d'abord les cas ou le client n'a pas de carte suspendu et ne choisis pas de budget:
+```
+(lldb) target create "app"
+Current executable set to '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64).
+(lldb) run
+Process 10731 launched: '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64)
+Choix de l'interface:
+1. Interface 'responsable': Pour les responsables
+2. Interface 'Client'     : Pour les clients
+Vous choisissez l'interface n°: 2
+Vous avez choisi l'interface client.
+Veuillez saisir votre numéro de client : 5079
+Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : 0
+Veuillez saisir la taille disponible du véhicule (en litres) : 100
+Veuillez saisir la charge maximale autorisée (en kg) : 100
 
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 2
+	 Liste des articles
+
+	 Ref		 Poids		 Volume		 Prix
+	 464		  50.00		  50.00		  50.00
+
+	 958		  4.75		  60.00		  32.00
+
+	 101		  2.00		  2.00		  3.00
+
+	 32		  123.00		  123.00		  123.00
+
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 958
+Entrez la quantité : 10
+Contenu du panier : 958
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 10	 4.75	 60.00	 32.00	 47.50	 600.00	 320.00
+Prix total à payer: 320.00 euros
+Cagnotte totale : 632.70 euros
+Volume utilise : 600.00 litres
+Charge Actuelle: 47.50 kg
+Attention :
+Dépassement du volume autorisé de 500.00 litres.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 101
+Entrez la quantité : 1
+Contenu du panier : 958 101
+Référence : 101
+Quantité : 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte
+101   1     2.00        2.00      3.00     2.00           2.00      3.00      633.00
+Prix total à payer: 3.00 euros
+Cagnotte totale : 633.00 euros
+Volume utilise : 2.00 litres
+Volume restant : 98.00 litres
+Charge Actuelle: 2.00 kg
+Charge restante: 98.00 kg
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 10	 4.75	 60.00	 32.00	 47.50	 600.00	 320.00
+101	 1	 2.00	 2.00	 3.00	 2.00	 2.00	 3.00
+Prix total à payer: 323.00 euros
+Cagnotte totale : 633.00 euros
+Volume utilise : 602.00 litres
+Charge Actuelle: 49.50 kg
+Attention :
+Dépassement du volume autorisé de 502.00 litres.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 4
+Entrez la référence de l'article à supprimer : 101
+Article supprimé du panier avec succès.
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 10	 4.75	 60.00	 32.00	 47.50	 600.00	 320.00
+Prix total à payer: 320.00 euros
+Cagnotte totale : 632.70 euros
+Volume utilise : 600.00 litres
+Charge Actuelle: 47.50 kg
+Attention :
+Dépassement du volume autorisé de 500.00 litres.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 320.00 euros
+Volume utilise : 600.00 litres
+Charge Actuelle: 47.50 kg
+Attention : Dépassement du volume autorisé de 500.00 litres.
+Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.
+Voulez vous revenir en arrière pour modifier votre panier ? (1 pour Oui, 0 pour Non) : 1
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 5
+Entrez la référence de l'article : 958
+Entrez la quantité : 1
+Quantité modifiée avec succès.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 32.00 euros
+Volume utilise : 60.00 litres
+Charge Actuelle: 4.75 kg
+Cagnotte totale : 603.90 euros
+Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : 1
+Entrez le montant à déduire de votre cagnotte : 10
+Montant déduit de la cagnotte avec succès.
+Il vous reste 593.90 euros dans votre cagnotte.
+Payement effectué.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 9
+Au revoir !
+Process 10731 exited with status = 0 (0x00000000)
+```
+Dans ce cas je n'ai pas montré si le client refuse de revenir en arrière si son coffre est plein. Si il aurais refusé de revenir en arrière il aurais eu ce message :
+
+```Payement non effectué.```
+
+#### Maintenant voici les traces d'execution pour le cas ou le client n'a pas de carte suspendu mais choisis un budget :
+```
+(lldb) target create "app"
+Current executable set to '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64).
+(lldb) run
+Process 10832 launched: '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64)
+Choix de l'interface:
+1. Interface 'responsable': Pour les responsables
+2. Interface 'Client'     : Pour les clients
+Vous choisissez l'interface n°: 2
+Vous avez choisi l'interface client.
+Veuillez saisir votre numéro de client : 5079
+Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : 1
+Entrez le budget à ne pas dépasser : 10
+Veuillez saisir la taille disponible du véhicule (en litres) : 100
+Veuillez saisir la charge maximale autorisée (en kg) : 100
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 958
+Entrez la quantité : 5
+Contenu du panier : 958
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 5	 4.75	 60.00	 32.00	 23.75	 300.00	 160.00
+Prix total à payer: 160.00 euros
+Cagnotte totale : 609.90 euros
+Volume utilise : 300.00 litres
+Charge Actuelle: 23.75 kg
+Attention :
+Dépassement du volume autorisé de 200.00 litres.
+Dépassement du budget autorisé de 150.00 euros.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 160.00 euros
+Budget : 10.00 euros
+Volume utilise : 300.00 litres
+Charge Actuelle: 23.75 kg
+Attention : Dépassement du volume autorisé de 200.00 litres.
+Dépassement du budget autorisé de 150.00 euros.
+Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre coffre est plein.
+Voulez vous revenir en arrière pour modifier votre panier ? (1 pour Oui, 0 pour Non) : 1
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 6
+Le panier a été réinitialisé avec succès.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+Prix total à payer: 0.00 euros
+Cagnotte totale : 593.90 euros
+Volume utilise : 0.00 litres
+Charge Actuelle: 0.00 kg
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 958
+Entrez la quantité : 1
+Contenu du panier : 958
+Référence : 958
+Quantité : 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte
+958   1     4.75        60.00      32.00     4.75           60.00      32.00      597.10
+Prix total à payer: 32.00 euros
+Cagnotte totale : 597.10 euros
+Volume utilise : 60.00 litres
+Volume restant : 40.00 litres
+Charge Actuelle: 4.75 kg
+Charge restante: 95.25 kg
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 1	 4.75	 60.00	 32.00	 4.75	 60.00	 32.00
+Prix total à payer: 32.00 euros
+Cagnotte totale : 597.10 euros
+Volume utilise : 60.00 litres
+Charge Actuelle: 4.75 kg
+Attention :
+Dépassement du budget autorisé de 22.00 euros.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 32.00 euros
+Budget : 10.00 euros
+Volume utilise : 60.00 litres
+Charge Actuelle: 4.75 kg
+Cagnotte totale : 597.10 euros
+Attention : Dépassement du budget autorisé de 22.00 euros.
+Vous ne pourrez pas payer, mais vous avez suffisamment dans votre cagnotte pour déduire le prix.
+Voulez-vous déduire de votre cagnotte avant de quitter ? (1 pour Oui, 0 pour Non) : 1
+Entrez le montant à déduire de votre cagnotte : 1
+ERREUR : Vous devez déduire suffisamment pour payer l'intégralité du montant dû.
+Montant minimum à déduire pour payer : 22.00
+Entrez le montant à déduire de votre cagnotte : 22
+Montant déduit de la cagnotte avec succès.
+Il vous reste 575.10 euros dans votre cagnotte.
+Payement effectué.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 9
+Au revoir !
+Process 10832 exited with status = 0 (0x00000000)
+```
+
+Dans ce cas je n'ai pas montré si le client refuse de déduire de sa cagnotte si il a depassé le budget. Si il aurais refusé de déduire de sa cagnotte il aurais eu ce message :
+
+```Payement non effectué.```
+
+Il aurais eu le même message si il n'avais pas assez de cagnotte pour déduire le montant.
+
+#### Maintenant voici les traces d'execution pour le cas ou le client a une carte suspendu et ne choisis pas de budget :
+```
+(lldb) target create "app"
+Current executable set to '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64).
+(lldb) run
+Process 10870 launched: '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64)
+Choix de l'interface:
+1. Interface 'responsable': Pour les responsables
+2. Interface 'Client'     : Pour les clients
+Vous choisissez l'interface n°: 2
+Vous avez choisi l'interface client.
+Veuillez saisir votre numéro de client : 32
+Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : 0
+Veuillez saisir la taille disponible du véhicule (en litres) : 100
+Veuillez saisir la charge maximale autorisée (en kg) : 100
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 101
+Entrez la quantité : 5
+Contenu du panier : 101
+Référence : 101
+Quantité : 5
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte
+101   5     2.00        2.00      3.00     10.00           10.00      15.00      70.50
+Prix total à payer: 15.00 euros
+Cagnotte totale : 70.50 euros
+Volume utilise : 10.00 litres
+Volume restant : 90.00 litres
+Charge Actuelle: 10.00 kg
+Charge restante: 90.00 kg
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 15.00 euros
+Volume utilise : 10.00 litres
+Charge Actuelle: 10.00 kg
+Vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.
+Payement effectué.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 9
+Au revoir !
+Process 10870 exited with status = 0 (0x00000000)
+```
+
+Maintenant voici les traces d'execution pour le cas ou le client a une carte suspendu et choisis un budget :
+```
+(lldb) target create "app"
+Current executable set to '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64).
+(lldb) run
+Process 10916 launched: '/Users/matheohersan/1A/IUT/Cours/SAE/SAE_101/app' (arm64)
+Choix de l'interface:
+1. Interface 'responsable': Pour les responsables
+2. Interface 'Client'     : Pour les clients
+Vous choisissez l'interface n°: 2
+Vous avez choisi l'interface client.
+Veuillez saisir votre numéro de client : 32
+Voulez-vous définir un budget à ne pas dépasser ? (1 pour Oui, 0 pour Non) : 1
+Entrez le budget à ne pas dépasser : 10
+Veuillez saisir la taille disponible du véhicule (en litres) : 100
+Veuillez saisir la charge maximale autorisée (en kg) : 100
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 3
+Entrez la référence de l'article : 958
+Entrez la quantité : 1
+Contenu du panier : 958
+Référence : 958
+Quantité : 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot   Cagnotte
+958   1     4.75        60.00      32.00     4.75           60.00      32.00      73.70
+Prix total à payer: 32.00 euros
+Cagnotte totale : 73.70 euros
+Volume utilise : 60.00 litres
+Volume restant : 40.00 litres
+Charge Actuelle: 4.75 kg
+Charge restante: 95.25 kg
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 1
+Récap :
+Réf   Qté   Poids   Vol     PrixU   PoidsTot   VolTot   PrixTot
+958	 1	 4.75	 60.00	 32.00	 4.75	 60.00	 32.00
+Prix total à payer: 32.00 euros
+Cagnotte totale : 73.70 euros
+Volume utilise : 60.00 litres
+Charge Actuelle: 4.75 kg
+Attention :
+Dépassement du budget autorisé de 22.00 euros.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 7
+Prix total à payer: 32.00 euros
+Budget : 10.00 euros
+Volume utilise : 60.00 litres
+Charge Actuelle: 4.75 kg
+Attention : Dépassement du budget autorisé de 22.00 euros.
+Vous ne pourrez pas payer. De plus vous ne pourrez pas utiliser votre cagnotte car votre carte est suspendu.
+Payement non effectué.
+
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+||	1 : Afficher le récapitulatif du panier.	 	||
+||	2 : Afficher les articles disponibles.			||
+||	3 : Ajouter un article au panier.   			||
+||	4 : Supprimer un article du panier. 			||
+||	5 : Modifier la quantité d'un article du panier. 	||
+||	6 : Réinitialiser le panier.				||
+||	7 : Passer au payement.					||
+||	9 : Quitter.						||
++----------------------------------------------------------------+
+Vous choisissez: 9
+Au revoir !
+Process 10916 exited with status = 0 (0x00000000)
+```
