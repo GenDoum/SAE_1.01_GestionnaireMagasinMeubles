@@ -1581,5 +1581,49 @@ Vous choisissez: 7
 	 32			  99.00		  99.00		  49.50
 ```
 
-##### Dans le cas où l'article n'a pas de réduction
+##### Dans le cas où l'article a une réduction
 
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 11
+A quel article voulez-vous ajouter une promotion : 101
+ERREUR : Cet article est déjà en promotion ! : 101
+ERREUR : Cet article est déjà en promotion ! : 32
+Entrez le pourcentage pourcentage : 50
+
+	Modification réussi !
+
+```
+
+#### 12. Supprimer une promotion
