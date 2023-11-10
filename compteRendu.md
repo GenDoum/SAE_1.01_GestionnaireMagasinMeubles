@@ -1,5 +1,3 @@
-# Compte rendu de la SAE1.01 - Implémentation des besoins du client
-
 # Table des matières
 
 1. [Compte rendu de la SAE1.01 - Implémentation des besoins du client](#compte-rendu-de-la-sae101---implémentation-des-besoins-du-client)
@@ -9,20 +7,24 @@
     4. [Information sur les promotions](#information-sur-les-promotions)
     5. [Fichiers de données](#fichiers-de-données)
     6. [Répartition du travail](#répartition-du-travail)
-    7. [Comment démarrer l'application](#comment-démarrer-l'application)
+    7. [Comment démarrer l'application](#comment-démarrer-lapplication)
     8. [Conception](#conception)
         1. [Architecture](#architecture)
     9. [Les fonctionnalités en plus](#les-fonctionnalités-en-plus)
-        1. [Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?](#pourquoi-avons-nous-chiffré-le-mot-de-passe-du-responsable-avec-le-code-de-césar-)
+        1. [Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?](#pourquoi-avons-nous-chiffré-le-mot-de-passe-du-responsable-avec-le-code-de-césar)
         2. [Fonctionnalités de sortie de l'application](#fonctionnalités-de-sortie-de-lapplication)
     10. [Jeu de données](#jeu-de-données)
-    1. [Voici un jeu de données pour articles.txt](#voici-un-jeu-de-données-pour-articlestxt-)
-    2. [Voici un jeu de données pour client.txt](#voici-un-jeu-de-données-pour-clienttxt-)
-    3. [Voici un jeu de données pour mdp.txt](#voici-un-jeu-de-données-pour-mdptxt-)
-    4. [Voici un jeu de données pour promotion.txt](#voici-un-jeu-de-données-pour-promotiontxt-)
+        1. [Voici un jeu de données pour articles.txt](#voici-un-jeu-de-données-pour-le-fichier-articles)
+        2. [Voici un jeu de données pour client.txt](#voici-un-jeu-de-données-pour-le-fichier-client)
+        3. [Voici un jeu de données pour mdp.txt](#voici-un-jeu-de-données-pour-le-fichier-mdp)
+        4. [Voici un jeu de données pour promotion.txt](#voici-un-jeu-de-données-pour-le-fichier-promotion)
     11. [Traces d'exécution](#traces-dexécution)
-    1. [Voici les traces d'exécution pour la partie client](#voici-les-traces-dexécution-pour-la-partie-client)
-    2. [Voici les traces d'exécution pour la partie responsable](#voici-les-traces-dexécution-pour-la-partie-responsable)
+        1.  [Voici les traces d'exécution pour la partie client](#voici-les-traces-dexécution-pour-la-partie-client)
+        2.  [Voici les traces d'exécution pour la partie responsable](#voici-les-traces-dexécution-pour-la-partie-responsable)
+    12. [Contributeurs](#contributeurs)
+
+
+# Compte rendu de la SAE1.01 - Implémentation des besoins du client
 
 
 ## Informations sur les clients :
@@ -89,7 +91,7 @@ Un autre bénéfice majeur réside dans la facilité de maintenance. En segmenta
 
 ## Les fonctionnalités en plus :
 
-### Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?
+### Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César
 
 Le code de César est un chiffrement que nous avons vu en cours de **bases mathématiques 1**. Il s'agit d'un chiffrement simple qui fonctionne grâce à un numéro correspondant au décalage des lettres de l'alphabet. Pour obtenir le mot de passe, si nous n'avions pas mis en place ce chiffrement, il aurait simplement fallu ouvrir le fichier `mdp.txt`. Nous avons donc pensé qu'un minimum de sécurité était nécessaire.
 
@@ -114,7 +116,7 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 
 ## Jeu de données : 
 
-### Voici un jeu de donnée pour articles.txt :
+### Voici un jeu de données pour le fichier articles :
 ```
 464		50.00	50.00	50.00
 958	   	4.75	60.00	32.00
@@ -122,20 +124,20 @@ Ces fonctionnalités garantissent que l'application aide les utilisateurs à gé
 32	  	123.00	123.00	123.00
 ```
 
-### Voici un jeu de donnée pour client.txt : 
+### Voici un jeu de données pour le fichier client : 
 ```
 32	73.70	1
 5079	575.10	0
 53	0.00	0
 ```
 
-### Voici un jeu de donnée pour mdp.txt : 
+### Voici un jeu de données pour le fichier mdp : 
 #### (Le mot de passe actuel est `aaa`, il ne s'affiche pas lors de l'entrée au clavier)
 ```
 lll 89
 ```
 
-### Voici un jeu de donnée pour promotion.txt : 
+### Voici un jeu de données pour le fichier promotion : 
 ```
 958	50
 101	25
@@ -143,7 +145,7 @@ lll 89
 ```
 
 ## Traces d'exécution :
-### Voici les traces d'execution pour la partie **client** :
+### Voici les traces d'exécution pour la partie **client** :
 #### Tout d'abord les cas ou le client n'a pas de carte suspendu et ne choisis pas de budget:
 ```
 (lldb) target create "app"
@@ -165,15 +167,15 @@ Veuillez saisir la charge maximale autorisée (en kg) : 100
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 2
 	 Liste des articles
@@ -185,7 +187,7 @@ Vous choisissez: 2
 
 	 101		  2.00		  2.00		  3.00
 
-	 32		  123.00		  123.00		  123.00
+	 32		      123.00	  123.00      123.00
 
 
 +-------------+
@@ -193,15 +195,15 @@ Vous choisissez: 2
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 958
@@ -222,15 +224,15 @@ Dépassement du volume autorisé de 500.00 litres.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 101
@@ -253,15 +255,15 @@ Charge restante: 98.00 kg
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 1
 Récap :
@@ -280,15 +282,15 @@ Dépassement du volume autorisé de 502.00 litres.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 4
 Entrez la référence de l'article à supprimer : 101
@@ -308,15 +310,15 @@ Dépassement du volume autorisé de 500.00 litres.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 320.00 euros
@@ -331,15 +333,15 @@ Voulez vous revenir en arrière pour modifier votre panier ? (1 pour Oui, 0 pour
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 5
 Entrez la référence de l'article : 958
@@ -351,15 +353,15 @@ Quantité modifiée avec succès.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 32.00 euros
@@ -377,15 +379,15 @@ Payement effectué.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 9
 Au revoir !
@@ -417,15 +419,15 @@ Veuillez saisir la charge maximale autorisée (en kg) : 100
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 958
@@ -447,15 +449,15 @@ Dépassement du budget autorisé de 150.00 euros.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 160.00 euros
@@ -472,15 +474,15 @@ Voulez vous revenir en arrière pour modifier votre panier ? (1 pour Oui, 0 pour
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 6
 Le panier a été réinitialisé avec succès.
@@ -490,15 +492,15 @@ Le panier a été réinitialisé avec succès.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 1
 Récap :
@@ -513,15 +515,15 @@ Charge Actuelle: 0.00 kg
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 958
@@ -544,15 +546,15 @@ Charge restante: 95.25 kg
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 1
 Récap :
@@ -570,15 +572,15 @@ Dépassement du budget autorisé de 22.00 euros.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 32.00 euros
@@ -602,15 +604,15 @@ Payement effectué.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 9
 Au revoir !
@@ -644,15 +646,15 @@ Veuillez saisir la charge maximale autorisée (en kg) : 100
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 101
@@ -675,15 +677,15 @@ Charge restante: 90.00 kg
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 15.00 euros
@@ -697,15 +699,15 @@ Payement effectué.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 9
 Au revoir !
@@ -734,15 +736,15 @@ Veuillez saisir la charge maximale autorisée (en kg) : 100
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Entrez la référence de l'article : 958
@@ -765,15 +767,15 @@ Charge restante: 95.25 kg
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 1
 Récap :
@@ -791,15 +793,15 @@ Dépassement du budget autorisé de 22.00 euros.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 Prix total à payer: 32.00 euros
@@ -815,15 +817,15 @@ Payement non effectué.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-||	1 : Afficher le récapitulatif du panier.	 	||
-||	2 : Afficher les articles disponibles.			||
-||	3 : Ajouter un article au panier.   			||
-||	4 : Supprimer un article du panier. 			||
-||	5 : Modifier la quantité d'un article du panier. 	||
-||	6 : Réinitialiser le panier.				||
-||	7 : Passer au payement.					||
-||	9 : Quitter.						||
+|| Que voulez-vous faire ?					            		||
+||	1 : Afficher le récapitulatif du panier.	 				||
+||	2 : Afficher les articles disponibles.						||
+||	3 : Ajouter un article au panier.   						||
+||	4 : Supprimer un article du panier. 						||
+||	5 : Modifier la quantité d'un article du panier. 			||
+||	6 : Réinitialiser le panier.								||
+||	7 : Passer au payement.										||
+||	9 : Quitter.												||
 +----------------------------------------------------------------+
 Vous choisissez: 9
 Au revoir !
@@ -831,7 +833,7 @@ Process 10916 exited with status = 0 (0x00000000)
 ```
 
 
-### Voici les traces d'execution pour la partie **responsable** :
+### Voici les traces d'exécution pour la partie **responsable** :
 ### La partie responsable possède un menu divisé en trois parties, la partie clients, la partie articles et la partie promotions. Par conséquent, cette partie sera divisé en 3 sous parties.
 
 #### Menu clients :
@@ -855,41 +857,41 @@ Entrer le mot de passe responsable :
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 2
 	 Liste des clients
 	 NumClient	 Cagnotte	 Etat
-	 32		 69.00		 1
+	 32		     69.00		 1
 
 	 5079		 696.70		 0
 
-	 53		 0.00		 0
+	 53		     0.00		 0
 
 	 Fin de la liste !
 
@@ -898,32 +900,32 @@ Vous choisissez: 2
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 
 ```
@@ -936,37 +938,37 @@ Vous choisissez:
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 1
 Veuillez entrer le numéro du client à rechercher : 32
 	 NumClient	 Cagnotte	 Etat
-	 32		 69.00		 1
+	 32		     69.00		 1
 
 
 +-------------+
@@ -974,32 +976,32 @@ Veuillez entrer le numéro du client à rechercher : 32
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 
 ```
@@ -1011,32 +1013,32 @@ Vous choisissez:
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 3
 Veuillez entrer le numéro du nouveau client : 999
@@ -1046,41 +1048,41 @@ Veuillez entrer le numéro du nouveau client : 999
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 2
 	 Liste des clients
 	 NumClient	 Cagnotte	 Etat
-	 32		 69.00		 1
+	 32		     69.00		 1
 
 	 5079		 696.70		 0
 
-	 53		 0.00		 0
+	 53		     0.00		 0
 
 	 999		 0.00		 0
 
@@ -1098,32 +1100,32 @@ Vous choisissez: 2
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 4
 Entrez le numéro du client : 999
@@ -1135,41 +1137,41 @@ Le client 999 a été supprimé avec succès.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 2
 	 Liste des clients
 	 NumClient	 Cagnotte	 Etat
-	 32		 69.00		 1
+	 32		     69.00		 1
 
 	 5079		 696.70		 0
 
-	 53		 0.00		 0
+	 53		     0.00		 0
 
 	 Fin de la liste !
 
@@ -1184,32 +1186,32 @@ Vous choisissez: 2
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 5
 Entrez le numéro du client : 32
@@ -1223,32 +1225,32 @@ La cagnotte n'est plus suspendu
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 5
 Entrez le numéro du client : 32
@@ -1265,32 +1267,32 @@ La cagnotte est maintenant suspendu
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 6
 Entrez la référence de l'article à rechercher : 464
@@ -1307,32 +1309,32 @@ Entrez la référence de l'article à rechercher : 464
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 	 Liste des articles
@@ -1344,7 +1346,7 @@ Vous choisissez: 7
 
 	 101		  2.00		  2.00		  3.00
 
-	 32		  123.00		  123.00		  123.00
+	 32		      123.00	  123.00	  123.00
 ```
 
 #### 8. Ajouter un article
@@ -1355,32 +1357,32 @@ Vous choisissez: 7
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 
 8
@@ -1399,32 +1401,32 @@ Entrez le prix du nouveau produit : 500
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 9
 Entrez la référence de l'article que vous voulez supprimer : 32
@@ -1440,32 +1442,32 @@ L'article 32 a été supprimé avec succès.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 10
 	 Quelle est la référence de l'article que vous voulez modifier ?
@@ -1482,37 +1484,37 @@ Vous choisissez: 10
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 6
 Entrez la référence de l'article à rechercher : 32
 	 Ref		 Poids		 Volume		 Prix
-	 32		 99.00		 99.00		  99.00
+	 32		     99.00		 99.00		  99.00
 
 ```
 
@@ -1527,32 +1529,32 @@ Entrez la référence de l'article à rechercher : 32
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 11
 A quel article voulez-vous ajouter une promotion : 32
@@ -1566,32 +1568,32 @@ Entrez le pourcentage pourcentage : 50
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 7
 	 Liste des articles
@@ -1614,32 +1616,32 @@ Vous choisissez: 7
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 11
 A quel article voulez-vous ajouter une promotion : 101
@@ -1660,32 +1662,32 @@ Entrez le pourcentage pourcentage : 50
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 12
 Entrez la référence de l'article auquel il faut supprimer la réduction : 464
@@ -1702,32 +1704,32 @@ Entrez la référence de l'article auquel il faut supprimer la réduction : 464
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 12
 Entrez la référence de l'article auquel il faut supprimer la réduction : 32
@@ -1744,32 +1746,32 @@ ERREUR : Entrez une référence qui a une réduction ! : 32
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 13
 	 /!/ Vous entrez dans le menu de modification du mot de passe /!/
@@ -1792,32 +1794,32 @@ Veuillez entrer le nouveau mot de passe.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 13
 	 /!/ Vous entrez dans le menu de modification du mot de passe /!/
@@ -1844,32 +1846,32 @@ Veuillez entrer à nouveau le mot de passe.
 +-------------+
 
 +----------------------------------------------------------------+
-|| Que voulez-vous faire ?					||
-|| 		 - Clients -					||
-||								||
-||	1 : Afficher un client					||
-||	2 : Afficher les clients				||
-||	3 : Ajouter un client					||
-||	4 : Supprimer un client					||
-||	5 : Modifier le statut du client			||
-||								||
-|| 		 - Articles -					||
-||								||
-||	6 : Afficher un article					||
-||	7 : Afficher les articles				||
-||	8 : Ajouter un article					||
-||	9 : Supprimer un article				||
-||	10 : Modifier un article				||
-||								||
-|| 		 - Réductions -					||
-||								||
-||	11 : Ajouter réduction					||
-||	12 : Supprimer réduction				||
-||								||
-|| 		 - Autres -					||
-||								||
-||	13 : Modifier le mot de passe				||
-||	14 : Quittez.						||
+|| Que voulez-vous faire ?					                    ||
+|| 		 - Clients -											||
+||																||
+||	1 : Afficher un client										||
+||	2 : Afficher les clients									||
+||	3 : Ajouter un client										||
+||	4 : Supprimer un client										||
+||	5 : Modifier le statut du client							||
+||																||
+|| 		 - Articles -											||
+||																||
+||	6 : Afficher un article										||
+||	7 : Afficher les articles									||
+||	8 : Ajouter un article										||
+||	9 : Supprimer un article									||
+||	10 : Modifier un article									||
+||																||
+|| 		 - Réductions -											||
+||																||
+||	11 : Ajouter réduction										||
+||	12 : Supprimer réduction									||
+||																||
+|| 		 - Autres -												||
+||																||
+||	13 : Modifier le mot de passe								||
+||	14 : Quittez.												||
 +----------------------------------------------------------------+
 Vous choisissez: 14
 Sauvegarde des articles effectuée.
@@ -1877,3 +1879,10 @@ Sauvegarde des clients effectuée.
 Sauvegarde des réductions effectuée.
 Au revoir !
 ``` 
+
+# Contributeurs
+
+Ce compte rendu a été préparé par :
+
+- Mathéo : Concepteur de l'architecture du projet et en majorité de la partie client.
+- Yannis : En majorité concepteur de la partie responsable et d'une partie de la logique.
