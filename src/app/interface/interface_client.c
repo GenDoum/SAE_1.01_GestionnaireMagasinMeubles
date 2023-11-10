@@ -103,6 +103,11 @@ void ajouter_article_au_panier(int numClient, int tRef[], float tPoids[], float 
 void supprimer_article_du_panier(int tPanier[], int tQuantite[], int *tLogPanier, float tCagnotte[], int numClient, int tNumClient[], int tLogClient, int tRef[], float tPrixUnitaire[]) {
     int reference, articleIndex;
 
+    if(*tLogPanier == 0) {
+        fprintf(stderr, "\x1B[31mERREUR : Le panier est vide. Impossible de supprimer un article.\x1B[0m\n ");
+        return;
+    }
+
     printf("Entrez la référence de l'article à supprimer : ");
     verifInt(&reference);
 
