@@ -22,10 +22,10 @@ int choixInterface(void) {
     printf("1. Interface 'responsable': Pour les responsables\n");
     printf("2. Interface 'Client'     : Pour les clients\n");
 
+    printf("Vous choisissez l'interface n°: ");
     while (1) {
-        printf("Vous choisissez l'interface n°: ");
         if (scanf("%d", &choix) != 1 || (choix < 1 || choix > 2)) {
-            printf("ERREUR : Veuillez entrer un choix valide (1 ou 2) : ");
+            printf("\x1B[31mERREUR : Veuillez entrer un choix valide (1 ou 2) : \x1B[0m");
             while (getchar() != '\n');
         } else {
             break;

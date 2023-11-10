@@ -224,6 +224,11 @@ void modifier_quantite_article_panier(int tPanier[], int tQuantite[], int *tLogP
     int reference, quantite, articleIndex, clientIndex;
     float prixArticle = 0, ancienneQuantite = 0;
 
+    if(*tLogPanier == 0) {
+        fprintf(stderr, "\x1B[31mERREUR : Le panier est vide. Impossible de modifier la quantité d'un article.\x1B[0m\n ");
+        return;
+    }
+
     printf("Entrez la référence de l'article : ");
     verifInt(&reference);
 
@@ -318,6 +323,11 @@ void payer(int tPanier[], int tLogPanier, int tRef[], float tPoid[], float tVol[
             sprintf(message, "Dépassement du budget autorisé de %.2f euros.\n", depassement);
             strcat(attentionDepassement, message);
         }
+    }
+
+    if(tLogPanier == 0) {
+        fprintf(stderr, "\x1B[31mERREUR : Le panier est vide. Impossible de payer.\x1B[0m\n ");
+        return;
     }
 
     clientIndex = trouver_index_client(numClient, tNumClient, tLogClient);
