@@ -2,8 +2,6 @@
 
 # Table des matières
 
-# Table des matières
-
 1. [Compte rendu de la SAE1.01 - Implémentation des besoins du client](#compte-rendu-de-la-sae101---implémentation-des-besoins-du-client)
     1. [Informations sur les clients](#informations-sur-les-clients)
     2. [Informations sur les articles](#informations-sur-les-articles)
@@ -16,7 +14,7 @@
         1. [Architecture](#architecture)
     9. [Les fonctionnalités en plus](#les-fonctionnalités-en-plus)
         1. [Pourquoi avons-nous chiffré le mot de passe du responsable avec le code de César ?](#pourquoi-avons-nous-chiffré-le-mot-de-passe-du-responsable-avec-le-code-de-césar-)
-        2. [Fonctionnalités de sortie de l'application](#fonctionnalités-de-sortie-de-lapplication)
+        2. [Fonctionnalités de sortie de l'application](#fonctionnalit%C3%A9s-de-sortie-de-lapplication)
     10. [Jeu de données](#jeu-de-données)
     1. [Voici un jeu de données pour articles.txt](#voici-un-jeu-de-données-pour-articlestxt-)
     2. [Voici un jeu de données pour client.txt](#voici-un-jeu-de-données-pour-clienttxt-)
