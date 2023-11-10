@@ -34,7 +34,6 @@ show-dependencies:
 clean:
 	@rm -r $(BUILD_DIR) $(APP_NAME)
 	@rm -r docs/html docs/latex
-	@rm -r obj/*.o, obj/*.d
 	@echo clean done.
 
 docs:
