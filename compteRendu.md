@@ -1711,3 +1711,144 @@ ERREUR : Entrez une référence qui a une réduction ! : 32
 ```
 
 #### 13. Modification du mot de passe
+##### Dans le cas où les conditions sont respectées
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 13
+	 /!/ Vous entrez dans le menu de modification du mot de passe /!/
+	 Êtes-vous sur de vouloir changer le mot de passe ?
+ Si oui, entrez 1 et sinon entrez 0
+1
+Veuillez entrer le nouveau mot de passe.
+
+	MAXIXMUM 20 CARACTERES ET SEULEMENT DES LETTRES
+	abcdefghijklmnopqrstuvwxyz       
+	 /!/ Mot de passe trop long /!/ 
+
+```
+
+##### Dans le cas où les conditions ne sont pas respectées
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 13
+	 /!/ Vous entrez dans le menu de modification du mot de passe /!/
+	 Êtes-vous sur de vouloir changer le mot de passe ?
+ Si oui, entrez 1 et sinon entrez 0
+1
+Veuillez entrer le nouveau mot de passe.
+
+	MAXIXMUM 20 CARACTERES ET SEULEMENT DES LETTRES
+	bonjour
+Veuillez entrer à nouveau le mot de passe.
+	bonjour
+	 Veuillez entrer le nouveau décalage
+89
+	Mot de passe modifié avec succès!
+
+```
+
+#### 14. Quittez
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 14
+Sauvegarde des articles effectuée.
+Sauvegarde des clients effectuée.
+Sauvegarde des réductions effectuée.
+Au revoir !
+```
