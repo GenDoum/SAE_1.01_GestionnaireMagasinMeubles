@@ -1627,3 +1627,87 @@ Entrez le pourcentage pourcentage : 50
 ```
 
 #### 12. Supprimer une promotion
+##### Dans le cas où la promotion existe
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 12
+Entrez la référence de l'article auquel il faut supprimer la réduction : 464
+
+	Suppression réussi !
+
+```
+
+##### Dans le cas où la promotion n'existe pas
+
+```
++-------------+
+|| Bonjour ! ||
++-------------+
+
++----------------------------------------------------------------+
+|| Que voulez-vous faire ?					||
+|| 		 - Clients -					||
+||								||
+||	1 : Afficher un client					||
+||	2 : Afficher les clients				||
+||	3 : Ajouter un client					||
+||	4 : Supprimer un client					||
+||	5 : Modifier le statut du client			||
+||								||
+|| 		 - Articles -					||
+||								||
+||	6 : Afficher un article					||
+||	7 : Afficher les articles				||
+||	8 : Ajouter un article					||
+||	9 : Supprimer un article				||
+||	10 : Modifier un article				||
+||								||
+|| 		 - Réductions -					||
+||								||
+||	11 : Ajouter réduction					||
+||	12 : Supprimer réduction				||
+||								||
+|| 		 - Autres -					||
+||								||
+||	13 : Modifier le mot de passe				||
+||	14 : Quittez.						||
++----------------------------------------------------------------+
+Vous choisissez: 12
+Entrez la référence de l'article auquel il faut supprimer la réduction : 32
+ERREUR : Entrez une référence qui a une réduction ! : 32
+
+```
+
+#### 13. Modification du mot de passe
