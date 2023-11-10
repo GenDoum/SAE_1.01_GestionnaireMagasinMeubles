@@ -11,7 +11,7 @@
     4. [Information sur les promotions](#information-sur-les-promotions)
     5. [Fichiers de données](#fichiers-de-données)
     6. [Répartition du travail](#répartition-du-travail)
-    7. [Comment démarrer l'application](#comment-démarrer-lapplication)
+    7. [Comment démarrer l'application](#comment-démarrer-l'application)
     8. [Conception](#conception)
         1. [Architecture](#architecture)
     9. [Les fonctionnalités en plus](#les-fonctionnalités-en-plus)
