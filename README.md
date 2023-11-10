@@ -24,7 +24,7 @@ Cette commande nettoie, construit et exécute l'application.
    ```bash
    ./build.sh -debug
 4. **Optionnel - Nettoyer les fichiers générés :**
-   Pour nettoyer les fichiers générés (objets et exécutable), utilisez l'option `-clean` :
+   Pour nettoyer les fichiers générés (objets, exécutable et documentation doxygen), utilisez l'option `-clean` :
    ```bash
    ./build.sh -clean
 5. **Exécuter l'application (après la construction) :**
