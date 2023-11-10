@@ -39,5 +39,6 @@ Cette commande nettoie, construit et exécute l'application.
    ```bash
    ./build.sh --help
 - En cas d'erreurs imprévus avec le script `build.sh` faite simplement un :
-   ```make all
+   ```bash
+      make all
       ./app
