@@ -11,8 +11,8 @@ RESET = \033[0m
 
 # Règle pour générer les dépendances
 $(BUILD_DIR)/%.d: %.c
-	@set -e; rm -f $@; \
-		$(CC) -MM -MF $@ -MP -MT $*.o -MT $@ $(CPPFLAGS) $(CFLAGS) $<
+	@mkdir -p $(@D)
+	@$(CC) $(GCCFLAGS) -MM -MF $@ -MP -MT $(BUILD_DIR)/$*.o -MT $@ $(CPPFLAGS) $(CFLAGS) $<
 
 all: $(APP_NAME)
 
@@ -26,6 +26,10 @@ $(TARGETS): $(SOURCES)
 
 # Inclure les fichiers de dépendance générés
 -include $(TARGETS:.o=.d)
+
+# Ajout de la règle pour afficher les dépendances
+show-dependencies:
+	@cat $(TARGETS:.o=.d)
 
 clean:
 	@rm -r $(BUILD_DIR) $(APP_NAME)
