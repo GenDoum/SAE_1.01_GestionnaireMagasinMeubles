@@ -276,11 +276,11 @@ void suppressionClient(int tNumClient[], float tCagnotte[], int tSus[], int *tLo
             tSus[indexClient] = tSus[indexClient + 1];
             indexClient++;
         }
-        printf("\033[32mLe client %d a été supprimé avec succès.\033[0m\n", tNumClient[indexClient]);
+        printf("\033[32mLe client %d a été supprimé avec succès.\033[0m\n", numC);
         (*tLogique)--;
         return;
     } else {
-        printf("\t Le client %d n'a pas été supprimé.\n", tNumClient[indexClient]);
+        printf("\t Le client %d n'a pas été supprimé.\n", numC);
         return;
     }
 
@@ -369,6 +369,14 @@ void creerReduc( int tRefReduc[], int tReduc[], int *tLogReduc, int tPhysiqueRed
         verifInt(&ref);
     }
 
+    int verifReducExistante = trouver_index_article(ref, tRefReduc, tLogArticle);
+
+    while ( (verifReducExistante = trouver_index_article(ref, tRefReduc, tLogArticle)) != -1 )
+    {
+        printf("\x1B[31mERREUR : Cet article est déjà en promotion ! : \x1B[0m");
+        verifInt(&ref);
+    }
+    
     printf("Entrez le pourcentage pourcentage : ");
     while (scanf("%f", &reduc) !=1 || reduc < 0 || reduc > 100)
     {
