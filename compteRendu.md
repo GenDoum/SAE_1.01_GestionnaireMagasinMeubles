@@ -95,9 +95,9 @@ Un autre bénéfice majeur réside dans la facilité de maintenance. En segmenta
 
 Le code de César est un chiffrement que nous avons vu en cours de **bases mathématiques 1**. Il s'agit d'un chiffrement simple qui fonctionne grâce à un numéro correspondant au décalage des lettres de l'alphabet. Pour obtenir le mot de passe, si nous n'avions pas mis en place ce chiffrement, il aurait simplement fallu ouvrir le fichier `mdp.txt`. Nous avons donc pensé qu'un minimum de sécurité était nécessaire.
 
-### Fonctionnalités de sortie de l'application
+### Fonctionnalités de paiement de l'application
 
-Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios sont possibles en fonction de sa situation financière et des fonctionnalités de l'application.
+Lorsqu'un utilisateur décide de payer l'application, plusieurs scénarios sont possibles en fonction de sa situation financière et des fonctionnalités de l'application.
 
 -   Si l'utilisateur n'a pas défini de budget, il a simplement à payer ses articles et quitter l'application.
     
@@ -110,6 +110,12 @@ Lorsqu'un utilisateur décide de quitter l'application, plusieurs scénarios son
 -   Si l'utilisateur a utilisé sa cagnotte pour couvrir un excédent de dépenses, l'application déduira le montant approprié de sa cagnotte et informera l'utilisateur que le montant a été déduit avec succès.
     
 -   Si l'utilisateur n'a pas déduit suffisamment de sa cagnotte pour couvrir le montant dû, l'application lui indiquera le montant minimum à déduire pour effectuer le paiement complet.
+
+-	Si l'utilisateur a dépassé son volume ou sa charge il peut revenir en arrière pour modifier la quantité de son panier. Si il refuse le paiement ne sera pas effectué.
+
+### Fonctionnalités d'ajout de promotion
+
+Le responsable peut choisir d'appliquer une réduction sur un article. Il peut également en supprimer une.
     
 
 Ces fonctionnalités garantissent que l'application aide les utilisateurs à gérer leur budget et à utiliser leur cagnotte de manière efficace pour éviter les problèmes financiers.
