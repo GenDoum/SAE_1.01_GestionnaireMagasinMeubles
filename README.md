@@ -1,5 +1,14 @@
 # SAE_101
 
+# En quoi consiste cette application ? 
+
+Cette application répond au besoin d'un magasin de pouvoir automatiser la gestion de son magasin.
+Côté client et côté responsable. Pour accéder au compte-Rendu de l'application vous pouvez cliquer ici : 
+
+
+
+
+
 # Guide pour lancer l'application
 
 ## Prérequis
@@ -12,7 +21,7 @@ Assurez-vous d'avoir les éléments suivants installés sur votre système :
 
 1. **Cloner le dépôt Git :**
    ```bash
-   $ git clone https://codefirst.iut.uca.fr/git/yannis.doumir_fernandes/SAE_101.git
+   $ git clone [https://codefirst.iut.uca.fr/git/yannis.doumir_fernandes/SAE_101.git](https://github.com/GenDoum/SAE_1.01_GestionnaireMagasinMeubles.git)
    $ cd SAE_101
 2. **Exécuter le script de lancement :**
    ```bash
