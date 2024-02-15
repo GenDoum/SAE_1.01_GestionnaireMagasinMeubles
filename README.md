@@ -2,9 +2,8 @@
 
 # En quoi consiste cette application ? 
 
-Cette application répond au besoin d'un magasin de pouvoir automatiser la gestion de son magasin.
-Côté client et côté responsable. Pour accéder au compte-rendu de l'application vous pouvez cliquer ici : 
-[Compte-rendu](./compteRendu.pdf)
+Cette application consiste a automatiser la gestion d'un magasin. Côté client et côté responsable. 
+Pour accéder au compte-rendu de l'application vous pouvez cliquer ici : [Compte-rendu](./compteRendu.pdf)
 
 
 
